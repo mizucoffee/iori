@@ -28,7 +28,7 @@ class Like < ActiveRecord::Base
 end
 
 class Genre < ActiveRecord::Base
-  has_many :genres
+  has_many :songs
 end
 
 class SingersSong < ActiveRecord::Base

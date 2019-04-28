@@ -6,5 +6,5 @@ require 'sinatra/reloader' if development?
 require './models/model.rb'
 
 get '/' do
-  'iori'
+  'hello world'
 end
