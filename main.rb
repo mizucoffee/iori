@@ -1,10 +1,5 @@
-require 'bundler/setup'
-Bundler.require
-require 'sinatra'
-require 'sinatra/json'
-require 'sinatra/reloader' if development?
 require './models/model.rb'
-
+require './routes/base.rb'
 require './routes/root.rb'
 require './routes/api.rb'
 

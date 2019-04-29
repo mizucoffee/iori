@@ -1,4 +1,4 @@
-require './routes/base.rb'
+# require './routes/base.rb'
 
 # /api Router
 class Api < Base

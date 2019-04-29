@@ -1,5 +1,3 @@
-require './routes/base.rb'
-
 # / Router
 class Root < Base
   get '/' do
@@ -7,7 +5,13 @@ class Root < Base
   end
 
   get '/@:id' do
-    @user = params[:id]
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV['CONSUMER_KEY']
+      config.consumer_secret     = ENV['CONSUMER_SECRET']
+    end
+
+    @user = client.user(params[:id])
+
     erb :userpage
   end
 end

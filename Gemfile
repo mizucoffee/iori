@@ -11,9 +11,10 @@ gem 'dotenv'
 gem 'rake'
 gem 'sinatra'
 gem 'sinatra-activerecord'
-gem 'sinatra-contrib'
+gem 'twitter'
 
 group :development do
+  gem 'sinatra-contrib'
   gem 'sqlite3', '~> 1.3.6'
 end
 
