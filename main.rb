@@ -1,7 +1,8 @@
-require './models/model.rb'
-require './routes/base.rb'
-require './routes/root.rb'
-require './routes/api.rb'
+require './src/models'
+require './src/base'
+require './src/twitter'
+require './src/routes/root'
+require './src/routes/api'
 
 # Iori
 class Iori < Sinatra::Base
