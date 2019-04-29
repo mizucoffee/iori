@@ -1,0 +1,27 @@
+<header>
+  <nav class="uk-navbar-container uk-container" uk-navbar="uk-navbar">
+    <div class="uk-navbar-left">
+      <a class="uk-navbar-item uk-logo" href="/">
+        <%= render :erb ,:'svg/iori-logo' ,:locals => {:c => "header-iori-logo"}%>
+        <%= render :erb ,:'svg/iori-text' ,:locals => {:c => "header-iori-text"}%>
+      </a>
+      <ul class="uk-navbar-nav">
+        <li><a href="/"><span uk-icon="icon: home"></span>&nbsp;Home</a></li>
+        <li><a href="/list"><span uk-icon="icon: list"></span>&nbsp;List</a></li>
+      </ul>
+    </div>
+    <div class="uk-navbar-right">
+      <ul class="uk-navbar-nav">
+        <li>
+          <div class="uk-navbar-item">
+            <form action="/list">
+              <input class="uk-input uk-form-width-small" name="q" type="text" placeholder="Search..." />
+              <button class="uk-button uk-button-default">Search</button>
+            </form>
+          </div>
+        </li>
+        <li><a href="/account/login"><span uk-icon="icon: user"></span>&nbsp;Login</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>

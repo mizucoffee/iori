@@ -1,0 +1,29 @@
+header {
+  background: #40414f;
+
+  nav.uk-navbar-container.uk-container.uk-navbar {
+    background: #40414f;
+  }
+
+  .uk-logo {
+    &:hover {
+      .header-iori-logo,
+      .header-iori-text {
+        fill: #e0e0e0;
+      }
+    }
+
+    .header-iori-logo {
+      fill: #ffffff;
+      height: 42px;
+      width: 42px;
+    }
+
+    .header-iori-text {
+      fill: #ffffff;
+      height: 30px;
+      width: 60px;
+      margin-left: 12px;
+    }
+  }
+}
