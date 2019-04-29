@@ -1,5 +1,5 @@
 db_config = YAML.load_file('database.yml')
-ActiveRecord::Base.establish_connection(db_config['development'])
+ActiveRecord::Base.establish_connection(db_config[ENV['ENV'] || 'development'])
 
 class User < ActiveRecord::Base
   has_many :reviews

@@ -6,5 +6,5 @@ require 'sinatra/reloader' if development?
 require './models/model.rb'
 
 get '/' do
-  'hello world'
+  erb :index
 end

@@ -1,15 +1,12 @@
-default: &default
+production:
   adapter: postgresql
-  encoding: unicode
-  pool: 5
+  host: localhost
+  database: iori
   username: iori
   password: iori
-  host: localhost
+  encoding: unicode
+  pool: 5
 
 development:
-  <<: *default
-  database: iori
-
-production:
-  <<: *default
-  database: iori
+  adapter: sqlite3
+  database: db/development.db
