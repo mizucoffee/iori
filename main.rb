@@ -5,11 +5,13 @@ require 'sinatra/json'
 require 'sinatra/reloader' if development?
 require './models/model.rb'
 
-get '/' do
-  erb :index
-end
+require './routes/root.rb'
+require './routes/api.rb'
 
-get '/@:id' do
-  @user = params[:id]
-  erb :userpage
+# Iori
+class Iori < Sinatra::Base
+  ROUTES = {
+    '/' => Root,
+    '/api' => Api
+  }.freeze
 end

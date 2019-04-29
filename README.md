@@ -9,3 +9,9 @@ $ # npm install -g sass
 $ sass scss/index.scss public/style.css
 $ rake db:migrate # ENV=production
 ```
+
+## Run
+
+```
+$ rackup config.ru -p <PORT> -o <HOST>
+```
