@@ -11,4 +11,13 @@ module Tw
   def self.app
     @app
   end
+
+  def self.user(access_token,access_token_secret)
+    Twitter::REST::Client.new do |config|
+      config.consumer_key = CONSUMER_KEY
+      config.consumer_secret = CONSUMER_SECRET
+      config.access_token = access_token
+      config.access_token_secret = access_token_secret
+    end
+  end
 end

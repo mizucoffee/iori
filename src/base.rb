@@ -8,5 +8,9 @@ class Base < Sinatra::Base
   end
 
   before do
+    @me = User.find_by(twitter_id: session['user_id'])
+    unless @me.nil?
+      @twitter = Tw.user(session['access_token'], session['access_token_secret']).user(session['user_id'].to_i)
+    end
   end
 end

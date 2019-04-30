@@ -5,6 +5,13 @@ header {
     background: #40414f;
   }
 
+  .uk-navbar-nav>li>a, .uk-navbar-nav>li>a.uk-open,.uk-navbar-nav>li>a:focus {
+    color: #eee;
+    &:hover {
+      color: #aaa;
+    }
+  }
+
   .uk-logo {
     &:hover {
       .header-iori-logo,
@@ -25,5 +32,10 @@ header {
       width: 60px;
       margin-left: 12px;
     }
+  }
+
+  img {
+    width: 48px;
+    border-radius: 50%;
   }
 }

@@ -7,11 +7,11 @@
 
 <body>
     <%= render :erb ,:'template/header' %>
-
+    <%# 自分かどうかで処理を変える（設定画面へのリンク等） %>
     <div id="content" class="uk-section">
         <div class="uk-container">
 
-            <img src="<%= @user.profile_image_url %>" alt="">
+            <img src="<%= @user['profile_image_url_https'] %>" alt="">
 
         </div>
     </div>
