@@ -1,6 +1,7 @@
 language: ruby
 before_install:
   - gem install bundler
+  - rake db:migrate
 cache: bundler
 bundler_args: --without production
 rvm: 2.6.3
