@@ -20,6 +20,9 @@ class Review < ActiveRecord::Base
 end
 
 class Artist < ActiveRecord::Base
+  has_many :singers_songs
+  has_many :composers_songs
+  has_many :lyricists_songs
 end
 
 class Like < ActiveRecord::Base
