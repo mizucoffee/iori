@@ -1,7 +1,10 @@
 require 'bundler/setup'
 Bundler.require :default, :development, :test
 Dotenv.load
+
+require 'simplecov'
 SimpleCov.start
+require 'codecov'
 SimpleCov.formatter = SimpleCov::Formatter::Codecov
 
 require './src/app'

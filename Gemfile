@@ -15,9 +15,9 @@ gem 'sinatra-activerecord'
 gem 'twitter'
 
 group :test do
-  gem 'codecov'
+  gem 'codecov', require: false
   gem 'rack-test'
-  gem 'simplecov'
+  gem 'simplecov', require: false
   gem 'test-unit'
 end
 
