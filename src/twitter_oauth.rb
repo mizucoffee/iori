@@ -6,6 +6,7 @@ require 'openssl'
 require 'base64'
 
 module Twi
+  # Twitter OAuth
   class OAuth
     CONSUMER_KEY = ENV['CONSUMER_KEY']
     CONSUMER_SECRET = ENV['CONSUMER_SECRET']

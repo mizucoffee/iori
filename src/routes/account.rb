@@ -1,7 +1,7 @@
 # /account Router
 class Account < Base
   get '/login' do
-    render :erb, :index
+    render :erb, :login
   end
 
   get '/login/auth/twitter' do
