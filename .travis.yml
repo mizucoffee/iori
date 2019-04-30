@@ -5,4 +5,4 @@ before_install:
 install: bundle install
 cache:
   directories: vendor/bundle
-script: ruby test/test.rb
+script: ruby tests/test.rb
