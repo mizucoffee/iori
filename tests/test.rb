@@ -1,9 +1,12 @@
 require 'bundler/setup'
 Bundler.require :default, :development, :test
 Dotenv.load
+SimpleCov.start
+SimpleCov.formatter = SimpleCov::Formatter::Codecov
 
 require './src/app'
 
+# Test
 class IoriTest < Test::Unit::TestCase
   include Rack::Test::Methods
 

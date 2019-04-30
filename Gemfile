@@ -14,9 +14,10 @@ gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'twitter'
 
-
 group :test do
+  gem 'codecov'
   gem 'rack-test'
+  gem 'simplecov'
   gem 'test-unit'
 end
 
