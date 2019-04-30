@@ -3,7 +3,7 @@
 <p align="center">
   <a href="https://travis-ci.org/mizucoffee/iori"><img src="https://travis-ci.org/mizucoffee/iori.svg?branch=develop"/></a>
   <a href="https://codeclimate.com/github/mizucoffee/iori/maintainability"><img src="https://api.codeclimate.com/v1/badges/5f0c459428939e43a152/maintainability" /></a>
-  <a href="https://codecov.io/gh/mizucoffee/iori"><img src="https://codecov.io/gh/mizucoffee/iori/branch/master/graph/badge.svg" /></a>
+  <a href="https://codecov.io/gh/mizucoffee/iori"><img src="https://codecov.io/gh/mizucoffee/iori/branch/develop/graph/badge.svg" /></a>
 </p>
 
 ## Build

@@ -1,8 +1,5 @@
 language: ruby
+cache: bundler
+bundler_args: --without production
 rvm: 2.6.3
-before_install:
-  - gem install bundler
-install: bundle install
-cache:
-  directories: vendor/bundle
 script: ruby tests/test.rb
