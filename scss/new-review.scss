@@ -1,0 +1,31 @@
+#new-review {
+  #color {
+    cursor: crosshair;
+  }
+
+  .cs-box {
+    display: flex;
+    margin: 0 auto;
+    width: fit-content;
+  }
+  .color-sample {
+    height: 100px;
+    width: 100px;
+    background: hsl(0, 100%, 70%);
+    margin: 8px;
+    cursor: pointer
+  }
+  #cs2 {
+    background: hsl(0, 100%, 30%);
+  }
+  .color-sample.selected {
+    border: #40414f solid 8px;
+  }
+  .color-sample:not(.selected) {
+    padding: 8px;
+  }
+
+  form {
+    margin: 0 auto;
+  }
+}

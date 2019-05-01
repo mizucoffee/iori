@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 20190428065923) do
     t.string "name"
   end
 
-  create_table "composers_song", force: :cascade do |t|
-    t.integer "song_id"
+  create_table "composers_music", force: :cascade do |t|
+    t.integer "music_id"
     t.integer "singers_id"
   end
 
@@ -34,14 +34,19 @@ ActiveRecord::Schema.define(version: 20190428065923) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "lyricists_song", force: :cascade do |t|
-    t.integer "song_id"
+  create_table "lyricists_music", force: :cascade do |t|
+    t.integer "music_id"
     t.integer "singers_id"
+  end
+
+  create_table "musics", force: :cascade do |t|
+    t.string  "name"
+    t.integer "genre_id"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.string   "title"
-    t.integer  "song_id"
+    t.integer  "music_id"
     t.integer  "user_id"
     t.string   "body"
     t.string   "color"
@@ -50,14 +55,9 @@ ActiveRecord::Schema.define(version: 20190428065923) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "singers_song", force: :cascade do |t|
-    t.integer "song_id"
+  create_table "singers_music", force: :cascade do |t|
+    t.integer "music_id"
     t.integer "singers_id"
-  end
-
-  create_table "songs", force: :cascade do |t|
-    t.string  "name"
-    t.integer "genre_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -6,23 +6,23 @@ class User < ActiveRecord::Base
   has_many :likes
 end
 
-class Song < ActiveRecord::Base
-  has_many :singers_songs
-  has_many :composers_songs
-  has_many :lyricists_songs
+class Music < ActiveRecord::Base
+  has_many :singers_musics
+  has_many :composers_musics
+  has_many :lyricists_musics
   has_many :reviews
   belongs_to :genre
 end
 
 class Review < ActiveRecord::Base
-  belongs_to :song
+  belongs_to :music
   belongs_to :user
 end
 
 class Artist < ActiveRecord::Base
-  has_many :singers_songs
-  has_many :composers_songs
-  has_many :lyricists_songs
+  has_many :singers_musics
+  has_many :composers_musics
+  has_many :lyricists_musics
 end
 
 class Like < ActiveRecord::Base
@@ -31,20 +31,20 @@ class Like < ActiveRecord::Base
 end
 
 class Genre < ActiveRecord::Base
-  has_many :songs
+  has_many :musics
 end
 
-class SingersSong < ActiveRecord::Base
-  belongs_to :song
+class SingersMusic < ActiveRecord::Base
+  belongs_to :music
   belongs_to :artist
 end
 
-class ComposersSong < ActiveRecord::Base
-  belongs_to :song
+class ComposersMusic < ActiveRecord::Base
+  belongs_to :music
   belongs_to :artist
 end
 
-class LyricistsSong < ActiveRecord::Base
-  belongs_to :song
+class LyricistsMusic < ActiveRecord::Base
+  belongs_to :music
   belongs_to :artist
 end

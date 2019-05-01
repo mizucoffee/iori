@@ -1,14 +1,65 @@
 <!DOCTYPE html>
 <html lang="jp">
+
 <head>
     <%= render :erb ,:'template/head' %>
+    <script src="./review_new.js"></script>
 </head>
+
 <body>
     <%= render :erb ,:'template/header' %>
-    <div id="content" class="uk-section">
-        <div class="uk-container">
+    <div id="new-review" class="uk-section">
+        <div class="uk-container uk-text-center">
+            <h1 class="uk-heading-line"><span>Review</span></h1>
+
+            <form class="uk-form-width-large uk-text-left">
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">タイトル</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" id="form-stacked-text" type="text" placeholder="Title">
+                    </div>
+                </div>
+
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">本文</label>
+                    <textarea class="uk-textarea" placeholder="Body"></textarea>
+                </div>
+
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">楽曲</label><br>
+                    <a class="uk-button uk-button-primary" href="#modal" uk-toggle>検索</a><br>
+                </div>
+
+                <div id="modal" uk-modal>
+                    <div class="uk-modal-dialog">
+                        <button class="uk-modal-close-default" type="button" uk-close></button>
+                        <div class="uk-modal-header">
+                            <h2 class="uk-modal-title">アーティスト検索</h2>
+                        </div>
+                        <div class="uk-modal-body" uk-overflow-auto>
+                            <div class="uk-margin" uk-grid>
+                                <div class="uk-width-3-4@s">
+                                    <input class="uk-input" type="text" placeholder="Title">
+                                </div>
+                                <div class="uk-width-1-4@s">
+                                    <button class="uk-button uk-button-primary" type="button">検索</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-modal-footer uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="cs-box">
+                <div class="color-sample selected" id="cs1"></div>
+                <div class="color-sample" id="cs2"></div>
+            </div>
+            <canvas id="color" width="400px" height="100px"></canvas>
         </div>
     </div>
     <%= render :erb ,:'template/footer' %>
 </body>
+
 </html>
