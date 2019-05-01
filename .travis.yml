@@ -6,4 +6,4 @@ before_script:
 cache: bundler
 bundler_args: --without production
 rvm: 2.6.3
-script: ruby tests/test.rb
+script: bundle exec rspec

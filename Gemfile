@@ -14,11 +14,16 @@ gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'twitter'
 
+gem "bundler", :require => [
+  "pp",
+  "uri"
+]
+
 group :test do
   gem 'codecov', require: false
   gem 'rack-test'
   gem 'simplecov', require: false
-  gem 'test-unit'
+  gem 'rspec'
 end
 
 group :development do

@@ -8,6 +8,14 @@ class Base < Sinatra::Base
   end
 
   before do
+    path = "#{request.env['SCRIPT_NAME']}#{request.env['PATH_INFO']}"
+    query = request.env['QUERY_STRING']
+    if %r{\/$}.match?(path) && path != '/'
+      p = path.gsub(%r{\/$}, '')
+      p = "#{p}?#{query}" unless query.empty?
+      redirect(p, 301)
+    end
+
     @me = User.find_by(twitter_id: session['user_id'])
     unless @me.nil?
       @twitter = Tw.user(session['access_token'], session['access_token_secret']).user(session['user_id'].to_i)
