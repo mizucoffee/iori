@@ -38,4 +38,11 @@ header {
     width: 48px;
     border-radius: 50%;
   }
+  a.uk-button-default {
+    color: white;
+    &:hover {
+        color: #e0e0e0;
+      
+    }
+  }
 }

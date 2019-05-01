@@ -12,15 +12,14 @@
     </div>
     <div class="uk-navbar-right">
       <ul class="uk-navbar-nav">
+        <% if @me %>
         <li>
           <div class="uk-navbar-item">
             <form action="/list">
-              <input class="uk-input uk-form-width-small" name="q" type="text" placeholder="Search..." />
-              <button class="uk-button uk-button-default">Search</button>
+              <a class="uk-button uk-button-default" href="/review/new">Review</a>
             </form>
           </div>
         </li>
-        <% if @me %>
           <li>
             <a href="#"><img src="<%= @twitter['profile_image_url_https'] %>" alt="@<%= @twitter['scree_name'] %>">&nbsp;<%= @twitter['name'] %></a>
             <div class="uk-navbar-dropdown">

@@ -1,5 +1,5 @@
 # /api Router
-class Api < Base
+class ApiRouter < Base
   get '/' do
     'Iori!'
   end

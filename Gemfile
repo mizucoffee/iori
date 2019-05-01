@@ -8,7 +8,6 @@ gem 'ruby-debug-ide', require: false
 
 gem 'activerecord', '< 5.0.0'
 gem 'dotenv'
-gem 'oauth2'
 gem 'rake'
 gem 'sinatra'
 gem 'sinatra-activerecord'

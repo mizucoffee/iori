@@ -5,12 +5,14 @@ require './src/tw'
 require './src/routes/root'
 require './src/routes/api'
 require './src/routes/account'
+require './src/routes/review'
 
 # Iori
 class Iori < Sinatra::Base
   ROUTES = {
-    '/' => Root,
-    '/api' => Api,
-    '/account' => Account
+    '/' => RootRouter,
+    '/api' => ApiRouter,
+    '/account' => AccountRouter,
+    '/review' => ReviewRouter
   }.freeze
 end

@@ -1,13 +1,14 @@
 # /account Router
-class Account < Base
+class AccountRouter < Base
   get '/login' do
-    redirect '/' unless session[:user_id].nil?
+    redirect '/' unless @me.nil?
+    @next = params[:next]
     render :erb, :login
   end
 
   get '/login/auth/twitter' do
-    redirect '/' unless session[:user_id].nil?
-    token = Twi::OAuth.token('http://iori.mzcf.net/account/login/auth/twitter/callback')
+    redirect '/' unless @me.nil?
+    token = Twi::OAuth.token("http://iori.mzcf.net/account/login/auth/twitter/callback?next=#{params[:next]}")
     session['oauth_token_secret'] = token['oauth_token_secret']
     redirect "https://api.twitter.com/oauth/authenticate?oauth_token=#{token['oauth_token']}"
   end
@@ -27,11 +28,11 @@ class Account < Base
       session['access_token'] = twitter['oauth_token']
       session['access_token_secret'] = twitter['oauth_token_secret']
     end
-    redirect '/'
+    redirect params[:next] || '/'
   end
 
   get '/settings' do
-    redirect '/account/login?next=/account/settings' if @me.nil? 
+    redirect '/account/login?next=/account/settings' if @me.nil?
     render :erb, :index
   end
 

@@ -1,5 +1,5 @@
 # / Router
-class Root < Base
+class RootRouter < Base
   get '/' do
     erb :index
   end
