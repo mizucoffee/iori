@@ -4,11 +4,10 @@ document.addEventListener('DOMContentLoaded', e => {
     const cs2 = document.getElementById('cs2')
     const nav = document.querySelector('nav')
     const header = document.querySelector('header')
-    const input = document.getElementById('music')
+    const input = document.getElementById('form-color')
     const ctx = color.getContext('2d')
     const width = color.width
     const height = color.height
-    console.log('a')
 
     const grd1 = ctx.createLinearGradient(0, 0, width, 0)
     for (let i = 0; i <= 360; i++) grd1.addColorStop(i / 360, `hsl(${i}, 100%, 70%)`)
@@ -20,6 +19,8 @@ document.addEventListener('DOMContentLoaded', e => {
 
     let drag = false
     let light = true
+    let h = 0
+    changeColor()
 
     function changeColor(e) {
         if (e) {
