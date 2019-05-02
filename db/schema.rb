@@ -55,9 +55,9 @@ ActiveRecord::Schema.define(version: 20190502064536) do
     t.integer  "user_id"
     t.string   "body"
     t.string   "color"
-    t.integer  "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "review_type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "singers_musics", force: :cascade do |t|

@@ -6,7 +6,15 @@ class ReviewRouter < Base
     erb :review_new
   end
 
-  post '/confirm' do
-    params.to_s
+  post '/new' do
+    r = Review.create({
+      title: params[:title],
+      body: params[:body],
+      music: Music.find(params[:music]),
+      color: params[:color],
+      review_type: 0,
+      user: @me
+    })
+    redirect "/@#{@twitter.screen_name}/#{r.id}"
   end
 end

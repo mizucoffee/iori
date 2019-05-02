@@ -6,7 +6,7 @@ class CreateReviews < ActiveRecord::Migration
       t.integer :user_id
       t.string :body
       t.string :color
-      t.integer :type
+      t.integer :review_type
       t.datetime :created_at,  null: false
       t.datetime :updated_at,  null: false
     end
