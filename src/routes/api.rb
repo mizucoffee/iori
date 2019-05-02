@@ -9,22 +9,25 @@ class ApiRouter < Base
   end
 
   post '/music' do
-    music = Music.create({ name: params[:name], genre_id: params[:genre] })
+    music = Music.create({ name: params[:name], genre: Genre.find(params[:genre])})
+
     params[:singer].split(',').each do |s|
-      SingersMusic.create({ music_id: music.id, singers_id: s })
+      music.singers << Artist.find(s)
     end
 
     params[:composer].split(',').each do |s|
-      ComposersMusic.create({ music_id: music.id, composers_id: s })
+      music.composers << Artist.find(s)
     end
 
     params[:lyricist].split(',').each do |s|
-      LyricistsMusic.create({ music_id: music.id, lyricists_id: s })
+      music.lyricists << Artist.find(s)
     end
 
     params[:arranger].split(',').each do |s|
-      ArrangersMusic.create({ music_id: music.id, arrangers_id: s }) 
+      music.arrangers << Artist.find(s)
     end
+
+    music.save
   end
 
   get '/artist' do

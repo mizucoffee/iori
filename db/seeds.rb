@@ -28,4 +28,8 @@ if Genre.count == 0
     {name: '無分類'},
     {name: 'その他'}
   ])
+  Artist.create([
+    {name: '中島みゆき'},
+    {name: '槇原敬之'}
+  ])
 end

@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20190502064536) do
 
   create_table "arrangers_musics", force: :cascade do |t|
     t.integer "music_id"
-    t.integer "arrangers_id"
+    t.integer "artist_id"
   end
 
   create_table "artists", force: :cascade do |t|
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20190502064536) do
 
   create_table "composers_musics", force: :cascade do |t|
     t.integer "music_id"
-    t.integer "composers_id"
+    t.integer "artist_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20190502064536) do
 
   create_table "lyricists_musics", force: :cascade do |t|
     t.integer "music_id"
-    t.integer "lyricists_id"
+    t.integer "artist_id"
   end
 
   create_table "musics", force: :cascade do |t|
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20190502064536) do
 
   create_table "singers_musics", force: :cascade do |t|
     t.integer "music_id"
-    t.integer "singers_id"
+    t.integer "artist_id"
   end
 
   create_table "users", force: :cascade do |t|

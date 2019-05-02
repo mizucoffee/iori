@@ -4,12 +4,20 @@ ActiveRecord::Base.establish_connection(db_config[ENV['ENV'] || 'development'])
 class User < ActiveRecord::Base
   has_many :reviews
   has_many :likes
+  has_many :reviews, through: :likes
 end
 
 class Music < ActiveRecord::Base
   has_many :singers_musics
   has_many :composers_musics
   has_many :lyricists_musics
+  has_many :arrangers_musics
+
+  has_many :singers, through: :singers_musics, source: :artist
+  has_many :composers, through: :composers_musics, source: :artist
+  has_many :lyricists, through: :lyricists_musics, source: :artist
+  has_many :arrangers, through: :arrangers_musics, source: :artist
+
   has_many :reviews
   belongs_to :genre
 end
@@ -17,12 +25,20 @@ end
 class Review < ActiveRecord::Base
   belongs_to :music
   belongs_to :user
+  has_many :likes
+  has_many :users, through: :likes
 end
 
 class Artist < ActiveRecord::Base
   has_many :singers_musics
   has_many :composers_musics
   has_many :lyricists_musics
+  has_many :arrangers_musics
+
+  has_many :singer_music, through: :singers_musics, source: :music
+  has_many :composer_music, through: :composers_musics, source: :music
+  has_many :lyricist_music, through: :lyricists_musics, source: :music
+  has_many :arranger_music, through: :lyricists_musics, source: :music
 end
 
 class Like < ActiveRecord::Base

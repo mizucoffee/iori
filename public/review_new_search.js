@@ -78,10 +78,10 @@ document.addEventListener("DOMContentLoaded", e => {
     const body = {
       name: $('#music-name').val(),
       genre: $('#music-genre').val(),
-      singer: Array.from(singer).join(','),
-      composer: Array.from(composer).join(','),
-      lyricist: Array.from(lyricist).join(','),
-      arranger: Array.from(arranger).join(',')
+      singer: Array.from(singer_id).join(','),
+      composer: Array.from(composer_id).join(','),
+      lyricist: Array.from(lyricist_id).join(','),
+      arranger: Array.from(arranger_id).join(',')
     }
 
     let str = ''
