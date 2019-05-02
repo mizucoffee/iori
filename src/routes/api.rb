@@ -9,7 +9,22 @@ class ApiRouter < Base
   end
 
   post '/music' do
-    Music.create()
+    music = Music.create({ name: params[:name], genre_id: params[:genre] })
+    params[:singer].split(',').each do |s|
+      SingersMusic.create({ music_id: music.id, singers_id: s })
+    end
+
+    params[:composer].split(',').each do |s|
+      ComposersMusic.create({ music_id: music.id, composers_id: s })
+    end
+
+    params[:lyricist].split(',').each do |s|
+      LyricistsMusic.create({ music_id: music.id, lyricists_id: s })
+    end
+
+    params[:arranger].split(',').each do |s|
+      ArrangersMusic.create({ music_id: music.id, arrangers_id: s }) 
+    end
   end
 
   get '/artist' do
@@ -22,7 +37,7 @@ class ApiRouter < Base
 
   post '/artist' do
     # 重複チェック / 同姓同名
-    Artist.create(name: params[:q])
+    Artist.create(name: params[:name])
     '{ok: true}'
   end
 

@@ -1,4 +1,4 @@
-#new-review {
+#new-review, div[uk-modal] {
   #color {
     cursor: crosshair;
   }
@@ -27,5 +27,16 @@
 
   form {
     margin: 0 auto;
+  }
+  .uk-width-1-4\@s {
+    padding-left: 10px;
+  }
+  .result-box {
+    min-height: 64px;
+  }
+  .list-message {
+    margin: 8px 0;
+    display: block;
+    float: left;
   }
 }

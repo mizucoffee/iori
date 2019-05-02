@@ -48,3 +48,8 @@ class LyricistsMusic < ActiveRecord::Base
   belongs_to :music
   belongs_to :artist
 end
+
+class ArrangersMusic < ActiveRecord::Base
+  belongs_to :music
+  belongs_to :artist
+end

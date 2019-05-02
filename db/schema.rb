@@ -11,15 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190428065923) do
+ActiveRecord::Schema.define(version: 20190502064536) do
+
+  create_table "arrangers_musics", force: :cascade do |t|
+    t.integer "music_id"
+    t.integer "arrangers_id"
+  end
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "composers_music", force: :cascade do |t|
+  create_table "composers_musics", force: :cascade do |t|
     t.integer "music_id"
-    t.integer "singers_id"
+    t.integer "composers_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -34,9 +39,9 @@ ActiveRecord::Schema.define(version: 20190428065923) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "lyricists_music", force: :cascade do |t|
+  create_table "lyricists_musics", force: :cascade do |t|
     t.integer "music_id"
-    t.integer "singers_id"
+    t.integer "lyricists_id"
   end
 
   create_table "musics", force: :cascade do |t|
@@ -55,7 +60,7 @@ ActiveRecord::Schema.define(version: 20190428065923) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "singers_music", force: :cascade do |t|
+  create_table "singers_musics", force: :cascade do |t|
     t.integer "music_id"
     t.integer "singers_id"
   end

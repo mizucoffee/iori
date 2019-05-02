@@ -1,12 +1,14 @@
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', e => {
     const color = document.getElementById('color')
     const cs1 = document.getElementById('cs1')
     const cs2 = document.getElementById('cs2')
     const nav = document.querySelector('nav')
     const header = document.querySelector('header')
+    const input = document.getElementById('music')
     const ctx = color.getContext('2d')
     const width = color.width
     const height = color.height
+    console.log('a')
 
     const grd1 = ctx.createLinearGradient(0, 0, width, 0)
     for (let i = 0; i <= 360; i++) grd1.addColorStop(i / 360, `hsl(${i}, 100%, 70%)`)
@@ -47,6 +49,7 @@ window.onload = () => {
         nav.style.background = 'hsl(' + h * 360 + ', 100%, ' + (light ? '75%' : '25%') + ', 1)'
         header.style.background = 'hsl(' + h * 360 + ', 100%, ' + (light ? '75%' : '25%') + ', 1)'
         document.querySelector('.uk-section').style.background = 'hsl(' + h * 360 + ', 100%, ' + (light ? '85%' : '30%') + ', 1)'
+        input.value = 'hsl(' + h * 360 + ', 100%, ' + (light ? '75%' : '25%') + ', 1)'
     }
 
     color.addEventListener("mousedown", e => {
@@ -74,4 +77,4 @@ window.onload = () => {
         light = false
         changeColor()
     }
-}
+})
