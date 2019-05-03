@@ -9,10 +9,14 @@ document.addEventListener('DOMContentLoaded', e => {
     const width = color.width
     const height = color.height
 
-    const grd1 = ctx.createLinearGradient(0, 0, width, 0)
-    for (let i = 0; i <= 360; i++) grd1.addColorStop(i / 360, `hsl(${i}, 100%, 70%)`)
-    const grd2 = ctx.createLinearGradient(0, 0, width, 0)
-    for (let i = 0; i <= 360; i++) grd2.addColorStop(i / 360, `hsl(${i}, 100%, 30%)`)
+    function createGrd(p) {
+        const grd = ctx.createLinearGradient(0, 0, width, 0)
+        for (let i = 0; i <= 360; i++) grd.addColorStop(i / 360, `hsl(${i}, 100%, ${p}%)`)
+        return grd
+    }
+
+    const grd1 = createGrd(70)
+    const grd2 = createGrd(30)
 
     ctx.fillStyle = grd1
     ctx.fillRect(0, 0, width, height)
@@ -24,10 +28,7 @@ document.addEventListener('DOMContentLoaded', e => {
 
     function changeColor(e) {
         if (e) {
-            x = e.offsetX
-            y = e.offsetY
-            const imageData = ctx.getImageData(x, 0, 1, 1).data
-
+            const imageData = ctx.getImageData(e.offsetX, 0, 1, 1).data
             max = imageData[0] > imageData[1] ? imageData[0] : imageData[1]
             max = max > imageData[2] ? max : imageData[2]
             min = imageData[0] < imageData[1] ? imageData[0] : imageData[1]
@@ -62,20 +63,17 @@ document.addEventListener('DOMContentLoaded', e => {
         if (drag) changeColor(e)
     }, false)
 
-    cs1.onclick = e => {
-        cs1.classList.add('selected')
-        cs2.classList.remove('selected')
-        ctx.fillStyle = grd1
-        ctx.fillRect(0, 0, width, height)
-        light = true
-        changeColor()
+    function colorOnClick(target, other, l) {
+        return () => {
+            target.classList.add('selected')
+            other.classList.remove('selected')
+            ctx.fillStyle = l ? grd1 : grd2
+            ctx.fillRect(0, 0, width, height)
+            light = l
+            changeColor()
+        }
     }
-    cs2.onclick = e => {
-        cs2.classList.add('selected')
-        cs1.classList.remove('selected')
-        ctx.fillStyle = grd2
-        ctx.fillRect(0, 0, width, height)
-        light = false
-        changeColor()
-    }
+
+    cs1.onclick = colorOnClick(cs1, cs2, true)
+    cs2.onclick = colorOnClick(cs2, cs1, false)
 })

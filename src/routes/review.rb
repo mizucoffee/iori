@@ -1,12 +1,13 @@
 # /review Router
 class ReviewRouter < Base
   get '/new' do
-    @genre = Genre.all
     redirect '/account/login?next=/review/new' if @me.nil?
+    @genre = Genre.all
     erb :review_new
   end
 
   post '/new' do
+    redirect '/account/login?next=/review/new' if @me.nil?
     r = Review.create({
       title: params[:title],
       body: params[:body],
