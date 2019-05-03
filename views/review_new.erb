@@ -11,23 +11,23 @@
     <%= render :erb ,:'template/header' %>
     <div id="new-review" class="uk-section">
         <div class="uk-container uk-text-center">
-            <h1 class="uk-heading-line"><span>Review</span></h1>
+            <h1 class="uk-heading-line"><span class="text">Review</span></h1>
 
             <form class="uk-form-width-large uk-text-left" method="post" action="/review/new">
                 <div class="uk-margin">
-                    <label class="uk-form-label" for="form-title">タイトル</label>
+                    <label class="uk-form-label text" for="form-title">タイトル</label>
                     <div class="uk-form-controls">
                         <input class="uk-input" id="form-title" type="text" name="title" placeholder="Title">
                     </div>
                 </div>
 
                 <div class="uk-margin">
-                    <label class="uk-form-label" for="form-body">本文</label>
+                    <label class="uk-form-label text" for="form-body">本文</label>
                     <textarea class="uk-textarea" id="form-body" placeholder="Body" name="body"></textarea>
                 </div>
 
                 <div class="uk-margin">
-                    <label class="uk-form-label" for="form-search">検索</label>
+                    <label class="uk-form-label text" for="form-search">検索</label>
                     <div class="uk-form-controls" uk-grid>
                         <div class="uk-width-3-4@s">
                             <input id="form-music-name" class="uk-input" type="text" disabled>
@@ -177,7 +177,7 @@
                     <div class="color-sample selected" id="cs1"></div>
                     <div class="color-sample" id="cs2"></div>
                 </div>
-                <canvas id="color" class="uk-align-center" width="400px" height="100px"></canvas>
+                <canvas id="color-canvas" class="uk-align-center" width="400px" height="100px"></canvas>
                 <input class="uk-button uk-button-primary uk-button-large uk-align-center" value="確認画面へ" type="submit">
             </form>
         </div>

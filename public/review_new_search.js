@@ -8,7 +8,7 @@ let composer_id = new Set()
 let lyricist_id = new Set()
 let arranger_id = new Set()
 
-document.addEventListener("DOMContentLoaded", e => {
+$(document).ready(() => {
 
   $('#modal-music-search-form-search').click(e => {
     fetch('/api/music/search?q=' + $('#modal-music-search-form-name').val())

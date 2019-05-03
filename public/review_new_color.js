@@ -1,79 +1,64 @@
-document.addEventListener('DOMContentLoaded', e => {
-    const color = document.getElementById('color')
-    const cs1 = document.getElementById('cs1')
-    const cs2 = document.getElementById('cs2')
-    const nav = document.querySelector('nav')
-    const header = document.querySelector('header')
-    const input = document.getElementById('form-color')
-    const ctx = color.getContext('2d')
-    const width = color.width
-    const height = color.height
+$(document).ready(() => {
+  const ctx = $('#color-canvas')[0].getContext('2d')
 
-    function createGrd(p) {
-        const grd = ctx.createLinearGradient(0, 0, width, 0)
-        for (let i = 0; i <= 360; i++) grd.addColorStop(i / 360, `hsl(${i}, 100%, ${p}%)`)
-        return grd
+  const lightGrd = createGrd(70)
+  const darkGrd = createGrd(30)
+
+  ctx.fillStyle = lightGrd
+  ctx.fillRect(0, 0, $('#color-canvas').width(), $('#color-canvas').height())
+
+  let light = true
+  let x = 0
+  changeColor()
+
+  function changeColor(e) {
+    e && (x = e.offsetX)
+    const id = ctx.getImageData(x, 0, 1, 1).data
+    let h = Math.max(id[0], id[1], id[2]) - Math.min(id[0], id[1], id[2])
+    if (h > 0) {
+      switch (Math.max(id[0], id[1], id[2])) {
+        case id[0]:
+          h = ((id[1] - id[2]) / h) / 6 * 360
+          if (h < 0) h += 6
+          break
+        case id[1]:
+          h = (2 + (id[2] - id[0]) / h) / 6 * 360
+          break
+        case id[2]:
+          h = (4 + (id[0] - id[1]) / h) / 6 * 360
+          break
+      }
     }
 
-    const grd1 = createGrd(70)
-    const grd2 = createGrd(30)
+    $('#cs1').css('background', `hsl(${h}, 100%, 85%, 1)`)
+    $('#cs2').css('background', `hsl(${h}, 100%, 30%, 1)`)
+    $('.uk-section').css('background', `hsl(${h}, 100%, ${light ? '85%' : '30%'}, 1)`)
+    $('#form-color').css('background', `${light ? 'l' : 'd'}${h}`)
+    $('.text').css('color', light ? 'black' : 'white')
+  }
 
-    ctx.fillStyle = grd1
-    ctx.fillRect(0, 0, width, height)
+  let drag = false
+  $('#color-canvas')
+    .mousedown(e => { drag = true; changeColor(e) })
+    .mouseup(e => drag = false)
+    .mousemove(e => { e.buttons == 0 && (drag = false); drag && changeColor(e) })
 
-    let drag = false
-    let light = true
-    let h = 0
+  $('#cs1').click(colorOnClick)
+  $('#cs2').click(colorOnClick)
+
+  function createGrd(p) {
+    const grd = ctx.createLinearGradient(0, 0, $('#color-canvas').width(), 0)
+    for (let i = 0; i <= 360; i++) grd.addColorStop(i / 360, `hsl(${i}, 100%, ${p}%)`)
+    return grd
+  }
+
+  function colorOnClick(e) {
+    $(e.target).addClass('selected')
+    $(e.target.id == 'cs1' ? '#cs2' : '#cs1').removeClass('selected')
+    light = e.target.id == 'cs1'
+    ctx.fillStyle = light ? lightGrd : darkGrd
+    ctx.fillRect(0, 0, $('#color-canvas').width(), $('#color-canvas').height())
     changeColor()
+  }
 
-    function changeColor(e) {
-        if (e) {
-            const imageData = ctx.getImageData(e.offsetX, 0, 1, 1).data
-            max = imageData[0] > imageData[1] ? imageData[0] : imageData[1]
-            max = max > imageData[2] ? max : imageData[2]
-            min = imageData[0] < imageData[1] ? imageData[0] : imageData[1]
-            min = min < imageData[2] ? min : imageData[2]
-            h = max - min
-            if (h > 0) {
-                if (max == imageData[0]) {
-                    h = (imageData[1] - imageData[2]) / h
-                    if (h < 0) h += 6
-                } else if (max == imageData[1]) {
-                    h = 2 + (imageData[2] - imageData[0]) / h
-                } else {
-                    h = 4 + (imageData[0] - imageData[1]) / h
-                }
-            }
-            h /= 6
-        }
-        cs1.style.background = 'hsl(' + h * 360 + ', 100%, 75%, 1)'
-        cs2.style.background = 'hsl(' + h * 360 + ', 100%, 25%, 1)'
-        nav.style.background = 'hsl(' + h * 360 + ', 100%, ' + (light ? '75%' : '25%') + ', 1)'
-        header.style.background = 'hsl(' + h * 360 + ', 100%, ' + (light ? '75%' : '25%') + ', 1)'
-        document.querySelector('.uk-section').style.background = 'hsl(' + h * 360 + ', 100%, ' + (light ? '85%' : '30%') + ', 1)'
-        input.value = 'hsl(' + h * 360 + ', 100%, ' + (light ? '75%' : '25%') + ', 1)'
-    }
-
-    color.addEventListener("mousedown", e => {
-        drag = true;
-        changeColor(e)
-    }, false)
-    color.addEventListener("mouseup", e => drag = false, false)
-    color.addEventListener("mousemove", e => {
-        if (drag) changeColor(e)
-    }, false)
-
-    function colorOnClick(target, other, l) {
-        return () => {
-            target.classList.add('selected')
-            other.classList.remove('selected')
-            ctx.fillStyle = l ? grd1 : grd2
-            ctx.fillRect(0, 0, width, height)
-            light = l
-            changeColor()
-        }
-    }
-
-    cs1.onclick = colorOnClick(cs1, cs2, true)
-    cs2.onclick = colorOnClick(cs2, cs1, false)
 })
