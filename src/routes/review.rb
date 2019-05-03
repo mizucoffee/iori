@@ -15,6 +15,8 @@ class ReviewRouter < Base
       review_type: 0,
       user: @me
     })
+    @me.reviews << r
+    @me.save
     redirect "/@#{@twitter.screen_name}/#{r.id}"
   end
 end

@@ -15,10 +15,12 @@
             <h1><%= @twuser['name'] %></h1>
             <h2>@<%= @twuser['screen_name'] %></h2>
 
-            <%# <% @user.reviews.each do |review| %>
-            <%= @user.twitter_id %>
-            <%= @user.reviews.map{|s|s.title}.join(',') %>
-            <%# <% end %>
+            <% if @user %>
+                <% @user.reviews.each do |review| %>
+                    <span><%= review.title %></span>
+                <% end %>
+            <% end %>
+            
 
         </div>
     </div>

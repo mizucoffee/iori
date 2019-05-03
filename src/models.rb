@@ -35,10 +35,10 @@ class Artist < ActiveRecord::Base
   has_many :lyricists_musics
   has_many :arrangers_musics
 
-  has_many :singer_music, through: :singers_musics, source: :music
-  has_many :composer_music, through: :composers_musics, source: :music
-  has_many :lyricist_music, through: :lyricists_musics, source: :music
-  has_many :arranger_music, through: :lyricists_musics, source: :music
+  has_many :singer_musics, through: :singers_musics, source: :music
+  has_many :composer_musics, through: :composers_musics, source: :music
+  has_many :lyricist_musics, through: :lyricists_musics, source: :music
+  has_many :arranger_musics, through: :lyricists_musics, source: :music
 end
 
 class Like < ActiveRecord::Base

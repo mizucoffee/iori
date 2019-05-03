@@ -13,18 +13,30 @@ class ApiRouter < Base
 
     params[:singer].split(',').each do |s|
       music.singers << Artist.find(s)
+      a = Artist.find(s)
+      a.singer_musics << music
+      a.save
     end
 
     params[:composer].split(',').each do |s|
       music.composers << Artist.find(s)
+      a = Artist.find(s)
+      a.composer_musics << music
+      a.save
     end
 
     params[:lyricist].split(',').each do |s|
       music.lyricists << Artist.find(s)
+      a = Artist.find(s)
+      a.lyricist_musics << music
+      a.save
     end
 
     params[:arranger].split(',').each do |s|
       music.arrangers << Artist.find(s)
+      a = Artist.find(s)
+      a.arranger_musics << music
+      a.save
     end
 
     music.save
