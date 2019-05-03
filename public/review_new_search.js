@@ -1,14 +1,14 @@
+let singer = new Set()
+let composer = new Set()
+let lyricist = new Set()
+let arranger = new Set()
+
+let singer_id = new Set()
+let composer_id = new Set()
+let lyricist_id = new Set()
+let arranger_id = new Set()
+
 document.addEventListener("DOMContentLoaded", e => {
-
-  let singer = new Set()
-  let composer = new Set()
-  let lyricist = new Set()
-  let arranger = new Set()
-
-  let singer_id = new Set()
-  let composer_id = new Set()
-  let lyricist_id = new Set()
-  let arranger_id = new Set()
 
   $('#modal-music-search-form-search').click(e => {
     fetch('/api/music/search?q=' + $('#modal-music-search-form-name').val())
@@ -25,26 +25,6 @@ document.addEventListener("DOMContentLoaded", e => {
       })
   })
 
-  function refresh() {
-    $('#music-singer').val(Array.from(singer).join(','))
-    $('#music-lyricist').val(Array.from(lyricist).join(','))
-    $('#music-composer').val(Array.from(composer).join(','))
-    $('#music-arranger').val(Array.from(arranger).join(','))
-  }
-
-  const onclick = (e, t, tid) => {
-    return i => {
-      if (i.target.checked) {
-        t.add(e.name)
-        tid.add(e.id)
-      } else {
-        t.delete(e.name)
-        tid.delete(e.id)
-      }
-      refresh()
-    }
-  }
-
   $('#music-artist-search-button').click(e => {
     fetch('/api/artist/search?q=' + $('#music-artist').val())
       .then(res => res.json())
@@ -54,11 +34,10 @@ document.addEventListener("DOMContentLoaded", e => {
           const parent = $('<li>').append($('<a>', { class: 'uk-accordion-title', href: '#', text: e.name }))
           const content = $('<div>', { class: 'uk-accordion-content' })
 
-          // TODO: 既に選択しているものを選択する
-          addLabel(singer, singer_id, '歌手', content)
-          addLabel(composer, composer_id, '作曲者', content)
-          addLabel(lyricist, lyricist_id, '作詞者', content)
-          addLabel(arranger, arranger_id, '編曲者', content)
+          addLabel(e, singer, singer_id, '歌手', content)
+          addLabel(e, composer, composer_id, '作曲者', content)
+          addLabel(e, lyricist, lyricist_id, '作詞者', content)
+          addLabel(e, arranger, arranger_id, '編曲者', content)
 
           parent.append(content).appendTo('#modal-artist-list')
         })
@@ -101,6 +80,26 @@ document.addEventListener("DOMContentLoaded", e => {
   })
 })
 
+function refresh() {
+  $('#music-singer').val(Array.from(singer).join(','))
+  $('#music-lyricist').val(Array.from(lyricist).join(','))
+  $('#music-composer').val(Array.from(composer).join(','))
+  $('#music-arranger').val(Array.from(arranger).join(','))
+}
+
+const onclick = (e, t, tid) => {
+  return i => {
+    if (i.target.checked) {
+      t.add(e.name)
+      tid.add(e.id)
+    } else {
+      t.delete(e.name)
+      tid.delete(e.id)
+    }
+    refresh()
+  }
+}
+
 function addNotFound(target) {
   $('<li>', { style: 'padding: 12px 10px;' })
     .append($('<span>', { class: 'list-message', text: '見つかりませんでしたか？' }))
@@ -108,12 +107,12 @@ function addNotFound(target) {
     .appendTo(`#modal-${target}-list`)
 }
 
-function addLabel(target, target_id, name, content) {
+function addLabel(e, target, target_id, name, content) {
   $('<label>').append($('<input>', {
     class: "uk-checkbox",
-    type: "checkbox"
+    type: "checkbox",
+    checked: target_id.has(e.id)
   }).change(onclick(e, target, target_id))).append($('<span>', {
     text: ` ${name}  `
   })).appendTo(content)
 }
-          
