@@ -11,9 +11,9 @@
     <div id="content" class="uk-section">
         <div class="uk-container uk-text-center">
 
-            <img src="<%= @twuser['profile_image_url_https'].to_s.gsub(/_normal/,'') %>" style="border-radius: 50%; height: 160px;">
-            <h1><%= @twuser['name'] %></h1>
-            <h2>@<%= @twuser['screen_name'] %></h2>
+            <img src="<%= @twuser.profile_image_url_https.to_s.gsub(/_normal/,'') %>" style="border-radius: 50%; height: 160px;">
+            <h1><%= @twuser.name %></h1>
+            <h2>@<%= @twuser.screen_name %></h2>
 
             <% if @user %>
                 <% @user.reviews.each do |review| %>
