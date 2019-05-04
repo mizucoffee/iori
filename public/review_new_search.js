@@ -34,10 +34,20 @@ $(document).ready(() => {
           const parent = $('<li>').append($('<a>', { class: 'uk-accordion-title', href: '#', text: e.name }))
           const content = $('<div>', { class: 'uk-accordion-content' })
 
-          addLabel(e, singer, singer_id, '歌手', content)
-          addLabel(e, composer, composer_id, '作曲者', content)
-          addLabel(e, lyricist, lyricist_id, '作詞者', content)
-          addLabel(e, arranger, arranger_id, '編曲者', content)
+          const addCheckBox = (target, target_id, name) => {
+            $('<label>').append($('<input>', {
+              class: "uk-checkbox",
+              type: "checkbox",
+              checked: target_id.has(e.id)
+            }).change(onclick(e, target, target_id))).append($('<span>', {
+              text: ` ${name}  `
+            })).appendTo(content)
+          }
+
+          addCheckBox(singer, singer_id, '歌手')
+          addCheckBox(composer, composer_id, '作曲者')
+          addCheckBox(lyricist, lyricist_id, '作詞者')
+          addCheckBox(arranger, arranger_id, '編曲者')
 
           parent.append(content).appendTo('#modal-artist-list')
         })
@@ -105,14 +115,4 @@ function addNotFound(target) {
     .append($('<span>', { class: 'list-message', text: '見つかりませんでしたか？' }))
     .append($('<a>', { class: 'uk-button uk-button-primary uk-align-right', href: `#modal-${target}-create`, 'uk-toggle': '', text: '登録する' }))
     .appendTo(`#modal-${target}-list`)
-}
-
-function addLabel(e, target, target_id, name, content) {
-  $('<label>').append($('<input>', {
-    class: "uk-checkbox",
-    type: "checkbox",
-    checked: target_id.has(e.id)
-  }).change(onclick(e, target, target_id))).append($('<span>', {
-    text: ` ${name}  `
-  })).appendTo(content)
 }

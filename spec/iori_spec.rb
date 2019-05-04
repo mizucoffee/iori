@@ -3,6 +3,10 @@ RSpec.describe 'ルーティング', type: :request do
     get '/'
     expect(last_response).to be_ok
   end
+  it "get '/music'" do
+    get '/music'
+    expect(last_response).to be_ok
+  end
 end
 
 RSpec.describe 'リダイレクト', type: :request do
