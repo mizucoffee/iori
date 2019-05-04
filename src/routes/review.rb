@@ -3,7 +3,7 @@ class ReviewRouter < Base
   get '/new' do
     redirect '/account/login?next=/review/new' if @me.nil?
     @genre = Genre.all
-    erb :review_new
+    erb :'routes/review/new'
   end
 
   post '/new' do

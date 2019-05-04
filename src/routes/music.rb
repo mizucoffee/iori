@@ -4,6 +4,6 @@ class MusicRouter < Base
     @q = params[:q]
     pp params[:q]
     @musics = @q.blank? ? [] : Music.where('name like ?', "%#{params[:q]}%")
-    erb :music_search
+    erb :'routes/music/root'
   end
 end

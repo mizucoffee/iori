@@ -3,7 +3,7 @@ class AccountRouter < Base
   get '/login' do
     redirect '/' unless @me.nil?
     @next = params[:next]
-    render :erb, :login
+    erb :'routes/account/login'
   end
 
   get '/login/auth/twitter' do
