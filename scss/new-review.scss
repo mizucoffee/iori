@@ -1,7 +1,7 @@
 #new-review, div[uk-modal] {
   #color-canvas {
     cursor: crosshair;
-    border: #fff 4px solid;
+    border: #40414f 1px solid;
   }
 
   .cs-box {
@@ -19,17 +19,14 @@
   #cs2 {
     background: hsl(0, 100%, 30%);
   }
-  #cs1.selected {
+  .selected {
     border: #40414f solid 8px;
-  }
-  #cs2.selected {
-    border:#e5e5e5 solid 8px;
   }
   .color-sample:not(.selected) {
     padding: 8px;
   }
 
-  form {
+  #form {
     margin: 0 auto;
   }
   .uk-width-1-4\@s {

@@ -9,169 +9,47 @@
 
 <body>
     <%= render :erb ,:'template/header' %>
-    <div id="new-review" class="uk-section">
-        <div class="uk-container uk-text-center">
-            <h1 class="uk-heading-line"><span class="text">Review</span></h1>
 
-            <form class="uk-form-width-large uk-text-left" method="post" action="/review/new">
-                <div class="uk-margin">
-                    <label class="uk-form-label text" for="form-title">タイトル</label>
-                    <div class="uk-form-controls">
-                        <input class="uk-input" id="form-title" type="text" name="title" placeholder="Title">
-                    </div>
-                </div>
+    <form method="post" action="/review/new">
 
-                <div class="uk-margin">
-                    <label class="uk-form-label text" for="form-body">本文</label>
-                    <textarea class="uk-textarea" id="form-body" placeholder="Body" name="body"></textarea>
-                </div>
+        <div id="new-review" class="uk-section">
+            <div class="uk-container uk-text-center">
+                <h1 class="uk-heading-line"><span class="text">Review</span></h1>
 
-                <div class="uk-margin">
-                    <label class="uk-form-label text" for="form-search">検索</label>
-                    <div class="uk-form-controls" uk-grid>
-                        <div class="uk-width-3-4@s">
-                            <input id="form-music-name" class="uk-input" type="text" disabled>
-                            <input id="form-music-id" class="uk-input" name="music" type="hidden">
-                        </div>
-                        <div class="uk-width-1-4@s">
-                            <a class="uk-button uk-button-primary uk-width-1-1" href="#modal-music-search"
-                                uk-toggle>検索</a>
+                <div class="uk-form-width-large uk-text-left" id="form">
+                    <div class="uk-margin">
+                        <label class="uk-form-label text" for="form-title">タイトル</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="form-title" type="text" name="title" placeholder="Title">
                         </div>
                     </div>
-                </div>
 
-                <input class="uk-input" id="form-color" type="hidden" name="color">
+                    <div class="uk-margin">
+                        <label class="uk-form-label text" for="form-body">本文</label>
+                        <textarea class="uk-textarea" id="form-body" placeholder="Body" name="body"></textarea>
+                    </div>
 
-                <%# モーダル - 楽曲検索 %>
-                <div id="modal-music-search" uk-modal>
-                    <div class="uk-modal-dialog">
-                        <button class="uk-modal-close-default" uk-close></button>
-                        <div class="uk-modal-header">
-                            <h2 class="uk-modal-title">楽曲検索</h2>
-                        </div>
-                        <div class="uk-modal-body" uk-overflow-auto>
-                            <div class="uk-margin" uk-grid>
-                                <div class="uk-width-3-4@s">
-                                    <input id="modal-music-search-form-name" class="uk-input" type="text"
-                                        placeholder="Song Name">
-                                </div>
-                                <div class="uk-width-1-4@s">
-                                    <button id="modal-music-search-form-search"
-                                        class="uk-button uk-button-primary uk-width-1-1">検索</button>
-                                </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label text" for="form-search">検索</label>
+                        <div class="uk-form-controls" uk-grid>
+                            <div class="uk-width-3-4@s">
+                                <input id="form-music-name" class="uk-input" type="text" disabled>
+                                <input id="form-music-id" class="uk-input" name="music" type="hidden">
                             </div>
-                            <div class="uk-margin">
-                                <ul class="result-box uk-list uk-list-large uk-list-striped" id="modal-music-list">
-                                </ul>
+                            <div class="uk-width-1-4@s">
+                                <a class="uk-button uk-button-primary uk-width-1-1" href="#modal-music-search"
+                                    uk-toggle>検索</a>
                             </div>
                         </div>
-                        <div class="uk-modal-footer uk-text-right">
-                            <button class="uk-button uk-button-default uk-modal-close">Close</button>
-                        </div>
                     </div>
+
+                    <input class="uk-input" id="form-color" type="hidden" name="color">
                 </div>
+            </div>
+        </div>
 
-                <%# モーダル - 楽曲追加 %>
-                <div id="modal-music-create" uk-modal>
-                    <div class="uk-modal-dialog">
-                        <button class="uk-modal-close-default" uk-close></button>
-                        <div class="uk-modal-header">
-                            <h2 class="uk-modal-title">楽曲追加</h2>
-                        </div>
-                        <div class="uk-modal-body" uk-overflow-auto>
-                            <div class="uk-margin">
-
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="music-name">曲名</label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="music-name" type="text" placeholder="Music name">
-                                    </div>
-                                </div>
-
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="music-genre">ジャンル</label>
-                                    <div class="uk-form-controls">
-                                        <select class="uk-select" id="music-genre">
-                                            <% @genre.each do |g| %>
-                                            <option value="<%= g.id %>"><%= g.name %></option>
-                                            <% end %>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="music-singer">歌手</label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" type="text" id="music-singer" disabled>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="music-composer">作曲者</label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" type="text" id="music-composer" disabled>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="music-lyricist">作詞者</label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" type="text" id="music-lyricist" disabled>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="music-arranger">編曲者</label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" type="text" id="music-arranger" disabled>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="music-artist">検索</label>
-                                    <div class="uk-form-controls" uk-grid>
-                                        <div class="uk-width-3-4@s">
-                                            <input id="music-artist" class="uk-input" type="text"
-                                                placeholder="Artist Name">
-                                        </div>
-                                        <div class="uk-width-1-4@s">
-                                            <button id="music-artist-search-button"
-                                                class="uk-button uk-button-primary uk-width-1-1">検索</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <ul class="result-box uk-list uk-list-large uk-list-striped" id="modal-artist-list"
-                                        uk-accordion>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="uk-modal-footer uk-text-right">
-                            <a class="uk-button uk-button-default" href="#modal-music-search" uk-toggle>Back</a>
-                            <a class="uk-button uk-button-primary" href="#modal-music-search" uk-toggle
-                                id="music-register">登録</a>
-                        </div>
-                    </div>
-                </div>
-
-                <%# モーダル - アーティスト追加 %>
-                <div id="modal-artist-create" uk-modal>
-                    <div class="uk-modal-dialog">
-                        <button class="uk-modal-close-default" uk-close></button>
-                        <div class="uk-modal-header">
-                            <h2 class="uk-modal-title">アーティスト追加</h2>
-                        </div>
-                        <div class="uk-modal-body" uk-overflow-auto>
-                            <div class="uk-margin">
-                                <input id="artist-create-name" class="uk-input" type="text"
-                                    placeholder="Artist Name">
-                            </div>
-                        </div>
-                        <div class="uk-modal-footer uk-text-right">
-                            <a class="uk-button uk-button-default uk-modal-close" href="#modal-music-create"
-                                uk-toggle>Back</a>
-                            <a class="uk-button uk-button-primary uk-modal-close" href="#modal-music-create" uk-toggle
-                                id="artist-create-button">登録</a>
-                        </div>
-                    </div>
-                </div>
+        <div id="new-review" class="uk-section">
+            <div class="uk-container uk-text-center">
 
                 <div class="cs-box">
                     <div class="color-sample selected" id="cs1"></div>
@@ -179,9 +57,137 @@
                 </div>
                 <canvas id="color-canvas" class="uk-align-center" width="400px" height="100px"></canvas>
                 <input class="uk-button uk-button-primary uk-button-large uk-align-center" value="確認画面へ" type="submit">
-            </form>
+            </div>
         </div>
-    </div>
+
+        <%# モーダル - 楽曲検索 %>
+        <div id="modal-music-search" uk-modal>
+            <div class="uk-modal-dialog">
+                <button class="uk-modal-close-default" uk-close></button>
+                <div class="uk-modal-header">
+                    <h2 class="uk-modal-title">楽曲検索</h2>
+                </div>
+                <div class="uk-modal-body" uk-overflow-auto>
+                    <div class="uk-margin" uk-grid>
+                        <div class="uk-width-3-4@s">
+                            <input id="modal-music-search-form-name" class="uk-input" type="text"
+                                placeholder="Song Name">
+                        </div>
+                        <div class="uk-width-1-4@s">
+                            <button id="modal-music-search-form-search"
+                                class="uk-button uk-button-primary uk-width-1-1">検索</button>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <ul class="result-box uk-list uk-list-large uk-list-striped" id="modal-music-list">
+                        </ul>
+                    </div>
+                </div>
+                <div class="uk-modal-footer uk-text-right">
+                    <button class="uk-button uk-button-default uk-modal-close">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <%# モーダル - 楽曲追加 %>
+        <div id="modal-music-create" uk-modal>
+            <div class="uk-modal-dialog">
+                <button class="uk-modal-close-default" uk-close></button>
+                <div class="uk-modal-header">
+                    <h2 class="uk-modal-title">楽曲追加</h2>
+                </div>
+                <div class="uk-modal-body" uk-overflow-auto>
+                    <div class="uk-margin">
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="music-name">曲名</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="music-name" type="text" placeholder="Music name">
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="music-genre">ジャンル</label>
+                            <div class="uk-form-controls">
+                                <select class="uk-select" id="music-genre">
+                                    <% @genre.each do |g| %>
+                                    <option value="<%= g.id %>"><%= g.name %></option>
+                                    <% end %>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="music-singer">歌手</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" type="text" id="music-singer" disabled>
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="music-composer">作曲者</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" type="text" id="music-composer" disabled>
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="music-lyricist">作詞者</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" type="text" id="music-lyricist" disabled>
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="music-arranger">編曲者</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" type="text" id="music-arranger" disabled>
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="music-artist">検索</label>
+                            <div class="uk-form-controls" uk-grid>
+                                <div class="uk-width-3-4@s">
+                                    <input id="music-artist" class="uk-input" type="text" placeholder="Artist Name">
+                                </div>
+                                <div class="uk-width-1-4@s">
+                                    <button id="music-artist-search-button"
+                                        class="uk-button uk-button-primary uk-width-1-1">検索</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <ul class="result-box uk-list uk-list-large uk-list-striped" id="modal-artist-list"
+                                uk-accordion>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-modal-footer uk-text-right">
+                    <a class="uk-button uk-button-default" href="#modal-music-search" uk-toggle>Back</a>
+                    <a class="uk-button uk-button-primary" href="#modal-music-search" uk-toggle
+                        id="music-register">登録</a>
+                </div>
+            </div>
+        </div>
+
+        <%# モーダル - アーティスト追加 %>
+        <div id="modal-artist-create" uk-modal>
+            <div class="uk-modal-dialog">
+                <button class="uk-modal-close-default" uk-close></button>
+                <div class="uk-modal-header">
+                    <h2 class="uk-modal-title">アーティスト追加</h2>
+                </div>
+                <div class="uk-modal-body" uk-overflow-auto>
+                    <div class="uk-margin">
+                        <input id="artist-create-name" class="uk-input" type="text" placeholder="Artist Name">
+                    </div>
+                </div>
+                <div class="uk-modal-footer uk-text-right">
+                    <a class="uk-button uk-button-default uk-modal-close" href="#modal-music-create" uk-toggle>Back</a>
+                    <a class="uk-button uk-button-primary uk-modal-close" href="#modal-music-create" uk-toggle
+                        id="artist-create-button">登録</a>
+                </div>
+            </div>
+        </div>
+    </form>
     <%= render :erb ,:'template/footer' %>
 </body>
 

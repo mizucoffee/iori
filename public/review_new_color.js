@@ -32,7 +32,7 @@ $(document).ready(() => {
 
     $('#cs1').css('background', `hsl(${h}, 100%, 85%, 1)`)
     $('#cs2').css('background', `hsl(${h}, 100%, 30%, 1)`)
-    $('.uk-section').css('background', `hsl(${h}, 100%, ${light ? '85%' : '30%'}, 1)`)
+    $('#new-review').css('background', `hsl(${h}, 100%, ${light ? '85%' : '30%'}, 1)`)
     $('#form-color').val(`${light ? 'l' : 'd'}${h}`)
     $('.text').css('color', light ? 'black' : 'white')
   }

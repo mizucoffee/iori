@@ -12,7 +12,6 @@ class RootRouter < Base
 
   get '/@:screen_name/:review_id' do
     @review = Review.find(params[:review_id])
-    pp @review
 
     unless Tw.app.user(@review.user.twitter_id.to_i).screen_name == params[:screen_name]
       redirect '/'
