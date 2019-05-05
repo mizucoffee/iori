@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 20190502064536) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.string   "name"
     t.integer  "user_id"
     t.integer  "review_id"
     t.datetime "created_at", null: false

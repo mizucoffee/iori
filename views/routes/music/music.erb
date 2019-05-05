@@ -24,13 +24,12 @@
                     <th>色</th>
                 </tr>
                 <% @music.reviews.each do |r| %>
-                <% twitter = Review.find(r.user.id) %>
+                <% tw = Tw.app.user(r.user.twitter_id.to_i) %>
                 <tr>
-                    <td><a href="/@<%= @twitter.screen_name %>/<%= r.id %>"><%= r.title %></a></td>
-                    <td><a href="/@<%= @twitter.screen_name %>"><%= @twitter.name %>(@<%= @twitter.screen_name %>)</a></td>
+                    <td><a href="/@<%= tw.screen_name %>/<%= r.id %>"><%= r.title %></a></td>
+                    <td><a href="/@<%= tw.screen_name %>"><%= tw.name %>(@<%= tw.screen_name %>)</a></td>
                     <td><%= r.created_at %></td>
                     <td><span style="color: hsl(<%= r.color[1,100] %>, 100%, <%= r.color[0,1] == 'l' ? '85%' : '30%' %>,1)">■</span></td>
-
                 </tr>
                 <% end %>
             </table>

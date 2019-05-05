@@ -1,0 +1,16 @@
+#review-header {
+    h1 > a {
+        color: black;
+        text-decoration-color: black;
+    }
+}
+
+#review-info {
+    padding: {
+        top: 8px;
+        bottom: 8px;
+    }
+    img {
+        border-radius: 50%;
+    }
+}

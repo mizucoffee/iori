@@ -19,4 +19,23 @@ class RootRouter < Base
 
     erb :'routes/root/user_review'
   end
+
+  get '/@:screen_name/:review_id/like' do
+    @review = Review.find_by_id(params[:review_id])
+
+    redirect '/' if @review.nil?
+
+    unless Tw.app.user(@review.user.twitter_id.to_i).screen_name == params[:screen_name]
+      redirect '/'
+    end
+
+    p = {user: @me, review: @review}
+    if @review.likes.find_by(p).nil?
+      @review.likes.create(p)
+    else
+      @review.likes.find_by(p).destroy
+    end
+
+    redirect "/@#{params[:screen_name]}/#{params[:review_id]}"
+  end
 end
