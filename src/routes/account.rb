@@ -14,19 +14,27 @@ class AccountRouter < Base
   end
 
   get '/login/auth/twitter/callback' do
-    twitter = Twi::OAuth.callback(params['oauth_token'], session['oauth_token_secret'], params['oauth_verifier'])
-    if twitter.key?('user_id')
+    tw = Twi::OAuth.callback(params['oauth_token'], session['oauth_token_secret'], params['oauth_verifier'])
+    if tw.key?('user_id')
+      twitter = Tw.user(tw['oauth_token'], tw['oauth_token_secret']).user(tw['user_id'].to_i)
+
+      pp twitter.to_json
       user = User.find_by(twitter_id: twitter['user_id'])
       if user.nil?
         user = User.create(
-          display_name: twitter['display_name'],
-          twitter_id: twitter['user_id']
+          screen_name: twitter['screen_name'],
+          name: twitter['name'],
+          twitter_id: twitter['id']
         )
+      else
+        user.name = twitter['name']
+        user.screen_name = twitter['screen_name']
+        user.save
       end
       session['oauth_token_secret'] = nil
       session['user_id'] = user.twitter_id
-      session['access_token'] = twitter['oauth_token']
-      session['access_token_secret'] = twitter['oauth_token_secret']
+      session['access_token'] = tw['oauth_token']
+      session['access_token_secret'] = tw['oauth_token_secret']
     end
     redirect params[:next] || '/'
   end

@@ -65,10 +65,11 @@ ActiveRecord::Schema.define(version: 20190502064536) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "display_name"
+    t.string   "screen_name"
+    t.string   "name"
     t.string   "twitter_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end
