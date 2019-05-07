@@ -18,17 +18,16 @@ class AccountRouter < Base
     if tw.key?('user_id')
       twitter = Tw.user(tw['oauth_token'], tw['oauth_token_secret']).user(tw['user_id'].to_i)
 
-      pp twitter.to_json
-      user = User.find_by(twitter_id: twitter['user_id'])
+      user = User.find_by(twitter_id: twitter.id)
       if user.nil?
         user = User.create(
-          screen_name: twitter['screen_name'],
-          name: twitter['name'],
-          twitter_id: twitter['id']
+          screen_name: twitter.screen_name,
+          name: twitter.name,
+          twitter_id: twitter.id
         )
       else
-        user.name = twitter['name']
-        user.screen_name = twitter['screen_name']
+        user.name = twitter.name
+        user.screen_name = twitter.screen_name
         user.save
       end
       session['oauth_token_secret'] = nil

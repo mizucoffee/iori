@@ -17,6 +17,7 @@ class ApiRouter < Base
     artist(music, params[:arranger], 'arranger')
 
     music.save
+    music.to_json
   end
 
   def artist(music, artist, target)

@@ -79,6 +79,14 @@ $(document).ready(() => {
       },
       body: str
     })
+      .then(r => r.json())
+      .then(r => {
+        $('#form-music-name').val(r.name)
+        $('#form-music-id').val(r.id)
+
+        UIkit.modal($('#modal-music-create')[0]).hide()
+        UIkit.modal($('#modal-music-search')[0]).hide()
+      })
   })
 
   $('#artist-create-button').click(e => {
@@ -86,6 +94,10 @@ $(document).ready(() => {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' },
       body: `name=${encodeURIComponent($('#artist-create-name').val())}`
+    }).then(r => {
+      UIkit.modal($('#modal-music-create')[0]).show()
+      $('#music-artist').val($('#artist-create-name').val())
+      $('#music-artist-search-button').click()
     })
   })
 })
