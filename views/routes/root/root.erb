@@ -1,14 +1,76 @@
 <!DOCTYPE html>
 <html lang="jp">
+
 <head>
     <%= render :erb ,:'template/head' %>
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:300&amp;subset=japanese" rel="stylesheet">
 </head>
+
 <body>
     <%= render :erb ,:'template/header' %>
-    <div id="content" class="uk-section">
-        <div class="uk-container">
+    <hr style="margin: 0;border-top: 1px solid #8c8b8b;">
+    <div id="head-logo" class="uk-section" style="background: #40414f;">
+        <div class="uk-container uk-text-center">
+            <%= render :erb ,:'svg/iori-logo', :locals => {c: 'icon'}%><br>
+            <%= render :erb ,:'svg/iori-text', :locals => {c: 'text'}%><br>0
+        </div>
+    </div>
+    <div id="about" class="uk-section">
+        <div class="uk-container uk-text-center" uk-scrollspy="cls:uk-animation-fade">
+            <h2 class="uk-heading-line uk-text-center"><span>Ioriってなに？</span></h2>
+            <p>Ioriは、Twitterと連携して使う<strong>「音楽レビューサイト」</strong>です。<br>
+                Ioriで、音楽の感動を紹介してみませんか？
+            </p>
+        </div>
+    </div>
+    <div id="cards" class="uk-section">
+        <div class="uk-container uk-container-small">
+            <div class="uk-child-width-expand@s" uk-grid>
+
+                <a href="/review/new">
+                    <div class="uk-grid-item-match" uk-scrollspy="cls:uk-animation-slide-left">
+                        <div class="uk-card uk-card-default">
+                            <div class="uk-card-media-top">
+                                <img src="/write.jpg" alt="">
+                            </div>
+                            <div class="uk-card-body uk-text-center">
+                                <h3><span uk-icon="icon: fa-edit-s"></span>レビューを書く</h3>
+                                <p>
+                                    いつも聞いている音楽。<br>
+                                    初めて聞いて衝撃を受けた音楽。<br>
+                                    皆にも聞いてほしい音楽<br>
+                                    <br>
+                                    そんな感動を共有しよう！
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/music/search">
+                    <div class="uk-grid-item-match" uk-scrollspy="cls:uk-animation-slide-right">
+                        <div class="uk-card uk-card-default">
+
+                            <div class="uk-card-media-top">
+                                <img src="/search.jpg" alt="">
+                            </div>
+                            <div class="uk-card-body uk-text-center">
+                                <h3><span uk-icon="icon: fa-search-s"></span>レビューを探す</h3>
+                                <p>
+                                    楽曲名から。<br>
+                                    知り合いから。<br>
+                                    印象から。<br>
+                                    <br>
+                                    色んな探し方をしてみよう！
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     <%= render :erb ,:'template/footer' %>
 </body>
+
 </html>
