@@ -6,10 +6,10 @@
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:300&amp;subset=japanese" rel="stylesheet">
 </head>
 
-<body>
+<body id="top">
     <%= render :erb ,:'template/header' %>
-    <hr style="margin: 0;border-top: 1px solid #8c8b8b;">
-    <div id="head-logo" class="uk-section" style="background: #40414f;">
+    <hr>
+    <div id="head-logo" class="uk-section">
         <div class="uk-container uk-text-center">
             <%= render :erb ,:'svg/iori-logo', :locals => {c: 'icon'}%><br>
             <%= render :erb ,:'svg/iori-text', :locals => {c: 'text'}%><br>
@@ -31,7 +31,7 @@
                     <div class="uk-grid-item-match" uk-scrollspy="cls:uk-animation-slide-left">
                         <div class="uk-card uk-card-default">
                             <div class="uk-card-media-top">
-                                <img src="/write.jpg" alt="">
+                                <img src="/images/write.jpg" alt="">
                             </div>
                             <div class="uk-card-body uk-text-center">
                                 <h3><span uk-icon="icon: fa-edit-s; ratio: 1.5;"></span>レビューを書く</h3>
@@ -52,7 +52,7 @@
                         <div class="uk-card uk-card-default">
 
                             <div class="uk-card-media-top">
-                                <img src="/search.jpg" alt="">
+                                <img src="/images/search.jpg" alt="">
                             </div>
                             <div class="uk-card-body uk-text-center">
                                 <h3><span uk-icon="icon: fa-search-s; ratio: 1.5;"></span>レビューを探す</h3>

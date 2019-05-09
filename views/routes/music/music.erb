@@ -7,13 +7,13 @@
 
 <body>
     <%= render :erb ,:'template/header' %>
-    <div class="uk-section" style="background: #eee;">
+    <div id="music-header" class="uk-section" style="background: #eee;">
         <div class="uk-container uk-text-center">
             <h1 class="uk-heading-line"><span><%= @music.name %></span></h1>
-            <span style="font-size: 18pt;"><%= @music.singers.map{|s|s.name}.join(',') %></span>
+            <span class="singers"><%= @music.singers.map{|s|s.name}.join(',') %></span>
         </div>
     </div>
-    <div id="music" class="uk-section">
+    <div id="music-body" class="uk-section">
         <div class="uk-container uk-text-center">
         
             <table>

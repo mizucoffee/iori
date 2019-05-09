@@ -1,39 +1,49 @@
-#head-logo {
-    .icon {
-        fill: white;
-        width: 140px;
+#top {
+    hr {
+        margin: 0;border-top: 1px solid #8c8b8b;
     }
-
-    .text {
-        fill: white;
-        width: 180px;
-        margin-top: 20px;
-    }
-
-    .catch {
-        color: white;
-        margin-top: 48px;
-        font-size: 32pt;
-        font-family: "M PLUS Rounded 1c";
-        font-weight: 300;
-    }
-}
-
-#about {
-    p {
-        font-size: 16pt;
-    }
-}
-
-#cards {
-    a {
-        text-decoration: none;
-        span > svg{
-            padding-top: 5px;
-            margin-right: 8px;        
+    #head-logo {
+        background: #40414f;
+        
+        .icon {
+            fill: white;
+            width: 140px;
         }
-        &:hover .uk-card {
-            box-shadow: 0 5px 15px rgba(0,0,0,.2);
+
+        .text {
+            fill: white;
+            width: 180px;
+            margin-top: 20px;
+        }
+
+        .catch {
+            color: white;
+            margin-top: 48px;
+            font-size: 32pt;
+            font-family: "M PLUS Rounded 1c";
+            font-weight: 300;
         }
     }
+
+    #about {
+        p {
+            font-size: 16pt;
+        }
+    }
+
+    #cards {
+        a {
+            text-decoration: none;
+
+            span>svg {
+                padding-top: 5px;
+                margin-right: 8px;
+            }
+
+            &:hover .uk-card {
+                box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+            }
+        }
+    }
+
 }
