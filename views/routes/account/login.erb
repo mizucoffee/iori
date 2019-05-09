@@ -7,9 +7,9 @@
 
 <body>
     <%= render :erb ,:'template/header' %>
+    <%= render :erb ,:'template/title', :locals => {title: 'Login', file: 'images/login.jpg', pos: '65%'}%>
     <div id="content" class="uk-section">
         <div class="uk-container uk-text-center">
-            <h1 class="uk-heading-line"><span>Login</span></h1>
             <br>
             <p>ioriはTwitterで簡単にログインする事が出来ます。<br>
                 自動ツイート機能を有効にしない限り、当サービスがツイートすることはありません。</p>

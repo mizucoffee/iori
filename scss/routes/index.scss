@@ -1,0 +1,14 @@
+// /
+@import './root.scss';
+
+// /user
+@import './user/index.scss';
+
+// /@<user>
+@import './@user/index.scss';
+
+// /review
+@import './review/index.scss';
+
+// /music
+@import './music/index.scss';

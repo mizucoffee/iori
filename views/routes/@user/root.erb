@@ -8,10 +8,10 @@
 <body>
     <%= render :erb ,:'template/header' %>
     <%# 自分かどうかで処理を変える（設定画面へのリンク等） %>
-    <div id="content" class="uk-section">
+    <div id="user-page" class="uk-section">
         <div class="uk-container uk-text-center">
 
-            <img src="<%= @twuser.profile_image_url_https.to_s.gsub(/_normal/,'') %>" style="border-radius: 50%; height: 160px;">
+            <img src="<%= @twuser.profile_image_url_https.to_s.gsub(/_normal/,'') %>">
             <h1><%= @twuser.name %></h1>
             <h2>@<%= @twuser.screen_name %></h2>
 

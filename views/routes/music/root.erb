@@ -7,46 +7,47 @@
 
 <body>
     <%= render :erb ,:'template/header' %>
-    <div id="music_search" class="uk-section">
-        <div class="uk-container uk-text-center">
-            <h1 class="uk-heading-line"><span>楽曲検索</span></h1>
+    <%= render :erb ,:'template/title', :locals => {title: '楽曲検索', file: 'images/piano.jpg', pos: '60%'}%>
 
+    <div id="music-search" class="uk-section">
+        <div class="uk-container uk-text-center">
             <form class="uk-form-width-large uk-text-left" action="/music">
                 <div class="uk-margin">
                     <label class="uk-form-label text" for="form-title">楽曲名</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" value="<%= @q unless @q.blank? %>" type="text" name="q" placeholder="Song name">
+                        <input class="uk-input" value="<%= @q unless @q.blank? %>" type="text" name="q"
+                            placeholder="Song name">
                     </div>
                 </div>
 
                 <input class="uk-button uk-button-primary uk-align-center" value="検索" type="submit">
             </form>
-            
+
             <% unless @q.blank? %>
-                <% if @musics.length > 0 %>   
-                    <table>
-                        <tr>
-                            <th>曲名</th>
-                            <th>歌手</th>
-                            <th>作曲者</th>
-                            <th>作詞者</th>
-                            <th>編曲者</th>
-                            <th>レビュー件数</th>
-                        </tr>
-                        <% @musics.each do |m| %>
-                            <tr>
-                                <td><a href="/music/<%= m.id %>"><%= m.name %></a></td>
-                                <td><%= m.singers.map(&:name).join('<br>') %></td>
-                                <td><%= m.composers.map(&:name).join('<br>') %></td>
-                                <td><%= m.lyricists.map(&:name).join('<br>') %></td>
-                                <td><%= m.arrangers.map(&:name).join('<br>') %></td>
-                                <td><%= Review.where(music_id: m.id).count %></td>
-                            </tr>
-                        <% end %>
-                    </table>
-                <% else %>
-                    見つかりませんでした。
+            <% if @musics.length > 0 %>
+            <table>
+                <tr>
+                    <th>曲名</th>
+                    <th>歌手</th>
+                    <th>作曲者</th>
+                    <th>作詞者</th>
+                    <th>編曲者</th>
+                    <th>レビュー件数</th>
+                </tr>
+                <% @musics.each do |m| %>
+                <tr>
+                    <td><a href="/music/<%= m.id %>"><%= m.name %></a></td>
+                    <td><%= m.singers.map(&:name).join('<br>') %></td>
+                    <td><%= m.composers.map(&:name).join('<br>') %></td>
+                    <td><%= m.lyricists.map(&:name).join('<br>') %></td>
+                    <td><%= m.arrangers.map(&:name).join('<br>') %></td>
+                    <td><%= Review.where(music_id: m.id).count %></td>
+                </tr>
                 <% end %>
+            </table>
+            <% else %>
+            見つかりませんでした。
+            <% end %>
             <% end %>
         </div>
 

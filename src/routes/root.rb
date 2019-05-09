@@ -1,13 +1,13 @@
 # / Router
 class RootRouter < Base
   get '/' do
-    erb :'routes/root/root'
+    erb :'routes/root'
   end
 
   get '/@:screen_name' do
     @twuser = Tw.app.user(params[:screen_name])
     @user = User.find_by(twitter_id: @twuser.id)
-    erb :'routes/root/user'
+    erb :'routes/@user/root'
   end
 
   get '/@:screen_name/:review_id' do
@@ -17,7 +17,7 @@ class RootRouter < Base
       redirect '/'
     end
 
-    erb :'routes/root/user_review'
+    erb :'routes/@user/review'
   end
 
   get '/@:screen_name/:review_id/like' do

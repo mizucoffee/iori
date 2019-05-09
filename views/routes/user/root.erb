@@ -7,10 +7,10 @@
 
 <body>
     <%= render :erb ,:'template/header' %>
-    <div id="user_search" class="uk-section">
+    <%= render :erb ,:'template/title', :locals => {title: 'ユーザー検索', file: 'images/user.jpg', pos: '25%'}%>
+    
+    <div id="user-search" class="uk-section">
         <div class="uk-container uk-text-center">
-            <h1 class="uk-heading-line"><span>ユーザー検索</span></h1>
-
             <form class="uk-form-width-large uk-text-left" action="/user">
                 <div class="uk-margin">
                     <label class="uk-form-label text" for="form-title">ID</label>

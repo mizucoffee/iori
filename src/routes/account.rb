@@ -47,5 +47,4 @@ class AccountRouter < Base
     session.clear
     redirect '/'
   end
-
 end
