@@ -25,14 +25,14 @@
 
             <% unless @q.blank? %>
             <% if @musics.length > 0 %>
-            <table>
+            <table class="uk-table uk-table-striped uk-table-middle">
                 <tr>
-                    <th>曲名</th>
-                    <th>歌手</th>
-                    <th>作曲者</th>
-                    <th>作詞者</th>
-                    <th>編曲者</th>
-                    <th>レビュー件数</th>
+                    <th class="uk-text-center">曲名</th>
+                    <th class="uk-text-center">歌手</th>
+                    <th class="uk-text-center">作曲者</th>
+                    <th class="uk-text-center">作詞者</th>
+                    <th class="uk-text-center">編曲者</th>
+                    <th class="uk-text-center">レビュー件数</th>
                 </tr>
                 <% @musics.each do |m| %>
                 <tr>

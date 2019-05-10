@@ -11,7 +11,7 @@
     <div id="user-page" class="uk-section">
         <div class="uk-container uk-text-center">
 
-            <img src="<%= @twuser.profile_image_url_https.to_s.gsub(/_normal/,'') %>">
+            <img class="user-icon" src="<%= @twuser.profile_image_url_https.to_s.gsub(/_normal/,'') %>">
             <h1><%= @twuser.name %></h1>
             <h2>@<%= @twuser.screen_name %></h2>
 
