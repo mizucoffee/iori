@@ -21,4 +21,8 @@ class Base < Sinatra::Base
       @twitter = Tw.user(session['access_token'], session['access_token_secret']).user(session['user_id'].to_i)
     end
   end
+
+  not_found do
+    erb :'routes/notfound'
+  end
 end
