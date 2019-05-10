@@ -7,18 +7,42 @@
 
 <body>
     <%= render :erb ,:'template/header' %>
-    <%# 自分かどうかで処理を変える（設定画面へのリンク等） %>
-    <div id="user-page" class="uk-section">
-        <div class="uk-container uk-text-center">
+    <div id="user-header" class="uk-section blur-8px"
+        style="background: <%= @twuser.profile_banner_url ? "url(#{@twuser.profile_banner_url})" : "##{@twuser.profile_background_color}" %>;">
+        <div class="uk-container uk-text-center grid-box">
 
             <img class="user-icon" src="<%= @twuser.profile_image_url_https.to_s.gsub(/_normal/,'') %>">
-            <h1><%= @twuser.name %></h1>
-            <h2>@<%= @twuser.screen_name %></h2>
+            <h1 class="name"><%= @twuser.name %></h1>
+            <h2 class="screen-name">@<%= @twuser.screen_name %></h2>
+            <a href="//twitter.com/<%= @twuser.screen_name %>" class="twitter"><img src="./images/twitter.svg"
+                    alt="Twitter"></a>
 
+        </div>
+    </div>
+    <div id="user-page" class="uk-section">
+        <div class="uk-container uk-text-center">
             <% if @user %>
-                <% @user.reviews.each do |review| %>
-                    <span><%= review.title %></span>
+            <h2 class="uk-heading-line uk-text-center"><span>レビュー一覧</span></h2><br>
+            <table class="uk-table uk-table-striped uk-table-middle">
+                <tr>
+                    <th class="uk-text-center">タイトル</th>
+                    <th class="uk-text-center">投稿日</th>
+                    <th class="uk-text-center">色</th>
+                </tr>
+
+                <% @user.reviews.each do |r| %>
+                <tr>
+                    <td><a href="/@<%= @twuser.screen_name %>/<%= r.id %>"><%= r.title %></a></td>
+                    <td><%= r.created_at %></td>
+                    <td><span
+                            style="color: hsl(<%= r.color[1,100] %>, 100%, <%= r.color[0,1] == 'l' ? '85%' : '30%' %>,1); font-size: 22pt;">■</span>
+                    </td>
+                </tr>
                 <% end %>
+            </table>
+            <% else %>
+            <h2 class="uk-heading-line uk-text-center"><span>このユーザーはioriを使用していないようです</span></h2><br>
+            <span class="uk-text-center">気が向いたらioriを教えてあげてください...！</span>
             <% end %>
         </div>
     </div>
