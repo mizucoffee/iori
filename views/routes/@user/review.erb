@@ -12,15 +12,15 @@
     <% color = @review.color[1,100] %>
     <% light = @review.color[0,1] == 'l'%>
 
-    <div id="review-header" class="uk-section"
-        style="background:  linear-gradient(hsl(<%= color %>, 100%, <%= light ? '97%' : '25%' %>,1), hsl(<%= color %>, 100%, <%= light ? '85%' : '30%' %>,1));">
+    <div id="review-header" class="uk-section <%= light ? 'light' : 'dark' %>"
+        style="background:  linear-gradient(hsl(<%= color %>, 100%, <%= light ? '97%' : '35%' %>,1), hsl(<%= color %>, 100%, <%= light ? '85%' : '25%' %>,1));">
         <div class="uk-container uk-text-center">
             <h1 class="uk-heading-line"><a
                     href="/music/<%= @review.music.id %>"><span><%= @review.music.name %></span></a></h1>
             <span class="singers"><%= @review.music.singers.map{|s|s.name}.join(',') %></span>
         </div>
     </div>
-    <div id="review-info" class="uk-section"
+    <div id="review-info" class="uk-section <%= light ? 'light' : 'dark' %>"
         style="background: hsl(<%= color %>, 100%, <%= light ? '97%' : '40%' %>">
         <div class="uk-navbar-container uk-container"
             style="background: hsl(<%= color %>, 100%, <%= light ? '97%' : '40%' %>"

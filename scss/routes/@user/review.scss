@@ -1,10 +1,27 @@
 #review-header {
-    h1 > a {
+    h1>a {
         color: black;
         text-decoration-color: black;
     }
+
     .singers {
         font-size: 18pt;
+    }
+}
+
+#review-header.dark {
+    h1 {
+        a {
+            text-decoration-color: white;
+
+            span {
+                color: white;
+            }
+        }
+    }
+
+    .singers {
+        color: #ccc;
     }
 }
 
@@ -13,7 +30,14 @@
         top: 8px;
         bottom: 8px;
     }
+
     img {
         border-radius: 50%;
+    }
+}
+
+#review-info.dark {
+    a {
+        color: #eee;
     }
 }
