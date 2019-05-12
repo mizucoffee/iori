@@ -7,12 +7,18 @@
       </a>
       <ul class="uk-navbar-nav">
         <li><a href="/"><span uk-icon="icon: fa-home-s"></span>&nbsp;Home</a></li>
-        <li><a href="/music/"><span uk-icon="icon: fa-music-s"></span>&nbsp;Music</a></li>
-        <li><a href="/user/"><span uk-icon="icon: fa-user-s"></span>&nbsp;User</a></li>
+        <li>
+        </li>
       </ul>
     </div>
     <div class="uk-navbar-right">
       <ul class="uk-navbar-nav">
+          <div class="uk-navbar-item">
+            <form action="/search">
+              <input class="uk-input uk-form-width-medium" name="q" type="text" placeholder="曲名・歌手名・ユーザー名...">
+              <button class="uk-button uk-button-default">検索</button>
+            </form>
+          </div>
         <% if @me %>
         <li>
           <div class="uk-navbar-item">
@@ -21,19 +27,20 @@
             </form>
           </div>
         </li>
-          <li>
-            <a href="#"><img src="<%= @twitter.profile_image_url_https %>" alt="@<%= @twitter.screen_name %>">&nbsp;<%= @twitter.name %></a>
-            <div class="uk-navbar-dropdown">
-              <ul class="uk-nav uk-navbar-dropdown-nav">
-                <li><a href="/@<%= @twitter.screen_name %>"><span uk-icon="icon: user"></span>&nbsp;My Page</a></li>
-                <li><a href="/account/settings"><span uk-icon="icon: cog"></span>&nbsp;Settings</a></li>
-                <li class="uk-nav-divider"></li>
-                <li><a href="/account/logout"><span uk-icon="icon: sign-out"></span>&nbsp;Logout</a></li>
-              </ul>
-            </div>
-          </li>
+        <li>
+          <a href="#"><img src="<%= @twitter.profile_image_url_https %>"
+              alt="@<%= @twitter.screen_name %>">&nbsp;<%= @twitter.name %></a>
+          <div class="uk-navbar-dropdown">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li><a href="/@<%= @twitter.screen_name %>"><span uk-icon="icon: user"></span>&nbsp;My Page</a></li>
+              <li><a href="/account/settings"><span uk-icon="icon: cog"></span>&nbsp;Settings</a></li>
+              <li class="uk-nav-divider"></li>
+              <li><a href="/account/logout"><span uk-icon="icon: sign-out"></span>&nbsp;Logout</a></li>
+            </ul>
+          </div>
+        </li>
         <% else %>
-          <li><a href="/account/login"><span uk-icon="icon: user"></span>&nbsp;Login</a></li>
+        <li><a href="/account/login"><span uk-icon="icon: user"></span>&nbsp;Login</a></li>
         <% end %>
       </ul>
     </div>

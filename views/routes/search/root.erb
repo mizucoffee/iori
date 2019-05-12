@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <% @title = '検索' %>
+    <%= render :erb ,:'template/head' %>
+    <script>
+        document.addEventListener("DOMContentLoaded", event => {
+            function click(e) {
+                $('#tab').val(e.currentTarget.id[3] == 1 ? 'music' : e.currentTarget.id[3] == 2 ? 'artist' : 'user')
+            }
+            $('#tab1').click(click)
+            $('#tab2').click(click)
+            $('#tab3').click(click)
+        });
+    </script>
+</head>
+
+<body>
+    <%= render :erb ,:'template/header' %>
+    <%= render :erb ,:'template/title', :locals => {title: 'Search', file: 'images/piano.jpg', pos: '60%'}%>
+
+    <div id="music-search" class="uk-section">
+        <div class="uk-container uk-text-center">
+            <form class="uk-form-width-large uk-text-left" action="/search">
+                <div class="uk-margin">
+                    <label class="uk-form-label text" for="form-title">検索ワード</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" value="<%= @q unless @q.blank? %>" type="text" name="q"
+                            placeholder="曲名">
+                        <input type="hidden" id="tab" name="tab"
+                            value="<%= @musics.length > 0 ? 'music' : @artists.length > 0 ? 'artist' : @users.length > 0 ? 'user' : @tab %>">
+                    </div>
+                </div>
+
+                <input class="uk-button uk-button-primary uk-align-center" value="検索" type="submit">
+            </form>
+
+            <% unless @q.blank? %>
+            <% mode = @musics.length > 0 ? 'music' : @artists.length > 0 ? 'artist' : @users.length > 0 ? 'user' : @tab %>
+
+            <ul class="uk-container uk-container-xsmall uk-child-width-expand" style="margin: 0 auto;" uk-tab>
+                <li id="tab1" class="<%= mode == 'music' ? 'uk-active' : '' %>"><a href="#"
+                        style="font-size: 18pt;">Music</a></li>
+                <li id="tab2" class="<%= mode == 'artist' ? 'uk-active' : '' %>"><a href="#"
+                        style="font-size: 18pt;">Artist</a></li>
+                <li id="tab3" class="<%= mode == 'user' ? 'uk-active' : '' %>"><a href="#"
+                        style="font-size: 18pt;">User</a></li>
+            </ul>
+
+            <ul class="uk-switcher uk-margin">
+                <li class="<%= mode == 'music' ? 'uk-active' : '' %>">
+                    <% if @musics.length > 0 %>
+                    <table class="uk-table uk-table-striped uk-table-middle">
+                        <tr>
+                            <th class="uk-text-center">曲名</th>
+                            <th class="uk-text-center">歌手</th>
+                            <th class="uk-text-center">作曲者</th>
+                            <th class="uk-text-center">作詞者</th>
+                            <th class="uk-text-center">編曲者</th>
+                            <th class="uk-text-center">レビュー件数</th>
+                        </tr>
+                        <% @musics.each do |m| %>
+                        <tr>
+                            <td><a href="/music/<%= m.id %>"><%= m.name %></a></td>
+                            <td><%= m.singers.map(&:name).join('<br>') %></td>
+                            <td><%= m.composers.map(&:name).join('<br>') %></td>
+                            <td><%= m.lyricists.map(&:name).join('<br>') %></td>
+                            <td><%= m.arrangers.map(&:name).join('<br>') %></td>
+                            <td><%= Review.where(music_id: m.id).count %></td>
+                        </tr>
+                        <% end %>
+                    </table>
+                    <% else %>
+                    見つかりませんでした。
+                    <% end %>
+                </li>
+                <li class="<%= mode == 'artist' ? 'uk-active' : '' %>">
+                    <% unless @q.blank? %>
+                    <% if @artists.length > 0 %>
+                    <table class="uk-table uk-table-striped uk-table-middle">
+                        <tr>
+                            <th class="uk-text-center">アーティスト名</th>
+                            <th class="uk-text-center">歌手をした曲数</th>
+                            <th class="uk-text-center">作曲した曲数</th>
+                            <th class="uk-text-center">作詞した曲数</th>
+                            <th class="uk-text-center">編曲した曲数</th>
+                        </tr>
+                        <% @artists.each do |a| %>
+                        <tr>
+                            <td><a href="/artist/<%= a.id %>"><%= a.name %></a></td>
+                            <td><%= a.singer_musics.count %></td>
+                            <td><%= a.composer_musics.count %></td>
+                            <td><%= a.lyricist_musics.count %></td>
+                            <td><%= a.arranger_musics.count %></td>
+                        </tr>
+                        <% end %>
+                    </table>
+                    <% else %>
+                    見つかりませんでした。
+                    <% end %>
+                    <% end %>
+                </li>
+                <li class="<%= mode == 'user' ? 'uk-active' : '' %>">
+                    <% unless @q.blank? %>
+                    <% if @users.length > 0 %>
+                    <table class="uk-table uk-table-striped uk-table-middle">
+                        <tr>
+                            <th class="uk-text-center">アイコン</th>
+                            <th class="uk-text-center">ユーザー名</th>
+                            <th class="uk-text-center">Twitter ID</th>
+                            <th class="uk-text-center">レビュー数</th>
+                        </tr>
+                        <% twuser = Tw.app.users(@users.map{|a|a.twitter_id.to_i})%>
+                        <% twuser.each do |u| %>
+                        <tr>
+                            <td><img class="user-icon" src="<%= u.profile_image_url_https %>" alt=""></td>
+                            <td><a href="/@<%= u.screen_name %>"><%= u.name %></a></td>
+                            <td><a href="//twitter.com/<%= u.screen_name %>">@<%= u.screen_name %></a></td>
+                            <td><%= User.find_by(twitter_id: u.id).reviews.count %></td>
+                        </tr>
+                        <% end %>
+                    </table>
+                    <% else %>
+                    見つかりませんでした。
+                    <% end %>
+                    <% end %>
+                </li>
+            </ul>
+            <% end %>
+        </div>
+
+    </div>
+    <%= render :erb ,:'template/footer' %>
+</body>
+
+</html>

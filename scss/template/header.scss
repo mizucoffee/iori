@@ -9,15 +9,28 @@ header {
     background: #40414f;
   }
 
-  .uk-navbar-nav>li>a, .uk-navbar-nav>li>a.uk-open,.uk-navbar-nav>li>a:focus {
+  .uk-navbar-nav>li>a,
+  .uk-navbar-nav>li>a.uk-open,
+  .uk-navbar-nav>li>a:focus {
     color: #eee;
+
     &:hover {
       color: #aaa;
     }
   }
 
+  form {
+    input {
+      width: 250px !important;
+    }
+    button {
+      color: white !important;
+    }
+  }
+
   .uk-logo {
     &:hover {
+
       .header-iori-logo,
       .header-iori-text {
         fill: #e0e0e0;
@@ -43,11 +56,13 @@ header {
     border-radius: 50%;
     margin-right: 8px;
   }
+
   a.uk-button-default {
     color: white;
+
     &:hover {
-        color: #e0e0e0;
-      
+      color: #e0e0e0;
+
     }
   }
 }

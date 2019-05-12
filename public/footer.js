@@ -6,3 +6,5 @@ function adjust() {
 
 $(document).ready(adjust)
 $(window).resize(adjust)
+
+$(window).click(adjust)
