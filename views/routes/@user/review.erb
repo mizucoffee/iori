@@ -9,8 +9,8 @@
 <body>
     <%= render :erb ,:'template/header' %>
     <% tw = Tw.app.user(@review.user.twitter_id.to_i) %>
-    <% color = @review.color[1,100] %>
-    <% light = @review.color[0,1] == 'l'%>
+    <% color = @review.hue %>
+    <% light = @review.light%>
 
     <div id="review-header" class="uk-section <%= light ? 'light' : 'dark' %>"
         style="background:  linear-gradient(hsl(<%= color %>, 100%, <%= light ? '97%' : '35%' %>,1), hsl(<%= color %>, 100%, <%= light ? '85%' : '25%' %>,1));">

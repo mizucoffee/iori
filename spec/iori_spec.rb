@@ -3,8 +3,8 @@ RSpec.describe 'ルーティング', type: :request do
     get '/'
     expect(last_response).to be_ok
   end
-  it "get '/music'" do
-    get '/music'
+  it "get '/search'" do
+    get '/search'
     expect(last_response).to be_ok
   end
 end

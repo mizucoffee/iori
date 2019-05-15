@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <% @title = '検索' %>
+    <%= render :erb ,:'template/head' %>
+    <script src="/review_search_color.js"></script>
+</head>
+
+<body>
+    <%= render :erb ,:'template/header' %>
+    <%= render :erb ,:'template/title', :locals => {title: 'Advanced Search', file: '/images/piano.jpg', pos: '60%'} %>
+    <div id="music-search" class="uk-section">
+        <div class="uk-container uk-text-center">
+            <%= render :erb ,:'template/search-tab', :locals => {type: ''} %>
+        </div>
+    </div>
+    <%= render :erb ,:'template/footer' %>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <% @title = '検索' %>
+    <%= render :erb ,:'template/head' %>
+    <script src="/review_search_color.js"></script>
+</head>
+
+<body>
+    <%= render :erb ,:'template/header' %>
+    <%= render :erb ,:'template/title', :locals => {title: 'Advanced Search', file: '/images/piano.jpg', pos: '60%'} %>
+    <div id="music-search" class="uk-section">
+        <div class="uk-container uk-text-center">
+            <%= render :erb ,:'template/search-tab', :locals => {type: 'review'} %>
+        </div>
+        <div class="uk-container uk-text-center">
+            <% if @reviews.length > 0 %>
+            <table class="uk-table uk-table-striped uk-table-middle">
+                <tr>
+                    <th class="uk-text-center">タイトル</th>
+                    <th class="uk-text-center">楽曲名</th>
+                    <th class="uk-text-center">歌手名</th>
+                    <th class="uk-text-center">投稿日</th>
+                    <th class="uk-text-center">色</th>
+                </tr>
+
+                <% @reviews.each do |r| %>
+                <tr>
+                    <td><a href="/@<%= r.user.screen_name %>/<%= r.id %>"><%= r.title %></a></td>
+                    <td><a href="/music/<%= r.music.id %>"><%= r.music.name %></a></td>
+                    <td><%= r.music.singers.map(&:name).join('<br>') %></td>
+                    <td><%= r.created_at %></td>
+                    <td><span style="color: hsl(<%= r.hue %>, 100%, <%= r.light ? '85%' : '30%' %>,1); font-size: 22pt;">■</span></td>
+                    </td>
+                </tr>
+                <% end %>
+            </table>
+            <% else %>
+            見つかりませんでした。
+            <% end %>
+        </div>
+    </div>
+    <%= render :erb ,:'template/footer' %>
+</body>
+
+</html>

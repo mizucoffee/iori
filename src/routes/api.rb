@@ -12,6 +12,18 @@ class ApiRouter < Base
     music.to_json
   end
 
+  get '/music/search' do
+    Music.where('name like ?', "%#{params[:q]}%").to_json
+  end
+
+  get '/artist/search' do
+    Artist.where('name like ?', "%#{params[:q]}%").to_json
+  end
+  
+  get '/genre/search' do
+    Genre.where('name like ?', "%#{params[:q]}%").to_json
+  end
+
   def artist(music, artist, target)
     artist.split(',').each do |s|
       music.send("#{target}s=", music.send("#{target}s") << Artist.find(s))

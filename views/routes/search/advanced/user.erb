@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <% @title = '検索' %>
+    <%= render :erb ,:'template/head' %>
+    <script src="/review_search_color.js"></script>
+</head>
+
+<body>
+    <%= render :erb ,:'template/header' %>
+    <%= render :erb ,:'template/title', :locals => {title: 'Advanced Search', file: '/images/piano.jpg', pos: '60%'} %>
+    <div id="music-search" class="uk-section">
+        <div class="uk-container uk-text-center">
+            <%= render :erb ,:'template/search-tab', :locals => {type: 'user'} %>
+        </div>
+        <div class="uk-container uk-container-xsmall uk-text-center">
+            <% if @users.length > 0 %>
+            <table class="uk-table uk-table-striped uk-table-middle">
+                <tr>
+                    <th class="uk-text-center">アイコン</th>
+                    <th class="uk-text-center">ユーザー名</th>
+                    <th class="uk-text-center">Twitter ID</th>
+                    <th class="uk-text-center">レビュー数</th>
+                </tr>
+                <% twuser = Tw.app.users(@users.map{|a|a.twitter_id.to_i})%>
+                <% twuser.each do |u| %>
+                <tr>
+                    <td><img class="user-icon" src="<%= u.profile_image_url_https %>" alt=""></td>
+                    <td><a href="/@<%= u.screen_name %>"><%= u.name %></a></td>
+                    <td><a href="//twitter.com/<%= u.screen_name %>">@<%= u.screen_name %></a></td>
+                    <td><%= User.find_by(twitter_id: u.id).reviews.count %></td>
+                </tr>
+                <% end %>
+            </table>
+            <% else %>
+            見つかりませんでした。
+            <% end %>
+        </div>
+    </div>
+    <%= render :erb ,:'template/footer' %>
+</body>
+
+</html>

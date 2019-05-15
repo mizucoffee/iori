@@ -12,7 +12,8 @@ class ReviewRouter < Base
       title: params[:title],
       body: params[:body],
       music: Music.find(params[:music]),
-      color: params[:color],
+      hue: params[:hue],
+      light: params[:light] == '1',
       review_type: 0,
       user: @me
     })

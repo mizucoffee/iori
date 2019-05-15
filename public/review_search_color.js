@@ -36,6 +36,8 @@ $(document).ready(() => {
       $('#cs1').css('background', `hsl(${h}, 100%, 85%, 1)`)
       $('#cs2').css('background', `hsl(${h}, 100%, 30%, 1)`)
       $('#new-review').css('background', `hsl(${h}, 100%, ${light ? '85%' : '30%'}, 1)`)
+      $('#form-hue').val(h)
+      $('#form-light').val(light ? '1' : '0')
       $('#form-color').val(`${light ? 'l' : 'd'}${h}`)
       $('.text').css('color', light ? 'black' : 'white')
     }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <% @title = '検索' %>
+    <%= render :erb ,:'template/head' %>
+    <script src="/review_search_color.js"></script>
+</head>
+
+<body>
+    <%= render :erb ,:'template/header' %>
+    <%= render :erb ,:'template/title', :locals => {title: 'Advanced Search', file: '/images/piano.jpg', pos: '60%'} %>
+    <div id="music-search" class="uk-section">
+        <div class="uk-container uk-text-center">
+            <%= render :erb ,:'template/search-tab', :locals => {type: 'music'} %>
+        </div>
+        <div class="uk-container uk-text-center">
+            <% if @musics.length > 0 %>
+            <table class="uk-table uk-table-striped uk-table-middle">
+                <tr>
+                    <th class="uk-text-center">曲名</th>
+                    <th class="uk-text-center">歌手</th>
+                    <th class="uk-text-center">作曲者</th>
+                    <th class="uk-text-center">作詞者</th>
+                    <th class="uk-text-center">編曲者</th>
+                    <th class="uk-text-center">レビュー件数</th>
+                </tr>
+                <% @musics.each do |m| %>
+                <tr>
+                    <td><a href="/music/<%= m.id %>"><%= m.name %></a></td>
+                    <td><%= m.singers.map(&:name).join('<br>') %></td>
+                    <td><%= m.composers.map(&:name).join('<br>') %></td>
+                    <td><%= m.lyricists.map(&:name).join('<br>') %></td>
+                    <td><%= m.arrangers.map(&:name).join('<br>') %></td>
+                    <td><%= Review.where(music_id: m.id).count %></td>
+                </tr>
+                <% end %>
+            </table>
+            <% else %>
+            見つかりませんでした。
+            <% end %>
+        </div>
+    </div>
+    <%= render :erb ,:'template/footer' %>
+</body>
+
+</html>

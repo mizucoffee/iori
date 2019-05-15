@@ -18,8 +18,9 @@ $(document).ready(() => {
     if (h > 0) {
       switch (Math.max(id[0], id[1], id[2])) {
         case id[0]:
-          h = ((id[1] - id[2]) / h) / 6 * 360
+          h = ((id[1] - id[2]) / h)
           if (h < 0) h += 6
+          h = h / 6 * 360
           break
         case id[1]:
           h = (2 + (id[2] - id[0]) / h) / 6 * 360
@@ -29,11 +30,12 @@ $(document).ready(() => {
           break
       }
     }
-
+  
     $('#cs1').css('background', `hsl(${h}, 100%, 85%, 1)`)
     $('#cs2').css('background', `hsl(${h}, 100%, 30%, 1)`)
     $('#new-review').css('background', `hsl(${h}, 100%, ${light ? '85%' : '30%'}, 1)`)
-    $('#form-color').val(`${light ? 'l' : 'd'}${h}`)
+    $('#form-hue').val(h)
+    $('#form-light').val(light ? '1' : '0')
     $('.text').css('color', light ? 'black' : 'white')
   }
 

@@ -35,8 +35,7 @@
                 <tr>
                     <td><a href="/@<%= @twuser.screen_name %>/<%= r.id %>"><%= r.title %></a></td>
                     <td><%= r.created_at %></td>
-                    <td><span
-                            style="color: hsl(<%= r.color[1,100] %>, 100%, <%= r.color[0,1] == 'l' ? '85%' : '30%' %>,1); font-size: 22pt;">■</span>
+                    <td><span style="color: hsl(<%= r.hue %>, 100%, <%= r.light ? '85%' : '30%' %>,1); font-size: 22pt;">■</span></td>
                     </td>
                 </tr>
                 <% end %>
