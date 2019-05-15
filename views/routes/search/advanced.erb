@@ -14,12 +14,12 @@
         <div class="uk-container uk-text-center">
             <ul id="tab" class="uk-container uk-container-xsーmall uk-child-width-expand uk-margin" style="margin: 0 auto 48px;"
                 uk-tab>
-                <li id="tab1" class="<%= @type == 'review' ? 'uk-active' : '' %>"><a href="#" style="font-size: 18pt;">Review</a></li>
+                <li id="tab1" class="<%= @type == 'review' ? 'uk-active' : @type.blank? ? 'uk-active' : '' %>"><a href="#" style="font-size: 18pt;">Review</a></li>
                 <li id="tab2" class="<%= @type == 'music' ? 'uk-active' : '' %>"><a href="#" style="font-size: 18pt;">Music</a></li>
                 <li id="tab3" class="<%= @type == 'user' ? 'uk-active' : '' %>"><a href="#" style="font-size: 18pt;">User</a></li>
             </ul>
             <ul class="uk-switcher uk-margin <%= @type.blank? ? '' : 'uk-hidden'%>" id="body">
-                <li class="uk-active">
+                <li>
                     <form class="uk-form-width-large uk-text-left" action="/search/advanced">
                         <h2>レビュー検索</h2>
                         <div class="uk-margin">

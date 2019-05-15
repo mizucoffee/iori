@@ -16,21 +16,38 @@ class SearchRouter < Base
     case @type
     when 'review' then
       color = params[:color]
+      if color.blank?
+        @type = ''
+        erb :'routes/search/advanced'
+      end
     when 'music' then
+      song = params[:song]
+      singer = params[:singer]
+      composer = params[:composer]
+      lyricist = params[:lyricist]
+      arranger = params[:arranger]
+      if song.blank? && singer.blank? && composer.blank? && lyricist.blank? && arranger.blank?
+        @type = ''
+        erb :'routes/search/advanced'
+      end
       @musics = Music.includes(:singers, :composers, :lyricists, :arrangers)
                      .where('musics.name like ? and artists.name like ?
                        and composers_musics.name like ?
                        and lyricists_musics.name like ?
                        and arrangers_musics.name like ?',
-                            "%#{params[:song]}%",
-                            "%#{params[:singer]}%",
-                            "%#{params[:composer]}%",
-                            "%#{params[:lyricist]}%",
-                            "%#{params[:arranger]}%")
+                            "%#{song}%",
+                            "%#{singer}%",
+                            "%#{composer}%",
+                            "%#{lyricist}%",
+                            "%#{arranger}%")
                      .references(:singers, :composers, :lyricists, :arrangers)
     when 'user' then
       name = params[:name]
       id = params[:id]
+      if name.blank? && id.blank?
+        @type = ''
+        erb :'routes/search/advanced'
+      end
     else
       # Error
     end
