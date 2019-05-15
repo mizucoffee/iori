@@ -19,9 +19,13 @@ class SearchRouter < Base
     hue = params[:hue].to_i
     light = params[:light]
     redirect '/search/advanced' if hue.blank?
-    min = hue - 10 >= 0 ? hue - 10 : 360 + hue - 10
-    max = hue + 10 <= 360 ? hue + 10 : hue + 10 - 360
-    @reviews = Review.where(hue: min..max, light: light == '1')
+    if 10 <= hue && hue <= 350
+      @reviews = Review.where(hue: (hue-10)..(hue+10), light: light == '1')
+    elsif hue < 10
+      @reviews = Review.where('(hue between 0 and ?) or (hue between ? and 360)', hue+10, 360+hue-10)
+    elsif hue > 350
+      @reviews = Review.where('(hue between ? and 360) or (hue between 0 and ?)', hue-10, hue+10-360)
+    end
     erb :'routes/search/advanced/review'
   end
 
@@ -48,7 +52,6 @@ class SearchRouter < Base
     redirect '/search/advanced' if name.blank? && id.blank?
     @users = User.where('name like ?', "%#{name}%")
     @users = @users.where(screen_name: id) unless id.blank?
-    pp @users
     erb :'routes/search/advanced/user'
   end
 end

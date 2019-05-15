@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20190502064536) do
     t.integer  "music_id"
     t.integer  "user_id"
     t.string   "body"
-    t.string   "hue"
+    t.integer  "hue"
     t.boolean  "light",       default: true
     t.integer  "review_type"
     t.datetime "created_at",                 null: false

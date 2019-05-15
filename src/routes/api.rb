@@ -19,7 +19,7 @@ class ApiRouter < Base
   get '/artist/search' do
     Artist.where('name like ?', "%#{params[:q]}%").to_json
   end
-  
+
   get '/genre/search' do
     Genre.where('name like ?', "%#{params[:q]}%").to_json
   end

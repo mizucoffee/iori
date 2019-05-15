@@ -21,8 +21,9 @@ $(document).ready(() => {
       if (h > 0) {
         switch (Math.max(id[0], id[1], id[2])) {
           case id[0]:
-            h = ((id[1] - id[2]) / h) / 6 * 360
+            h = ((id[1] - id[2]) / h)
             if (h < 0) h += 6
+            h = h / 6 * 360
             break
           case id[1]:
             h = (2 + (id[2] - id[0]) / h) / 6 * 360
@@ -31,7 +32,7 @@ $(document).ready(() => {
             h = (4 + (id[0] - id[1]) / h) / 6 * 360
             break
         }
-      }
+      }  
   
       $('#cs1').css('background', `hsl(${h}, 100%, 85%, 1)`)
       $('#cs2').css('background', `hsl(${h}, 100%, 30%, 1)`)

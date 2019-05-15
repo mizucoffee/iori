@@ -5,7 +5,7 @@ class CreateReviews < ActiveRecord::Migration
       t.integer :music_id
       t.integer :user_id
       t.string :body
-      t.string :hue
+      t.integer :hue
       t.boolean :light, default: true
       t.integer :review_type
       t.datetime :created_at,  null: false
