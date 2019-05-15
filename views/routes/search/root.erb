@@ -4,16 +4,6 @@
 <head>
     <% @title = '検索' %>
     <%= render :erb ,:'template/head' %>
-    <script>
-        document.addEventListener("DOMContentLoaded", event => {
-            function click(e) {
-                $('#tab').val(e.currentTarget.id[3] == 1 ? 'music' : e.currentTarget.id[3] == 2 ? 'artist' : 'user')
-            }
-            $('#tab1').click(click)
-            $('#tab2').click(click)
-            $('#tab3').click(click)
-        });
-    </script>
 </head>
 
 <body>
@@ -27,13 +17,25 @@
                     <label class="uk-form-label text" for="form-title">検索ワード</label>
                     <div class="uk-form-controls">
                         <input class="uk-input" value="<%= @q unless @q.blank? %>" type="text" name="q"
-                            placeholder="曲名">
+                            placeholder="曲名・歌手名・ユーザー名">
                         <input type="hidden" id="tab" name="tab"
                             value="<%= @musics.length > 0 ? 'music' : @artists.length > 0 ? 'artist' : @users.length > 0 ? 'user' : @tab %>">
                     </div>
                 </div>
 
-                <input class="uk-button uk-button-primary uk-align-center" value="検索" type="submit">
+                <div id="toggle-usage" hidden>
+                    <label class="uk-form-label text" for="form-title">検索ワード</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" type="text" name="q"
+                            placeholder="曲名">
+                    </div>
+                </div>
+
+                <div class="uk-margin uk-align-center" style="width: fit-content;">
+                    <input class="uk-button uk-button-primary" value="検索" type="submit">
+                    <a href="/search/advanced" class="uk-button uk-button-default">詳細検索</a>
+                </div>
+
             </form>
 
             <% unless @q.blank? %>

@@ -4,7 +4,7 @@ ActiveRecord::Base.establish_connection(db_config[ENV['ENV'] || 'development'])
 class User < ActiveRecord::Base
   has_many :reviews
   has_many :likes
-  has_many :likes_reviews, through: :likes, source: :reviews
+  has_many :likes_reviews, through: :likes, source: :review
 end
 
 class Music < ActiveRecord::Base
@@ -26,7 +26,7 @@ class Review < ActiveRecord::Base
   belongs_to :music
   belongs_to :user
   has_many :likes
-  has_many :likes_users, through: :likes, source: :users
+  has_many :likes_users, through: :likes, source: :user
 end
 
 class Artist < ActiveRecord::Base

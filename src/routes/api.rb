@@ -19,7 +19,6 @@ class ApiRouter < Base
   end
 
   post '/artist' do
-    # 重複チェック / 同姓同名
     Artist.create(name: params[:name])
     '{ok: true}'
   end
