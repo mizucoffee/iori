@@ -10,9 +10,9 @@
     <%= render :erb ,:'template/header' %>
     <%= render :erb ,:'template/title', :locals => {title: 'Search', file: 'images/piano.jpg', pos: '60%'}%>
 
-    <div id="music-search" class="uk-section">
+    <div id="search" class="uk-section">
         <div class="uk-container uk-text-center">
-            <form class="uk-form-width-large uk-text-left" action="/search">
+            <form class="uk-form-width-large uk-width-1@s uk-text-left" action="/search">
                 <div class="uk-margin">
                     <label class="uk-form-label text" for="form-title">検索ワード</label>
                     <div class="uk-form-controls">

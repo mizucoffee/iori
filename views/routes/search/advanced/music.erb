@@ -10,7 +10,7 @@
 <body>
     <%= render :erb ,:'template/header' %>
     <%= render :erb ,:'template/title', :locals => {title: 'Advanced Search', file: '/images/piano.jpg', pos: '60%'} %>
-    <div id="music-search" class="uk-section">
+    <div id="search" class="uk-section">
         <div class="uk-container uk-text-center">
             <%= render :erb ,:'template/search-tab', :locals => {type: 'music'} %>
         </div>

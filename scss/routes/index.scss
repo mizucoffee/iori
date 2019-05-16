@@ -1,9 +1,6 @@
 // /
 @import './root.scss';
 
-// /user
-@import './user/index.scss';
-
 // /@<user>
 @import './@user/index.scss';
 
@@ -12,3 +9,6 @@
 
 // /music
 @import './music/index.scss';
+
+// /search
+@import './search/index.scss';

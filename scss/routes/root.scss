@@ -37,5 +37,19 @@
             }
         }
     }
+}
 
+
+@media screen and (max-width:959px) {
+    #top {
+        #head-logo {
+            .icon {
+                width: calc(140px*0.8);
+            }
+    
+            .text {
+                width: calc(180px*0.8);
+            }
+        }
+    }
 }

@@ -23,6 +23,7 @@ header {
     input {
       width: 250px !important;
     }
+
     button {
       color: white !important;
     }
@@ -62,7 +63,51 @@ header {
 
     &:hover {
       color: #e0e0e0;
+    }
+  }
 
+  #search-icon,
+  #user-icon {
+    display: none;
+  }
+
+  .white {
+    color: white;
+  }
+}
+
+@media screen and (max-width:768px) {
+  header {
+    #logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 990;
+    }
+
+    #search-box,
+    #user {
+      display: none;
+    }
+
+    #search-icon,
+    #user-icon {
+      display: flex;
+    }
+    img {
+      width: 42px;
+      border-radius: 50%;
+      margin-right: 0px !important;
+    }
+    .uk-navbar-dropdown-nav {
+      font-size: 14pt;
+      a {
+        display: flex;
+        .menu-text {
+          margin-left: 12px;
+        }
+      }
     }
   }
 }
