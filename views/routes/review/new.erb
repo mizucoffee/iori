@@ -11,13 +11,14 @@
 <body>
     <%= render :erb ,:'template/header' %>
 
-    <form method="post" action="/review/new">
+    <form class="uk-width-1@s" method="post" action="/review/new">
+     <%# uk-width-1@s %>
 
         <div id="new-review" class="uk-section">
             <div class="uk-container uk-text-center">
                 <h1 class="uk-heading-line"><span class="text">Review</span></h1>
 
-                <div class="uk-form-width-large uk-text-left" id="form">
+                <div class="uk-form-width-large uk-text-left uk-width-1@s" id="form">
                     <div class="uk-margin">
                         <label class="uk-form-label text" for="form-title">タイトル</label>
                         <div class="uk-form-controls">
@@ -33,12 +34,12 @@
                     <div class="uk-margin">
                         <label class="uk-form-label text" for="form-search">検索</label>
                         <div class="uk-form-controls" uk-grid>
-                            <div class="uk-width-3-4@s">
+                            <div class="uk-width-3-4">
                                 <input id="form-music-name" class="uk-input" type="text" disabled>
                                 <input id="form-music-id" class="uk-input" name="music" type="hidden">
                             </div>
-                            <div class="uk-width-1-4@s">
-                                <a class="uk-button uk-button-primary uk-width-1-1" href="#modal-music-search"
+                            <div class="uk-width-1-4">
+                                <a class="uk-button uk-button-primary uk-width-1-1" id="search-button" href="#modal-music-search"
                                     uk-toggle>検索</a>
                             </div>
                         </div>

@@ -29,7 +29,7 @@
   #form {
     margin: 0 auto;
   }
-  .uk-width-1-4\@s {
+  .uk-width-1-4 {
     padding-left: 10px;
   }
   .result-box {
@@ -41,5 +41,8 @@
     margin: 8px 0;
     display: block;
     float: left;
+  }
+  #search-button {
+    padding: 0;
   }
 }
