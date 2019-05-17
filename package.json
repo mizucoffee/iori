@@ -1,0 +1,11 @@
+{
+  "name": "iori",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mizucoffee/iori.git",
+  "author": "Ritsuki Goto <develop@mizucoffee.net>",
+  "license": "MIT",
+  "devDependencies": {
+    "node-sass": "^4.12.0"
+  }
+}
