@@ -2,13 +2,13 @@ $(document).ready(() => {
 
   function click(e) {
     const ctx = $('#color-canvas')[0].getContext('2d')
-    ctx.clearRect(0, 0, $('#color-canvas').width(), $('#color-canvas').height())
+    ctx.clearRect(0, 0, 400, 100)
 
     const lightGrd = createGrd(85)
     const darkGrd = createGrd(30)
   
     ctx.fillStyle = lightGrd
-    ctx.fillRect(0, 0, $('#color-canvas').width(), $('#color-canvas').height())
+    ctx.fillRect(0, 0, 400, 100)
   
     let light = true
     let x = 0
@@ -53,7 +53,7 @@ $(document).ready(() => {
     $('#cs2').click(colorOnClick)
   
     function createGrd(p) {
-      const grd = ctx.createLinearGradient(0, 0, $('#color-canvas').width(), 0)
+      const grd = ctx.createLinearGradient(0, 0, 400, 0)
       for (let i = 0; i <= 360; i++) grd.addColorStop(i / 360, `hsl(${i}, 100%, ${p}%)`)
       return grd
     }
@@ -63,7 +63,7 @@ $(document).ready(() => {
       $(e.target.id == 'cs1' ? '#cs2' : '#cs1').removeClass('selected')
       light = e.target.id == 'cs1'
       ctx.fillStyle = light ? lightGrd : darkGrd
-      ctx.fillRect(0, 0, $('#color-canvas').width(), $('#color-canvas').height())
+      ctx.fillRect(0, 0, 400, 100)
       changeColor()
     }
   }

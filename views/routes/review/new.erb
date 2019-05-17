@@ -52,12 +52,17 @@
 
         <div id="new-review" class="uk-section">
             <div class="uk-container uk-text-center">
-
                 <div class="cs-box">
                     <div class="color-sample selected" id="cs1"></div>
                     <div class="color-sample" id="cs2"></div>
                 </div>
-                <canvas id="color-canvas" class="uk-align-center" width="400px" height="100px"></canvas>
+                <div id="canvas-container" class="uk-align-center"
+                    style="max-width: 400px; padding: 0 20px; margin-bottom: 10px">
+                    <canvas id="color-canvas" height="100px" width="400px"></canvas>
+                </div>
+                <input class="uk-input" id="form-hue" type="hidden" name="hue">
+                <input class="uk-input" id="form-light" type="hidden" name="light">
+                
                 <input class="uk-button uk-button-primary uk-button-large uk-align-center" value="確認画面へ" type="submit">
             </div>
         </div>
