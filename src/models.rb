@@ -1,5 +1,14 @@
-db_config = YAML.load_file('database.yml')
-ActiveRecord::Base.establish_connection(db_config[ENV['ENV'] || 'development'])
+config = {}
+if ENV['ENV'] == 'production'
+  config = ENV['DATABASE_URL']
+else
+  config = {
+    adapter: 'sqlite3',
+    database: 'db/development.db'
+  }
+end
+
+ActiveRecord::Base.establish_connection(config)
 
 class User < ActiveRecord::Base
   has_many :reviews

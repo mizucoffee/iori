@@ -12,6 +12,7 @@ gem 'rake'
 gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'twitter'
+gem 'rmagick'
 
 gem "bundler", :require => [
   "pp",

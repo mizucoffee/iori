@@ -1,9 +1,6 @@
 production:
   adapter: postgresql
-  host: localhost
-  database: iori
-  username: iori
-  password: iori
+  host: <%= ENV['DATABASE_URL'] %>
   encoding: unicode
   pool: 5
 
