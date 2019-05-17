@@ -21,25 +21,30 @@
         </div>
     </div>
     <div id="user-page" class="uk-section">
-        <div class="uk-container uk-text-center">
+        <div class="uk-container">
             <% if @user %>
             <h2 class="uk-heading-line uk-text-center"><span>レビュー一覧</span></h2><br>
-            <table class="uk-table uk-table-striped uk-table-middle">
-                <tr>
-                    <th class="uk-text-center">タイトル</th>
-                    <th class="uk-text-center">投稿日</th>
-                    <th class="uk-text-center">色</th>
-                </tr>
+            <div class="scroll-table">
+                <table class="uk-table uk-table-striped uk-table-middle">
+                    <tr>
+                        <th class="uk-text-center">色</th>
+                        <th class="uk-text-left uk-table-expand">タイトル</th>
+                        <th class="uk-text-left uk-table-expand">楽曲名</th>
+                        <th class="uk-text-center">投稿日</th>
+                    </tr>
 
-                <% @user.reviews.each do |r| %>
-                <tr>
-                    <td><a href="/@<%= @twuser.screen_name %>/<%= r.id %>"><%= r.title %></a></td>
-                    <td><%= r.created_at %></td>
-                    <td><span style="color: hsl(<%= r.hue %>, 100%, <%= r.light ? '85%' : '30%' %>,1); font-size: 22pt;">■</span></td>
-                    </td>
-                </tr>
-                <% end %>
-            </table>
+                    <% @user.reviews.each do |r| %>
+                    <tr>
+                        <td class="uk-text-center"><span
+                                style="color: hsl(<%= r.hue %>, 100%, <%= r.light ? '85%' : '30%' %>,1); font-size: 22pt;">■</span>
+                        </td>
+                        <td class="uk-table-expand"><a href="/@<%= @twuser.screen_name %>/<%= r.id %>"><%= r.title %></a></td>
+                        <td class="uk-table-expand"><a href="/@<%= @twuser.screen_name %>/<%= r.id %>"><%= r.music.name %></a></td>
+                        <td class="uk-text-center"><%= r.created_at.strftime("%Y-%m-%d") %></td>
+                    </tr>
+                    <% end %>
+                </table>
+            </div>
             <% else %>
             <h2 class="uk-heading-line uk-text-center"><span>このユーザーはioriを使用していないようです</span></h2><br>
             <span class="uk-text-center">気が向いたらioriを教えてあげてください...！</span>

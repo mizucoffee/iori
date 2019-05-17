@@ -16,6 +16,7 @@
         </div>
         <div class="uk-container uk-text-center">
             <% if @musics.length > 0 %>
+            <div class="scroll-table">
             <table class="uk-table uk-table-striped uk-table-middle">
                 <tr>
                     <th class="uk-text-center">曲名</th>
@@ -36,6 +37,7 @@
                 </tr>
                 <% end %>
             </table>
+            </div>
             <% else %>
             見つかりませんでした。
             <% end %>

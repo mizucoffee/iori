@@ -19,7 +19,7 @@ class SearchRouter < Base
     hue = params[:hue].to_i
     light = params[:light]
     redirect '/search/advanced' if hue.blank?
-    if 10 <= hue && hue <= 350
+    if hue >= 10 && hue <= 350
       @reviews = Review.where(hue: (hue-10)..(hue+10), light: light == '1')
     elsif hue < 10
       @reviews = Review.where('(hue between 0 and ?) or (hue between ? and 360)', hue+10, 360+hue-10)

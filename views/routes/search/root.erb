@@ -33,38 +33,37 @@
             <% unless @q.blank? %>
             <% mode = @musics.length > 0 ? 'music' : @artists.length > 0 ? 'artist' : @users.length > 0 ? 'user' : @tab %>
 
-            <ul class="uk-container uk-container-xsmall uk-child-width-expand" style="margin: 0 auto;" uk-tab>
-                <li id="tab1" class="<%= mode == 'music' ? 'uk-active' : '' %>"><a href="#"
-                        style="font-size: 18pt;">Music</a></li>
-                <li id="tab2" class="<%= mode == 'artist' ? 'uk-active' : '' %>"><a href="#"
-                        style="font-size: 18pt;">Artist</a></li>
-                <li id="tab3" class="<%= mode == 'user' ? 'uk-active' : '' %>"><a href="#"
-                        style="font-size: 18pt;">User</a></li>
+            <ul class="uk-container uk-container-xsmall uk-child-width-expand" uk-tab>
+                <li id="tab1" class="<%= mode == 'music' ? 'uk-active' : '' %>"><a href="#">Music</a></li>
+                <li id="tab2" class="<%= mode == 'artist' ? 'uk-active' : '' %>"><a href="#">Artist</a></li>
+                <li id="tab3" class="<%= mode == 'user' ? 'uk-active' : '' %>"><a href="#">User</a></li>
             </ul>
 
             <ul class="uk-switcher uk-margin">
                 <li class="<%= mode == 'music' ? 'uk-active' : '' %>">
                     <% if @musics.length > 0 %>
-                    <table class="uk-table uk-table-striped uk-table-middle">
-                        <tr>
-                            <th class="uk-text-center">曲名</th>
-                            <th class="uk-text-center">歌手</th>
-                            <th class="uk-text-center">作曲者</th>
-                            <th class="uk-text-center">作詞者</th>
-                            <th class="uk-text-center">編曲者</th>
-                            <th class="uk-text-center">レビュー件数</th>
-                        </tr>
-                        <% @musics.each do |m| %>
-                        <tr>
-                            <td><a href="/music/<%= m.id %>"><%= m.name %></a></td>
-                            <td><%= m.singers.map(&:name).join('<br>') %></td>
-                            <td><%= m.composers.map(&:name).join('<br>') %></td>
-                            <td><%= m.lyricists.map(&:name).join('<br>') %></td>
-                            <td><%= m.arrangers.map(&:name).join('<br>') %></td>
-                            <td><%= Review.where(music_id: m.id).count %></td>
-                        </tr>
-                        <% end %>
-                    </table>
+                    <div class="scroll-table">
+                        <table class="uk-table uk-table-striped uk-table-middle">
+                            <tr>
+                                <th class="uk-text-center">曲名</th>
+                                <th class="uk-text-center">歌手</th>
+                                <th class="uk-text-center">作曲者</th>
+                                <th class="uk-text-center">作詞者</th>
+                                <th class="uk-text-center">編曲者</th>
+                                <th class="uk-text-center">レビュー件数</th>
+                            </tr>
+                            <% @musics.each do |m| %>
+                            <tr>
+                                <td><a href="/music/<%= m.id %>"><%= m.name %></a></td>
+                                <td><%= m.singers.map(&:name).join('<br>') %></td>
+                                <td><%= m.composers.map(&:name).join('<br>') %></td>
+                                <td><%= m.lyricists.map(&:name).join('<br>') %></td>
+                                <td><%= m.arrangers.map(&:name).join('<br>') %></td>
+                                <td><%= Review.where(music_id: m.id).count %></td>
+                            </tr>
+                            <% end %>
+                        </table>
+                    </div>
                     <% else %>
                     見つかりませんでした。
                     <% end %>
@@ -72,24 +71,26 @@
                 <li class="<%= mode == 'artist' ? 'uk-active' : '' %>">
                     <% unless @q.blank? %>
                     <% if @artists.length > 0 %>
-                    <table class="uk-table uk-table-striped uk-table-middle">
-                        <tr>
-                            <th class="uk-text-center">アーティスト名</th>
-                            <th class="uk-text-center">歌手をした曲数</th>
-                            <th class="uk-text-center">作曲した曲数</th>
-                            <th class="uk-text-center">作詞した曲数</th>
-                            <th class="uk-text-center">編曲した曲数</th>
-                        </tr>
-                        <% @artists.each do |a| %>
-                        <tr>
-                            <td><a href="/artist/<%= a.id %>"><%= a.name %></a></td>
-                            <td><%= a.singer_musics.count %></td>
-                            <td><%= a.composer_musics.count %></td>
-                            <td><%= a.lyricist_musics.count %></td>
-                            <td><%= a.arranger_musics.count %></td>
-                        </tr>
-                        <% end %>
-                    </table>
+                    <div class="scroll-table">
+                        <table class="uk-table uk-table-striped uk-table-middle">
+                            <tr>
+                                <th class="uk-text-center">アーティスト名</th>
+                                <th class="uk-text-center">歌手をした曲数</th>
+                                <th class="uk-text-center">作曲した曲数</th>
+                                <th class="uk-text-center">作詞した曲数</th>
+                                <th class="uk-text-center">編曲した曲数</th>
+                            </tr>
+                            <% @artists.each do |a| %>
+                            <tr>
+                                <td><a href="/artist/<%= a.id %>"><%= a.name %></a></td>
+                                <td><%= a.singer_musics.count %></td>
+                                <td><%= a.composer_musics.count %></td>
+                                <td><%= a.lyricist_musics.count %></td>
+                                <td><%= a.arranger_musics.count %></td>
+                            </tr>
+                            <% end %>
+                        </table>
+                    </div>
                     <% else %>
                     見つかりませんでした。
                     <% end %>
@@ -98,23 +99,25 @@
                 <li class="<%= mode == 'user' ? 'uk-active' : '' %>">
                     <% unless @q.blank? %>
                     <% if @users.length > 0 %>
-                    <table class="uk-table uk-table-striped uk-table-middle">
-                        <tr>
-                            <th class="uk-text-center">アイコン</th>
-                            <th class="uk-text-center">ユーザー名</th>
-                            <th class="uk-text-center">Twitter ID</th>
-                            <th class="uk-text-center">レビュー数</th>
-                        </tr>
-                        <% twuser = Tw.app.users(@users.map{|a|a.twitter_id.to_i})%>
-                        <% twuser.each do |u| %>
-                        <tr>
-                            <td><img class="user-icon" src="<%= u.profile_image_url_https %>" alt=""></td>
-                            <td><a href="/@<%= u.screen_name %>"><%= u.name %></a></td>
-                            <td><a href="//twitter.com/<%= u.screen_name %>">@<%= u.screen_name %></a></td>
-                            <td><%= User.find_by(twitter_id: u.id).reviews.count %></td>
-                        </tr>
-                        <% end %>
-                    </table>
+                    <div class="scroll-table">
+                        <table class="uk-table uk-table-striped uk-table-middle">
+                            <tr>
+                                <th class="uk-text-center">アイコン</th>
+                                <th class="uk-text-center">ユーザー名</th>
+                                <th class="uk-text-center">Twitter ID</th>
+                                <th class="uk-text-center">レビュー数</th>
+                            </tr>
+                            <% twuser = Tw.app.users(@users.map{|a|a.twitter_id.to_i})%>
+                            <% twuser.each do |u| %>
+                            <tr>
+                                <td><img class="user-icon" src="<%= u.profile_image_url_https %>" alt=""></td>
+                                <td><a href="/@<%= u.screen_name %>"><%= u.name %></a></td>
+                                <td><a href="//twitter.com/<%= u.screen_name %>">@<%= u.screen_name %></a></td>
+                                <td><%= User.find_by(twitter_id: u.id).reviews.count %></td>
+                            </tr>
+                            <% end %>
+                        </table>
+                    </div>
                     <% else %>
                     見つかりませんでした。
                     <% end %>

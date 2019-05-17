@@ -1,12 +1,31 @@
 #search {
-    form, table {
-      margin: 0 auto;
+
+  form,
+  table,
+  .uk-tab {
+    margin: 0 auto;
+  }
+
+  .uk-tab {
+    a {
+      font-size: 18pt;
     }
-  
-    td {
-      padding: {
-        left: 8px;
-        right: 8px;
+  }
+
+  td {
+    padding: {
+      left: 8px;
+      right: 8px;
+    }
+  }
+}
+
+@media screen and (max-width:425px) {
+  #search {
+    .uk-tab {
+      a {
+        font-size: 12pt;
       }
     }
   }
+}

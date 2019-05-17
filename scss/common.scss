@@ -27,3 +27,12 @@ html {
 .uk-form-width-large {
     max-width: 500px;
 }
+
+.scroll-table {
+    overflow: auto;
+    white-space: nowrap;
+    table {
+        min-width: 800px;
+        margin-bottom: 0;
+    }
+}

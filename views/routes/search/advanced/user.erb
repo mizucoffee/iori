@@ -16,23 +16,25 @@
         </div>
         <div class="uk-container uk-container-xsmall uk-text-center">
             <% if @users.length > 0 %>
-            <table class="uk-table uk-table-striped uk-table-middle">
-                <tr>
-                    <th class="uk-text-center">アイコン</th>
-                    <th class="uk-text-center">ユーザー名</th>
-                    <th class="uk-text-center">Twitter ID</th>
-                    <th class="uk-text-center">レビュー数</th>
-                </tr>
-                <% twuser = Tw.app.users(@users.map{|a|a.twitter_id.to_i})%>
-                <% twuser.each do |u| %>
-                <tr>
-                    <td><img class="user-icon" src="<%= u.profile_image_url_https %>" alt=""></td>
-                    <td><a href="/@<%= u.screen_name %>"><%= u.name %></a></td>
-                    <td><a href="//twitter.com/<%= u.screen_name %>">@<%= u.screen_name %></a></td>
-                    <td><%= User.find_by(twitter_id: u.id).reviews.count %></td>
-                </tr>
-                <% end %>
-            </table>
+            <div class="scroll-table">
+                <table class="uk-table uk-table-striped uk-table-middle">
+                    <tr>
+                        <th class="uk-text-center">アイコン</th>
+                        <th class="uk-text-center">ユーザー名</th>
+                        <th class="uk-text-center">Twitter ID</th>
+                        <th class="uk-text-center">レビュー数</th>
+                    </tr>
+                    <% twuser = Tw.app.users(@users.map{|a|a.twitter_id.to_i})%>
+                    <% twuser.each do |u| %>
+                    <tr>
+                        <td><img class="user-icon" src="<%= u.profile_image_url_https %>" alt=""></td>
+                        <td><a href="/@<%= u.screen_name %>"><%= u.name %></a></td>
+                        <td><a href="//twitter.com/<%= u.screen_name %>">@<%= u.screen_name %></a></td>
+                        <td><%= User.find_by(twitter_id: u.id).reviews.count %></td>
+                    </tr>
+                    <% end %>
+                </table>
+            </div>
             <% else %>
             見つかりませんでした。
             <% end %>

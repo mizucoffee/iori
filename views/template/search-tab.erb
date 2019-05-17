@@ -1,9 +1,8 @@
-<ul id="tab" class="uk-container uk-container-xsmall uk-child-width-expand uk-margin" style="margin: 0 auto 48px;"
-    uk-tab>
-    <li id="tab1" class="<%= type == 'review' ? 'uk-active' : type.blank? ? 'uk-active' : '' %>"><a href="#"
-            style="font-size: 18pt;">Review</a></li>
-    <li id="tab2" class="<%= type == 'music' ? 'uk-active' : '' %>"><a href="#" style="font-size: 18pt;">Music</a></li>
-    <li id="tab3" class="<%= type == 'user' ? 'uk-active' : '' %>"><a href="#" style="font-size: 18pt;">User</a></li>
+<ul id="tab" class="uk-container uk-container-xsmall uk-child-width-expand uk-margin" uk-tab>
+    <li id="tab1" class="<%= type == 'review' ? 'uk-active' : type.blank? ? 'uk-active' : '' %>"><a href="#">Review</a>
+    </li>
+    <li id="tab2" class="<%= type == 'music' ? 'uk-active' : '' %>"><a href="#">Music</a></li>
+    <li id="tab3" class="<%= type == 'user' ? 'uk-active' : '' %>"><a href="#">User</a></li>
 </ul>
 <ul class="uk-switcher uk-margin <%= type.blank? ? '' : 'uk-hidden'%>" id="body">
     <li>
@@ -18,7 +17,8 @@
                                 <div class="color-sample selected" id="cs1"></div>
                                 <div class="color-sample" id="cs2"></div>
                             </div>
-                            <div id="canvas-container" class="uk-align-center" style="max-width: 400px; padding: 0 20px; margin-bottom: 10px">
+                            <div id="canvas-container" class="uk-align-center"
+                                style="max-width: 400px; padding: 0 20px; margin-bottom: 10px">
                                 <canvas id="color-canvas" height="100px" width="400px"></canvas>
                             </div>
                             <input class="uk-input" id="form-hue" type="hidden" name="hue">
