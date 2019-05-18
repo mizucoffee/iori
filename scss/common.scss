@@ -36,3 +36,9 @@ html {
         margin-bottom: 0;
     }
 }
+
+#tab {
+    li:first-child {
+        padding-left: 0;
+    }
+}

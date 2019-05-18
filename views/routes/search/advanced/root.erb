@@ -12,7 +12,7 @@
     <%= render :erb ,:'template/title', :locals => {title: 'Advanced Search', file: '/images/piano.jpg', pos: '60%'} %>
     <div id="search" class="uk-section">
         <div class="uk-container uk-text-center">
-            <%= render :erb ,:'template/search-tab', :locals => {type: ''} %>
+            <%= render :erb ,:'template/search-tab', :locals => {type: '', show: false} %>
         </div>
     </div>
     <%= render :erb ,:'template/footer' %>

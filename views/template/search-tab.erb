@@ -4,7 +4,7 @@
     <li id="tab2" class="<%= type == 'music' ? 'uk-active' : '' %>"><a href="#">Music</a></li>
     <li id="tab3" class="<%= type == 'user' ? 'uk-active' : '' %>"><a href="#">User</a></li>
 </ul>
-<ul class="uk-switcher uk-margin <%= type.blank? ? '' : 'uk-hidden'%>" id="body">
+<ul class="uk-switcher uk-margin <%= show ? '' : 'uk-hidden'%>" id="body">
     <li>
         <form class="uk-form-width-large uk-width-1@s uk-text-left" action="/search/advanced/review" method="post">
             <h2>レビュー検索</h2>

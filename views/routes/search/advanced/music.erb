@@ -11,8 +11,13 @@
     <%= render :erb ,:'template/header' %>
     <%= render :erb ,:'template/title', :locals => {title: 'Advanced Search', file: '/images/piano.jpg', pos: '60%'} %>
     <div id="search" class="uk-section">
+        <% if @musics.length == 0 %>
+        <div class="uk-alert-primary uk-container uk-container-xsmall" uk-alert>
+            <p>楽曲が見つかりませんでした。</p>
+        </div>
+        <% end %>
         <div class="uk-container uk-text-center">
-            <%= render :erb ,:'template/search-tab', :locals => {type: 'music'} %>
+            <%= render :erb ,:'template/search-tab', :locals => {type: 'music', show: @musics.length == 0} %>
         </div>
         <div class="uk-container uk-text-center result">
             <% if @musics.length > 0 %>
@@ -38,8 +43,6 @@
                     <% end %>
                 </table>
             </div>
-            <% else %>
-            見つかりませんでした。
             <% end %>
         </div>
     </div>
