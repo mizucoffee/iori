@@ -35,13 +35,15 @@ class SearchRouter < Base
     composer = params[:composer]
     lyricist = params[:lyricist]
     arranger = params[:arranger]
+    genre = params[:genre]
     redirect '/search/advanced' if song.blank? && singer.blank? && composer.blank? && lyricist.blank? && arranger.blank?
     @musics = Music.includes(:singers, :composers, :lyricists, :arrangers)
                    .where('musics.name like ? and artists.name like ?
                      and composers_musics.name like ?
                      and lyricists_musics.name like ?
-                     and arrangers_musics.name like ?',
-                          "%#{song}%", "%#{singer}%", "%#{composer}%", "%#{lyricist}%", "%#{arranger}%")
+                     and arrangers_musics.name like ?
+                     and musics.genre_id like ?',
+                          "%#{song}%", "%#{singer}%", "%#{composer}%", "%#{lyricist}%", "%#{arranger}%", genre == '0' ? '%' : "%#{genre}")
                    .references(:singers, :composers, :lyricists, :arrangers).map{|e| Music.find(e.id) }
     erb :'routes/search/advanced/music'
   end

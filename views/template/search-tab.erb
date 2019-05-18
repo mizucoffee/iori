@@ -40,35 +40,47 @@
                 <div class="uk-margin">
                     <label class="uk-form-label text" for="form-title">曲名</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" type="text" name="song" placeholder="曲名">
+                        <input id="form-title" class="uk-input" type="text" name="song" placeholder="曲名">
                     </div>
                 </div>
 
                 <div class="uk-margin">
-                    <label class="uk-form-label text" for="form-title">歌手</label>
+                    <label class="uk-form-label text" for="form-singer">歌手</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" type="text" name="singer" placeholder="歌手">
+                        <input id="form-singer" class="uk-input" type="text" name="singer" placeholder="歌手">
                     </div>
                 </div>
 
                 <div class="uk-margin">
-                    <label class="uk-form-label text" for="form-title">作曲者</label>
+                    <label class="uk-form-label text" for="form-composer">作曲者</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" type="text" name="composer" placeholder="作曲者">
+                        <input id="form-composer" class="uk-input" type="text" name="composer" placeholder="作曲者">
                     </div>
                 </div>
 
                 <div class="uk-margin">
-                    <label class="uk-form-label text" for="form-title">作詞者</label>
+                    <label class="uk-form-label text" for="form-lyricist">作詞者</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" type="text" name="lyricist" placeholder="作詞者">
+                        <input id="form-lyricist" class="uk-input" type="text" name="lyricist" placeholder="作詞者">
                     </div>
                 </div>
 
                 <div class="uk-margin">
-                    <label class="uk-form-label text" for="form-title">編曲者</label>
+                    <label class="uk-form-label text" for="form-arranger">編曲者</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" type="text" name="arranger" placeholder="編曲者">
+                        <input id="form-arranger" class="uk-input" type="text" name="arranger" placeholder="編曲者">
+                    </div>
+                </div>
+
+                <div class="uk-margin">
+                    <label class="uk-form-label text" for="form-genre">ジャンル</label>
+                    <div class="uk-form-controls">
+                        <select class="uk-select" id="form-genre" name="genre">
+                            <option value="0">-</option>
+                            <% Genre.all.each do |g| %>
+                            <option value="<%= g.id %>"><%= g.name %></option>
+                            <% end %>
+                        </select>
                     </div>
                 </div>
             </div>
