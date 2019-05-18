@@ -8,7 +8,7 @@ class AccountRouter < Base
 
   get '/login/auth/twitter' do
     redirect '/' unless @me.nil?
-    token = Twi::OAuth.token("http://iori.mzcf.net/account/login/auth/twitter/callback?next=#{params[:next]}")
+    token = Twi::OAuth.token("http://#{ENV['DOMAIN']}/account/login/auth/twitter/callback?next=#{params[:next]}")
     session['oauth_token_secret'] = token['oauth_token_secret']
     redirect "https://api.twitter.com/oauth/authenticate?oauth_token=#{token['oauth_token']}"
   end

@@ -1,4 +1,26 @@
 #new-review, div[uk-modal] {
+  #form {
+    margin: 0 auto;
+  }
+  .uk-width-1-4 {
+    padding-left: 10px;
+  }
+  .result-box {
+    margin: 0;
+    min-height: 64px;
+    border: #e5e5e5 1px solid;
+  }
+  .list-message {
+    margin: 8px 0;
+    display: block;
+    float: left;
+  }
+  #search-button {
+    padding: 0;
+  }
+}
+
+#new-review-color {
   #color-canvas {
     cursor: crosshair;
     border: #40414f 1px solid;
@@ -24,25 +46,5 @@
   }
   .color-sample:not(.selected) {
     padding: 8px;
-  }
-
-  #form {
-    margin: 0 auto;
-  }
-  .uk-width-1-4 {
-    padding-left: 10px;
-  }
-  .result-box {
-    margin: 0;
-    min-height: 64px;
-    border: #e5e5e5 1px solid;
-  }
-  .list-message {
-    margin: 8px 0;
-    display: block;
-    float: left;
-  }
-  #search-button {
-    padding: 0;
   }
 }
