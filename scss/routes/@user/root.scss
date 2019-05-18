@@ -49,6 +49,29 @@
     }
 }
 
+#user-page {
+
+    form,
+    table,
+    .uk-tab {
+        margin: 0 auto;
+    }
+
+    .uk-tab {
+        margin-bottom: 48px;
+        a {
+            font-size: 18pt;
+        }
+    }
+
+    td {
+        padding: {
+            left: 8px;
+            right: 8px;
+        }
+    }
+}
+
 @media screen and (max-width:959px) {
     #user-header {
         .grid-box {
