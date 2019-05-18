@@ -40,7 +40,14 @@ class AccountRouter < Base
 
   get '/settings' do
     redirect '/account/login?next=/account/settings' if @me.nil?
-    render :erb, :index
+    render :erb, :'routes/account/settings'
+  end
+
+  get '/delete' do
+    @me.destroy
+    session.clear
+
+    redirect '/'
   end
 
   get '/logout' do

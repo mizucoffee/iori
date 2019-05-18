@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <% @title = 'Settings' %>
+    <%= render :erb ,:'template/head' %>
+</head>
+
+<body>
+    <%= render :erb ,:'template/header' %>
+    <%= render :erb ,:'template/title', :locals => {title: 'Settings', file: 'images/login.jpg', pos: '65%'}%>
+    <div id="settings" class="uk-section">
+        <div class="uk-container">
+            <form class="uk-form-horizontal uk-width-1@s uk-text-center" method="post" action="/account/settings">
+
+                <div class="uk-margin">
+                    <label id="show_like_label" class="uk-form-label" for="show_like">いいねを公開する&nbsp;&nbsp;<input class="uk-checkbox"
+                            type="checkbox" id="show_like" name="show-like"></label>
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-button uk-button-primary  uk-button-large" type="submit" value="保存">
+                </div>
+                <br>
+                <br>
+                <a href="#modal-delete" uk-toggle>アカウントを削除する</a>
+                <div id="modal-delete" uk-modal>
+                    <div class="uk-modal-dialog">
+                        <button class="uk-modal-close-default" uk-close></button>
+                        <div class="uk-modal-header">
+                            <h2 class="uk-modal-title">確認</h2>
+                        </div>
+                        <div class="uk-modal-body" uk-overflow-auto>
+                            本当にアカウントを削除してもよろしいですか？<br>
+                            投稿したレビューは全て削除されます。
+                        </div>
+                        <div class="uk-modal-footer uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                            <a class="uk-button uk-button-primary" href="/account/delete">DELETE</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <%= render :erb ,:'template/footer' %>
+</body>
+
+</html>
