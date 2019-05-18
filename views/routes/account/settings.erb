@@ -12,10 +12,14 @@
     <div id="settings" class="uk-section">
         <div class="uk-container">
             <form class="uk-form-horizontal uk-width-1@s uk-text-center" method="post" action="/account/settings">
-
+                <% if @success %>
+                <div class="uk-alert-primary" uk-alert>
+                    <p>保存しました。</p>
+                </div>
+                <% end %>
                 <div class="uk-margin">
                     <label id="show_like_label" class="uk-form-label" for="show_like">いいねを公開する&nbsp;&nbsp;<input class="uk-checkbox"
-                            type="checkbox" id="show_like" name="show-like"></label>
+                            type="checkbox" id="show_like" name="show-like" <%= @me.show_like ? 'checked' : '' %>></label>
                 </div>
                 <div class="uk-margin">
                     <input class="uk-button uk-button-primary  uk-button-large" type="submit" value="保存">

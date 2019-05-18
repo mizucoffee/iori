@@ -40,7 +40,16 @@ class AccountRouter < Base
 
   get '/settings' do
     redirect '/account/login?next=/account/settings' if @me.nil?
+    @success = params['success'] == 'true'
     render :erb, :'routes/account/settings'
+  end
+
+  post '/settings' do
+    redirect '/account/login?next=/account/settings' if @me.nil?
+    @me.show_like = params['show-like'] == 'on'
+    @me.save
+
+    redirect '/account/settings?success=true'
   end
 
   get '/delete' do

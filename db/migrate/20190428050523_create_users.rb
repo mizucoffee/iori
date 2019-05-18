@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :screen_name
       t.string :name
       t.string :twitter_id
+      t.boolean :show_like, default: true
       t.datetime :created_at,  null: false
       t.datetime :updated_at,  null: false
     end
