@@ -8,7 +8,7 @@
     <meta name="og:title" content="<%= @review.title %>">
     <meta name="og:type" content="article">
     <meta name="og:site_name" content="iori">
-    <meta name="og:url" content="http://<%= ENV['DOMAIN'] %>/">
+    <meta name="og:url" content="http://<%= ENV['DOMAIN'] %>/@<%= tw.screen_name %>/<%= @review.id %>">
     <meta name="og:description" content="ioriは音楽のレビューサイトです。気軽に投稿してみませんか？">
     <meta name="og:image" content="http://<%= ENV['DOMAIN'] %>/@<%= tw.screen_name %>/<%= @review.id %>/og.png">
     <meta name="twitter:card" content="summary_large_image">

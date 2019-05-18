@@ -12,12 +12,7 @@ gem 'rake'
 gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'twitter'
-gem 'rmagick'
-
-gem "bundler", :require => [
-  "pp",
-  "uri"
-]
+gem 'faraday'
 
 group :test do
   gem 'codecov', require: false

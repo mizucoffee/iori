@@ -34,6 +34,8 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.2)
     equalizer (0.0.11)
+    faraday (0.15.4)
+      multipart-post (>= 1.2, < 3)
     fastri (0.3.1.1)
     http (3.3.0)
       addressable (~> 2.3)
@@ -139,10 +141,10 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (< 5.0.0)
-  bundler
   codecov
   debase
   dotenv
+  faraday
   fastri
   pg (= 0.18)
   rack-test
