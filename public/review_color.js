@@ -7,13 +7,16 @@ $(document).ready(() => {
     const lightGrd = createGrd(85)
     const darkGrd = createGrd(30)
   
-    ctx.fillStyle = lightGrd
+    let light = $('#form-light').val() == '1'
+    $(light ? '#cs1' : '#cs2').addClass('selected')
+    $(light ? '#cs2' : '#cs1').removeClass('selected')
+    ctx.fillStyle = light ? lightGrd : darkGrd
     ctx.fillRect(0, 0, 400, 100)
-  
-    let light = true
-    let x = 0
+
+    let x = 400 / 360 * Number($('#form-hue').val())
+
     changeColor()
-  
+
     function changeColor(e) {
       e && (x = e.offsetX)
       const id = ctx.getImageData(x, 0, 1, 1).data
