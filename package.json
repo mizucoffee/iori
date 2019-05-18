@@ -5,6 +5,9 @@
   "repository": "https://github.com/mizucoffee/iori.git",
   "author": "Ritsuki Goto <develop@mizucoffee.net>",
   "license": "MIT",
+  "scripts": {
+    "build": "node-sass scss/style.scss public/style.css"
+  },
   "devDependencies": {
     "node-sass": "^4.12.0"
   }
