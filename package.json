@@ -6,7 +6,7 @@
   "author": "Ritsuki Goto <develop@mizucoffee.net>",
   "license": "MIT",
   "scripts": {
-    "build": "node-sass scss/style.scss public/style.css"
+    "build": "node-sass scss/index.scss public/style.css"
   },
   "devDependencies": {
     "node-sass": "^4.12.0"
