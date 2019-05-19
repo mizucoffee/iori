@@ -15,26 +15,12 @@
             <p>ioriはTwitterで簡単にログインする事が出来ます。<br>
                 自動ツイート機能を有効にしない限り、当サービスがツイートすることはありません。</p>
             <br>
-            <a class="uk-button uk-button-primary uk-button-large" href="/account/login/auth/twitter?next=<%= @next %>">Twitterでログイン</a><br>
+            <a class="uk-button uk-button-primary uk-button-large"
+                href="/account/login/auth/twitter?next=<%= @next %>">Twitterでログイン</a><br>
             <br>
-            <a href="#modal" uk-toggle>利用規約</a><br>
+            <a href="#kiyaku-modal" uk-toggle>利用規約</a><br>
             <br>
             <p>Twitterの認証を完了する事で、利用規約に同意したものとみなします。</p>
-
-            <div id="modal" uk-modal>
-                <div class="uk-modal-dialog">
-                    <button class="uk-modal-close-default" type="button" uk-close></button>
-                    <div class="uk-modal-header">
-                        <h2 class="uk-modal-title">利用規約</h2>
-                    </div>
-                    <div class="uk-modal-body" uk-overflow-auto>
-                        利用規約本文
-                    </div>
-                    <div class="uk-modal-footer uk-text-right">
-                        <button class="uk-button uk-button-default uk-modal-close" type="button">Close</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <%= render :erb ,:'template/footer' %>
