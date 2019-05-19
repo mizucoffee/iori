@@ -21,6 +21,28 @@ class RootRouter < Base
     erb :'routes/@user/review'
   end
 
+  get '/@:screen_name/:review_id/edit' do
+    @review = Review.find_by(id: params[:review_id])
+
+    error 404 if @review.blank?
+    unless Tw.app.user(@review.user.twitter_id.to_i).screen_name == params[:screen_name] || @review.user.twitter_id == @me.twitter_id
+      redirect '/'
+    end
+
+    erb :'routes/review/new'
+  end
+
+  get '/@:screen_name/:review_id/delete' do
+    @review = Review.find_by(id: params[:review_id])
+
+    error 404 if @review.blank?
+    if Tw.app.user(@review.user.twitter_id.to_i).screen_name == params[:screen_name] && @review.user.twitter_id == @me.twitter_id
+      @review.destroy
+    end
+
+    redirect '/'
+  end
+
   get '/@:screen_name/:review_id/ogp.png' do
     @review = Review.find_by(id: params[:review_id])
 

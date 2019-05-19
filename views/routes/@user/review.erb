@@ -31,8 +31,7 @@
     <div id="review-info" class="uk-section <%= light ? 'light' : 'dark' %>"
         style="background: hsl(<%= color %>, 100%, <%= light ? '97%' : '40%' %>">
         <div class="uk-navbar-container uk-container"
-            style="background: hsl(<%= color %>, 100%, <%= light ? '97%' : '40%' %>"
-            uk-navbar>
+            style="background: hsl(<%= color %>, 100%, <%= light ? '97%' : '40%' %>" uk-navbar>
             <div class="uk-navbar-left">
                 <ul class="uk-navbar-nav">
 
@@ -43,15 +42,46 @@
             <div class="uk-navbar-right">
                 <ul class="uk-navbar-nav">
                     <li>
+                        <% if @me %>
+                        <% if @review.user.id == @me.id %>
+                        <a href="#">
+                            <span uk-icon="icon: fa-wrench-s"></span>&nbsp;Manage
+                        </a>
+                        <div class="uk-navbar-dropdown" uk-dropdown="mode: click; pos: bottom-right;">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li><a href="/@<%= tw.screen_name %>/<%= @review.id %>/edit"><span
+                                            uk-icon="icon: pencil; ratio: 1.3;" style="color: #999;"></span><span
+                                            class="menu-text" style="color: #999;">Edit</span></a></li>
+                                <li class="uk-nav-divider"></li>
+                                <li><a href="#detele-modal" style="color: #F66" uk-toggle><span
+                                            uk-icon="icon: sign-out; ratio: 1.3;"></span><span
+                                            class="menu-text">Delete</span></a></li>
+                            </ul>
+
+                                <div id="detele-modal" uk-modal>
+                                    <div class="uk-modal-dialog uk-modal-body">
+                                        <h2 class="uk-modal-title">確認</h2>
+                                        <p>
+                                        本当にこのレビューを削除しても良いですか？
+                                        </p>
+                                        <p class="uk-text-right">
+                                            <button class="uk-button uk-button-default uk-modal-close"
+                                                type="button">Cancel</button>
+                                            <a class="uk-button uk-button-primary" href="/@<%= tw.screen_name %>/<%= @review.id %>/delete">DETELE</a>
+                                        </p>
+                                    </div>
+                                </div>
+                        </div>
+                        <% else %>
                         <a href="/@<%= tw.screen_name %>/<%= @review.id %>/like">
-                            <% if @me %>
                             <% if @review.likes.find_by(user: @me).nil? %>
                             <span uk-icon="icon: fa-star"></span>&nbsp;Like
                             <% else %>
                             <span uk-icon="icon: fa-star-s" style="color: #fff547; stroke: #40414f"></span>&nbsp;Like
                             <% end %>
-                            <% end %>
                         </a>
+                        <% end %>
+                        <% end %>
                     </li>
                 </ul>
             </div>
