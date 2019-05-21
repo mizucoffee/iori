@@ -10,7 +10,7 @@
 
 <body>
     <%= render :erb ,:'template/header' %>
-    <form class="uk-width-1@s" method="post" action="/review/<%= @review ? 'update' : 'new'%>">
+    <form class="uk-width-1@s" method="post" action="/review/<%= @type %>">
         <div id="new-review" class="uk-section">
             <div class="uk-container uk-text-center">
                 <h1 class="uk-heading-line"><span class="text">Review</span></h1>
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                    <input name="id" value="<%= @review ? @review.id : '' %>" type="hidden">
+                    <input name="id" value="<%= @review ? @review.respond_to?(:id) ? @review.id : '' : '' %>" type="hidden">
                 </div>
             </div>
         </div>

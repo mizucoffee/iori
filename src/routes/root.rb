@@ -23,6 +23,7 @@ class RootRouter < Base
 
   get '/@:screen_name/:review_id/edit' do
     @review = Review.find_by(id: params[:review_id])
+    @type = 'update'
 
     error 404 if @review.blank?
     unless Tw.app.user(@review.user.twitter_id.to_i).screen_name == params[:screen_name] || @review.user.twitter_id == @me.twitter_id

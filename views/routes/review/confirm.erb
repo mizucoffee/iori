@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <% @title = @review.title %>
+    <%= render :erb ,:'template/head' %>
+    <% tw = Tw.app.user(@review.user.twitter_id.to_i) %>
+</head>
+
+<body>
+    <%= render :erb ,:'template/header' %>
+    <% color = @review.hue %>
+    <% light = @review.light%>
+
+    <div id="review-header" class="uk-section <%= light ? 'light' : 'dark' %>"
+        style="background: linear-gradient(hsl(<%= color %>, 100%, <%= light ? '97%' : '35%' %>,1), hsl(<%= color %>, 100%, <%= light ? '85%' : '25%' %>,1));">
+        <div class="uk-container uk-text-center">
+            <h1 class="uk-heading-line"><span><%= @review.title %></span></h1>
+            <span class="song"><%= @review.music.name %></span>
+        </div>
+    </div>
+    <div id="review-info" class="uk-section <%= light ? 'light' : 'dark' %>"
+        style="background: hsl(<%= color %>, 100%, <%= light ? '97%' : '40%' %>">
+        <div class="uk-navbar-container uk-container"
+            style="background: hsl(<%= color %>, 100%, <%= light ? '97%' : '40%' %>" uk-navbar>
+            <div class="uk-navbar-left">
+                <ul class="uk-navbar-nav">
+
+                    <li><img src="<%= tw.profile_image_url_https %>" alt="@<%= tw.screen_name %>">&nbsp;<%= tw.name %>
+                    </li>
+                </ul>
+            </div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li>
+                        <div>
+                        <form action="/review/new" method="post">
+                            <input type="hidden" name="title" value="<%= @review.title %>">
+                            <input type="hidden" name="body" value="<%= @review.body %>">
+                            <input type="hidden" name="music" value="<%= @review.music.id %>">
+                            <input type="hidden" name="hue" value="<%= @review.hue %>">
+                            <input type="hidden" name="light" value="<%= @review.light ? '1' : '0' %>">
+                            <input type="hidden" name="review_type" value="<%= @review.review_type %>">
+                            <input type="submit" class="uk-button uk-button-default" value="戻る">
+                        </form>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                        <form action="/review/make" method="post">
+                            <input type="hidden" name="title" value="<%= @review.title %>">
+                            <input type="hidden" name="body" value="<%= @review.body %>">
+                            <input type="hidden" name="music" value="<%= @review.music.id %>">
+                            <input type="hidden" name="hue" value="<%= @review.hue %>">
+                            <input type="hidden" name="light" value="<%= @review.light ? '1' : '0' %>">
+                            <input type="hidden" name="review_type" value="<%= @review.review_type %>">
+                            <input type="submit" style="margin-left: 8px" class="uk-button uk-button-primary" value="投稿">
+                        </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="review-body" class="uk-section">
+        <div class="uk-container uk-text-center">
+            <p><%= @review.body %></p>
+        </div>
+    </div>
+    <%= render :erb ,:'template/footer' %>
+</body>
+
+</html>
