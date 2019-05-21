@@ -21,7 +21,7 @@
     <% light = @review.light%>
 
     <div id="review-header" class="uk-section <%= light ? 'light' : 'dark' %>"
-        style="background:  linear-gradient(hsl(<%= color %>, 100%, <%= light ? '97%' : '35%' %>,1), hsl(<%= color %>, 100%, <%= light ? '85%' : '25%' %>,1));">
+        style="background: linear-gradient(hsl(<%= color %>, 100%, <%= light ? '97%' : '35%' %>,1), hsl(<%= color %>, 100%, <%= light ? '85%' : '25%' %>,1));">
         <div class="uk-container uk-text-center">
             <h1 class="uk-heading-line"><a
                     href="/music/<%= @review.music.id %>"><span><%= @review.music.name %></span></a></h1>

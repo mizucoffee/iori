@@ -5,7 +5,7 @@ $(document).ready(() => {
     ctx.clearRect(0, 0, 400, 100)
 
     const lightGrd = createGrd(85)
-    const darkGrd = createGrd(30)
+    const darkGrd = createGrd(25)
   
     let light = $('#form-light').val() == '1'
     $(light ? '#cs1' : '#cs2').addClass('selected')
@@ -38,9 +38,9 @@ $(document).ready(() => {
       }  
   
       $('#cs1').css('background', `hsl(${h}, 100%, 85%, 1)`)
-      $('#cs2').css('background', `hsl(${h}, 100%, 30%, 1)`)
-      $('#new-review').css('background', `hsl(${h}, 100%, ${light ? '85%' : '30%'}, 1)`)
-      $('.color').css('background', `hsl(${h}, 100%, ${light ? '85%' : '30%'}, 1)`)
+      $('#cs2').css('background', `hsl(${h}, 100%, 25%, 1)`)
+      $('#new-review').css('background', `linear-gradient(hsl(${h}, 100%, ${light ? '97%' : '35%'} ,1), hsl(${h}, 100%, ${light ? '85%' : '25%'},1)`)
+      $('.color').css('background', `linear-gradient(hsl(${h}, 100%, ${light ? '97%' : '35%'} ,1), hsl(${h}, 100%, ${light ? '85%' : '25%'},1)`)
       $('#form-hue').val(h)
       $('#form-light').val(light ? '1' : '0')
       $('#form-color').val(`${light ? 'l' : 'd'}${h}`)
