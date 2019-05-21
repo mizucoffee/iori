@@ -23,9 +23,8 @@
     <div id="review-header" class="uk-section <%= light ? 'light' : 'dark' %>"
         style="background: linear-gradient(hsl(<%= color %>, 100%, <%= light ? '97%' : '35%' %>,1), hsl(<%= color %>, 100%, <%= light ? '85%' : '25%' %>,1));">
         <div class="uk-container uk-text-center">
-            <h1 class="uk-heading-line"><a
-                    href="/music/<%= @review.music.id %>"><span><%= @review.music.name %></span></a></h1>
-            <span class="singers"><%= @review.music.singers.map{|s|s.name}.join(',') %></span>
+            <h1 class="uk-heading-line"><span><%= @review.title %></span></h1>
+            <a class="song-link" href="/music/<%= @review.music.id %>"><span class="song"><%= @review.music.name %></span></a>
         </div>
     </div>
     <div id="review-info" class="uk-section <%= light ? 'light' : 'dark' %>"
@@ -58,19 +57,20 @@
                                             class="menu-text">Delete</span></a></li>
                             </ul>
 
-                                <div id="detele-modal" uk-modal>
-                                    <div class="uk-modal-dialog uk-modal-body">
-                                        <h2 class="uk-modal-title">確認</h2>
-                                        <p>
+                            <div id="detele-modal" uk-modal>
+                                <div class="uk-modal-dialog uk-modal-body">
+                                    <h2 class="uk-modal-title">確認</h2>
+                                    <p>
                                         本当にこのレビューを削除しても良いですか？
-                                        </p>
-                                        <p class="uk-text-right">
-                                            <button class="uk-button uk-button-default uk-modal-close"
-                                                type="button">Cancel</button>
-                                            <a class="uk-button uk-button-primary" href="/@<%= tw.screen_name %>/<%= @review.id %>/delete">DETELE</a>
-                                        </p>
-                                    </div>
+                                    </p>
+                                    <p class="uk-text-right">
+                                        <button class="uk-button uk-button-default uk-modal-close"
+                                            type="button">Cancel</button>
+                                        <a class="uk-button uk-button-primary"
+                                            href="/@<%= tw.screen_name %>/<%= @review.id %>/delete">DETELE</a>
+                                    </p>
                                 </div>
+                            </div>
                         </div>
                         <% else %>
                         <a href="/@<%= tw.screen_name %>/<%= @review.id %>/like">
@@ -89,7 +89,6 @@
     </div>
     <div id="review-body" class="uk-section">
         <div class="uk-container uk-text-center">
-            <h2><%= @review.title %></h2>
             <p><%= @review.body %></p>
             <span><%= @review.created_at %></span>
         </div>

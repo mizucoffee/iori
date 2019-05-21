@@ -4,8 +4,13 @@
         text-decoration-color: black;
     }
 
-    .singers {
+    .song-link {
+        text-decoration-color: #666;
+    }
+
+    .song {
         font-size: 18pt;
+        color: #666;
     }
 }
 
@@ -20,7 +25,11 @@
         }
     }
 
-    .singers {
+    .song-link {
+        text-decoration-color: #ccc;
+    }
+
+    .song {
         color: #ccc;
     }
 }
