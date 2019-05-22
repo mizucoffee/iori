@@ -1,5 +1,5 @@
 #review-header {
-    h1>a {
+    h1>span {
         color: black;
         text-decoration-color: black;
     }
@@ -15,14 +15,9 @@
 }
 
 #review-header.dark {
-    h1 {
-        a {
-            text-decoration-color: white;
-
-            span {
-                color: white;
-            }
-        }
+    h1>span {
+        text-decoration-color: white;
+        color: white;
     }
 
     .song-link {

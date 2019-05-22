@@ -11,52 +11,80 @@ let arranger_id = new Set()
 $(document).ready(() => {
 
   $('#modal-music-search-form-search').click(e => {
-    fetch('/api/music/search?q=' + $('#modal-music-search-form-name').val())
-      .then(res => res.json())
-      .then(json => {
-        $('#modal-music-list').empty()
-        json.forEach(e =>
-          $('<li>').append($('<a>', { href: '#', text: e.name, class: 'uk-modal-close' }).click(() => {
-            $('#form-music-name').val(e.name)
-            $('#form-music-id').val(e.id)
-          })).appendTo('#modal-music-list')
-        )
-        addNotFound('music')
-      })
+    if ($('#modal-music-search-form-name').val() != '') {
+
+      fetch('/api/music/search?q=' + $('#modal-music-search-form-name').val())
+        .then(res => res.json())
+        .then(json => {
+          $('#modal-music-list').empty()
+          json.forEach(e =>
+            $('<li>').append($('<a>', {
+              href: '#',
+              text: e.name,
+              class: 'uk-modal-close'
+            }).click(() => {
+              $('#form-music-name').val(e.name)
+              $('#form-music-id').val(e.id)
+            })).appendTo('#modal-music-list')
+          )
+          addNotFound('music')
+        })
+    } else {
+      noText('music')
+    }
   })
 
   $('#music-artist-search-button').click(e => {
-    fetch('/api/artist/search?q=' + $('#music-artist').val())
-      .then(res => res.json())
-      .then(json => {
-        $('#modal-artist-list').empty()
-        json.forEach(e => {
-          const parent = $('<li>').append($('<a>', { class: 'uk-accordion-title', href: '#', text: e.name }))
-          const content = $('<div>', { class: 'uk-accordion-content' })
+    if ($('#music-artist').val() != '') {
+      fetch('/api/artist/search?q=' + $('#music-artist').val())
+        .then(res => res.json())
+        .then(json => {
+          $('#modal-artist-list').empty()
+          json.forEach(e => {
+            const parent = $('<li>').append($('<a>', {
+              class: 'uk-accordion-title',
+              href: '#',
+              text: e.name
+            }))
+            const content = $('<div>', {
+              class: 'uk-accordion-content'
+            })
 
-          const addCheckBox = (target, target_id, name) => {
-            $('<label>').append($('<input>', {
-              class: "uk-checkbox",
-              type: "checkbox",
-              checked: target_id.has(e.id)
-            }).change(onclick(e, target, target_id))).append($('<span>', {
-              text: ` ${name}  `
-            })).appendTo(content)
-          }
+            const addCheckBox = (target, target_id, name) => {
+              $('<label>').append($('<input>', {
+                class: "uk-checkbox",
+                type: "checkbox",
+                checked: target_id.has(e.id)
+              }).change(onclick(e, target, target_id))).append($('<span>', {
+                text: ` ${name}  `
+              })).appendTo(content)
+            }
 
-          addCheckBox(singer, singer_id, '歌手')
-          addCheckBox(composer, composer_id, '作曲者')
-          addCheckBox(lyricist, lyricist_id, '作詞者')
-          addCheckBox(arranger, arranger_id, '編曲者')
+            addCheckBox(singer, singer_id, '歌手')
+            addCheckBox(composer, composer_id, '作曲者')
+            addCheckBox(lyricist, lyricist_id, '作詞者')
+            addCheckBox(arranger, arranger_id, '編曲者')
 
-          parent.append(content).appendTo('#modal-artist-list')
+            parent.append(content).appendTo('#modal-artist-list')
+          })
+
+          addNotFound('artist')
         })
-
-        addNotFound('artist')
-      })
+    } else {
+      noText('artist')
+    }
   })
 
   $('#music-register').click(e => {
+    if ($('#music-name').val() == '') {
+      $('#music-alert').removeClass('uk-hidden')
+      return
+    }
+    if (singer_id.size == 0 && composer_id.size == 0 && lyricist_id.size == 0 && arranger_id.size == 0) {
+      $('#artists-alert').removeClass('uk-hidden')
+      return
+    }
+
     const body = {
       name: $('#music-name').val(),
       genre: $('#music-genre').val(),
@@ -73,12 +101,12 @@ $(document).ready(() => {
     }
 
     fetch('/api/music', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
-      },
-      body: str
-    })
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+        },
+        body: str
+      })
       .then(r => r.json())
       .then(r => {
         $('#form-music-name').val(r.name)
@@ -90,15 +118,21 @@ $(document).ready(() => {
   })
 
   $('#artist-create-button').click(e => {
-    fetch('/api/artist', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' },
-      body: `name=${encodeURIComponent($('#artist-create-name').val())}`
-    }).then(r => {
-      UIkit.modal($('#modal-music-create')[0]).show()
-      $('#music-artist').val($('#artist-create-name').val())
-      $('#music-artist-search-button').click()
-    })
+    if ($('#artist-create-name').val() != '') {
+      fetch('/api/artist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+        },
+        body: `name=${encodeURIComponent($('#artist-create-name').val())}`
+      }).then(r => {
+        UIkit.modal($('#modal-music-create')[0]).show()
+        $('#music-artist').val($('#artist-create-name').val())
+        $('#music-artist-search-button').click()
+      })
+    } else {
+      $('#artist-alert').removeClass('uk-hidden')
+    }
   })
 })
 
@@ -123,8 +157,29 @@ const onclick = (e, t, tid) => {
 }
 
 function addNotFound(target) {
-  $('<li>', { style: 'padding: 12px 10px;' })
-    .append($('<span>', { class: 'list-message', text: '見つかりませんでしたか？' }))
-    .append($('<a>', { class: 'uk-button uk-button-primary uk-align-right', href: `#modal-${target}-create`, 'uk-toggle': '', text: '登録する' }))
+  $('<li>', {
+      style: 'padding: 12px 10px;'
+    })
+    .append($('<span>', {
+      class: 'list-message',
+      text: '見つかりませんでしたか？'
+    }))
+    .append($('<a>', {
+      class: 'uk-button uk-button-primary uk-align-right',
+      href: `#modal-${target}-create`,
+      'uk-toggle': '',
+      text: '登録する'
+    }))
+    .appendTo(`#modal-${target}-list`)
+}
+
+function noText(target) {
+  $('<li>', {
+      style: 'padding: 12px 10px;'
+    })
+    .append($('<span>', {
+      class: 'list-message',
+      text: '検索ワードを入力してください。'
+    }))
     .appendTo(`#modal-${target}-list`)
 }

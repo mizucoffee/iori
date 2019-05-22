@@ -15,33 +15,46 @@
             <div class="uk-container uk-text-center">
                 <h1 class="uk-heading-line"><span class="text">Review</span></h1>
 
+                <% unless @error.blank? %>
+                <div class="uk-alert-primary uk-container uk-container-xsmall" uk-alert>
+                    <p>フォームを全て入力してください。</p>
+                </div>
+                <% end %>
+
                 <div class="uk-form-width-large uk-text-left uk-width-1@s" id="form">
                     <div class="uk-margin">
                         <label class="uk-form-label text" for="form-title">タイトル</label>
                         <div class="uk-form-controls">
-                            <input class="uk-input" id="form-title" type="text" name="title" placeholder="Title" value="<%= @review ? @review.title : '' %>">
+                            <input class="uk-input" id="form-title" type="text" name="title" placeholder="Title"
+                                value="<%= @review ? @review.title : '' %>" required>
                         </div>
                     </div>
 
                     <div class="uk-margin">
                         <label class="uk-form-label text" for="form-body">本文</label>
-                        <textarea class="uk-textarea" id="form-body" placeholder="Body" name="body"><%= @review ? @review.body : '' %></textarea>
+                        <textarea class="uk-textarea" id="form-body" placeholder="Body" name="body"
+                            required><%= @review ? @review.body : '' %></textarea>
                     </div>
 
                     <div class="uk-margin">
                         <label class="uk-form-label text" for="form-search">検索</label>
                         <div class="uk-form-controls" uk-grid>
                             <div class="uk-width-3-4">
-                                <input id="form-music-name" class="uk-input" type="text" value="<%= @review ? @review.music.name : '' %>" disabled>
-                                <input id="form-music-id" class="uk-input" name="music" value="<%= @review ? @review.music.id : '' %>" type="hidden">
+                                <input id="form-music-name" class="uk-input" type="text"
+                                    value="<%= @review ? @review.respond_to?(:music) ? @review.music.name : '' : '' %>"
+                                    disabled>
+                                <input id="form-music-id" class="uk-input" name="music"
+                                    value="<%= @review ? @review.respond_to?(:music) ? @review.music.id : '' : '' %>"
+                                    type="hidden">
                             </div>
                             <div class="uk-width-1-4">
-                                <a class="uk-button uk-button-primary uk-width-1-1" id="search-button" href="#modal-music-search"
-                                    uk-toggle>検索</a>
+                                <a class="uk-button uk-button-primary uk-width-1-1" id="search-button"
+                                    href="#modal-music-search" uk-toggle>検索</a>
                             </div>
                         </div>
                     </div>
-                    <input name="id" value="<%= @review ? @review.respond_to?(:id) ? @review.id : '' : '' %>" type="hidden">
+                    <input name="id" value="<%= @review ? @review.respond_to?(:id) ? @review.id : '' : '' %>"
+                        type="hidden">
                 </div>
             </div>
         </div>
@@ -56,9 +69,11 @@
                     style="max-width: 400px; padding: 0 20px; margin-bottom: 10px">
                     <canvas id="color-canvas" height="100px" width="400px"></canvas>
                 </div>
-                <input class="uk-input" id="form-hue" type="hidden" name="hue" value="<%= @review ? @review.hue : '0' %>">
-                <input class="uk-input" id="form-light" type="hidden" name="light" value="<%= @review ? (@review.light ? '1' : '0') : '1' %>">
-                
+                <input class="uk-input" id="form-hue" type="hidden" name="hue"
+                    value="<%= @review ? @review.hue : '0' %>">
+                <input class="uk-input" id="form-light" type="hidden" name="light"
+                    value="<%= @review ? (@review.light ? '1' : '0') : '1' %>">
+
                 <input class="uk-button uk-button-primary uk-button-large uk-align-center" value="確認画面へ" type="submit">
             </div>
         </div>
@@ -101,6 +116,14 @@
                 </div>
                 <div class="uk-modal-body" uk-overflow-auto>
                     <div class="uk-margin">
+                        <div id="music-alert" class="uk-alert-primary uk-container uk-container-xsmall uk-hidden"
+                            uk-alert>
+                            <p>曲名を入力してください</p>
+                        </div>
+                        <div id="artists-alert" class="uk-alert-primary uk-container uk-container-xsmall uk-hidden"
+                            uk-alert>
+                            <p>アーティストを入力してください</p>
+                        </div>
 
                         <div class="uk-margin">
                             <label class="uk-form-label" for="music-name">曲名</label>
@@ -178,6 +201,9 @@
                     <h2 class="uk-modal-title">アーティスト追加</h2>
                 </div>
                 <div class="uk-modal-body" uk-overflow-auto>
+                    <div id="artist-alert" class="uk-alert-primary uk-container uk-container-xsmall uk-hidden" uk-alert>
+                        <p>アーティスト名を入力してください</p>
+                    </div>
                     <div class="uk-margin">
                         <input id="artist-create-name" class="uk-input" type="text" placeholder="Artist Name">
                     </div>
