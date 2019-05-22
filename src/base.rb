@@ -25,4 +25,7 @@ class Base < Sinatra::Base
   not_found do
     erb :'routes/notfound'
   end
+  error 403 do
+    erb :'routes/forbidden'
+  end
 end

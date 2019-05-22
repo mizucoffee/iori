@@ -19,11 +19,10 @@ class ReviewRouter < Base
       review_type: 0,
       user: @me
     }
-    @review = Struct.new(*(hash.keys)).new(*(hash.values))
+    @review = Struct.new(*hash.keys).new(*hash.values)
     @type = 'confirm'
 
     erb :'routes/review/new'
-
   end
 
   post '/confirm' do
@@ -60,7 +59,7 @@ class ReviewRouter < Base
   end
 
   post '/update' do
-    redirect '/account/login?next=/review/update' if @me.nil?
+    redirect '/account/login?next=/' if @me.nil?
     r = Review.find(params[:id])
 
     r.title = params[:title]

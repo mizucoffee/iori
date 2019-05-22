@@ -14,9 +14,7 @@ class RootRouter < Base
     @review = Review.find_by(id: params[:review_id])
 
     error 404 if @review.blank?
-    unless Tw.app.user(@review.user.twitter_id.to_i).screen_name == params[:screen_name]
-      redirect '/'
-    end
+    error 404 unless Tw.app.user(@review.user.twitter_id.to_i).screen_name == params[:screen_name]
 
     erb :'routes/@user/review'
   end
@@ -25,10 +23,9 @@ class RootRouter < Base
     @review = Review.find_by(id: params[:review_id])
     @type = 'update'
 
-    error 404 if @review.blank?
-    unless Tw.app.user(@review.user.twitter_id.to_i).screen_name == params[:screen_name] || @review.user.twitter_id == @me.twitter_id
-      redirect '/'
-    end
+    redirect "/@#{params[:screen_name]}/#{params[:review_id]}" if @review.blank?
+    redirect "/@#{params[:screen_name]}/#{params[:review_id]}" unless Tw.app.user(@review.user.twitter_id.to_i).screen_name == params[:screen_name]
+    error 403 unless @review.user.twitter_id == @me.twitter_id
 
     erb :'routes/review/new'
   end
@@ -36,11 +33,11 @@ class RootRouter < Base
   get '/@:screen_name/:review_id/delete' do
     @review = Review.find_by(id: params[:review_id])
 
-    error 404 if @review.blank?
-    if Tw.app.user(@review.user.twitter_id.to_i).screen_name == params[:screen_name] && @review.user.twitter_id == @me.twitter_id
-      @review.destroy
-    end
+    redirect "/@#{params[:screen_name]}/#{params[:review_id]}" if @review.blank?
+    redirect "/@#{params[:screen_name]}/#{params[:review_id]}" unless Tw.app.user(@review.user.twitter_id.to_i).screen_name == params[:screen_name]
+    error 403 unless @review.user.twitter_id == @me.twitter_id
 
+    @review.destroy
     redirect '/'
   end
 
@@ -48,9 +45,7 @@ class RootRouter < Base
     @review = Review.find_by(id: params[:review_id])
 
     error 404 if @review.blank?
-    unless Tw.app.user(@review.user.twitter_id.to_i).screen_name == params[:screen_name]
-      redirect '/'
-    end
+    error 404 unless Tw.app.user(@review.user.twitter_id.to_i).screen_name == params[:screen_name]
 
     svg = render :erb, :'svg/ogp', locals: { review: @review }
     res = Faraday.post 'https://svg2ogp.mizucoffee.net/', data: svg
@@ -62,13 +57,10 @@ class RootRouter < Base
   get '/@:screen_name/:review_id/like' do
     @review = Review.find_by_id(params[:review_id])
 
-    redirect '/' if @review.nil?
+    redirect "/@#{params[:screen_name]}/#{params[:review_id]}" if @review.blank?
+    redirect "/@#{params[:screen_name]}/#{params[:review_id]}" unless Tw.app.user(@review.user.twitter_id.to_i).screen_name == params[:screen_name]
 
-    unless Tw.app.user(@review.user.twitter_id.to_i).screen_name == params[:screen_name]
-      redirect '/'
-    end
-
-    p = {user: @me, review: @review}
+    p = { user: @me, review: @review }
     if @review.likes.find_by(p).nil?
       @review.likes.create(p)
     else
