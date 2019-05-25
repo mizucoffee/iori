@@ -1,0 +1,27 @@
+#artist-header {
+  .singers {
+    font-size: 18pt;
+  }
+}
+
+#artist-body {
+  table {
+    margin: 0 auto;
+  }
+
+  td {
+    padding: {
+      left: 8px;
+      right: 8px;
+    }
+  }
+
+  .uk-tab {
+    margin: 0 auto;
+    margin-bottom: 48px;
+
+    a {
+      font-size: 18pt;
+    }
+  }
+}

@@ -52,7 +52,8 @@
                                         href="/@<%= @twuser.screen_name %>/<%= r.id %>"><%= h(r.title) %></a></td>
                                 <td class="uk-table-expand"><a
                                         href="/music/<%= r.music.id %>"><%= h(r.music.name) %></a></td>
-                                <td class="uk-text-center"><%= r.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d") %></td>
+                                <td class="uk-text-center">
+                                    <%= r.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d") %></td>
                             </tr>
                             <% end %>
                         </table>
@@ -83,7 +84,8 @@
                                         href="/music/<%= r.music.id %>"><%= h(r.music.name) %></a></td>
                                 <td class="uk-table-expand"><a
                                         href="/@<%= r.user.screen_name %>"><%= h(r.user.name) %></a></td>
-                                <td class="uk-text-center"><%= r.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d") %></td>
+                                <td class="uk-text-center">
+                                    <%= r.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d") %></td>
                             </tr>
                             <% end %>
                         </table>

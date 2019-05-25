@@ -8,6 +8,7 @@ require './src/routes/api'
 require './src/routes/account'
 require './src/routes/review'
 require './src/routes/music'
+require './src/routes/artist'
 require './src/routes/search'
 
 # Iori
@@ -18,6 +19,7 @@ class Iori < Sinatra::Base
     '/account' => AccountRouter,
     '/review' => ReviewRouter,
     '/music' => MusicRouter,
+    '/artist' => ArtistRouter,
     '/search' => SearchRouter
   }.freeze
 end

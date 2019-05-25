@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <% @title = @artist.name %>
+    <%= render :erb ,:'template/head' %>
+</head>
+
+<body>
+    <%= render :erb ,:'template/header' %>
+    <div id="artist-header" class="uk-section" style="background: #eee;">
+        <div class="uk-container uk-text-center">
+            <h1 class="uk-heading-line"><span><%= @artist.name %></span></h1>
+        </div>
+    </div>
+    <div id="artist-body" class="uk-section">
+        <div class="uk-container">
+            <ul id="tab" class="uk-container uk-container-xsmall uk-child-width-expand uk-margin" uk-tab>
+                <li id="tab1" class="uk-active"><a href="#">歌手</a></li>
+                <li id="tab2"><a href="#">作曲</a></li>
+                <li id="tab3"><a href="#">作詞</a></li>
+                <li id="tab4"><a href="#">編曲</a></li>
+            </ul>
+            <ul class="uk-switcher uk-margin uk-text-center" id="body">
+                <li>
+                    <h2 class="uk-heading-line uk-text-center"><span>歌手</span></h2><br>
+                    <table class="uk-table uk-table-striped uk-table-middle">
+                        <tr>
+                            <th class="uk-text-center">曲名</th>
+                            <th class="uk-text-center">歌手</th>
+                            <th class="uk-text-center">作曲者</th>
+                            <th class="uk-text-center">作詞者</th>
+                            <th class="uk-text-center">編曲者</th>
+                            <th class="uk-text-center">レビュー件数</th>
+                        </tr>
+                        <% @artist.singer_musics.each do |m| %>
+                        <tr>
+                            <td><a href="/music/<%= m.id %>"><%= h(m.name) %></a></td>
+                            <td><%= m.singers.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= m.composers.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= m.lyricists.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= m.arrangers.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= Review.where(music_id: m.id).count %></td>
+                        </tr>
+                        <% end %>
+                    </table>
+                </li>
+                <li>
+                    <h2 class="uk-heading-line uk-text-center"><span>作曲</span></h2><br>
+                    <table class="uk-table uk-table-striped uk-table-middle">
+                        <tr>
+                            <th class="uk-text-center">曲名</th>
+                            <th class="uk-text-center">歌手</th>
+                            <th class="uk-text-center">作曲者</th>
+                            <th class="uk-text-center">作詞者</th>
+                            <th class="uk-text-center">編曲者</th>
+                            <th class="uk-text-center">レビュー件数</th>
+                        </tr>
+                        <% @artist.composer_musics.each do |m| %>
+                        <tr>
+                            <td><a href="/music/<%= m.id %>"><%= h(m.name) %></a></td>
+                            <td><%= m.singers.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= m.composers.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= m.lyricists.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= m.arrangers.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= Review.where(music_id: m.id).count %></td>
+                        </tr>
+                        <% end %>
+                    </table>
+                </li>
+                <li>
+                    <h2 class="uk-heading-line uk-text-center"><span>作詞</span></h2><br>
+                    <table class="uk-table uk-table-striped uk-table-middle">
+                        <tr>
+                            <th class="uk-text-center">曲名</th>
+                            <th class="uk-text-center">歌手</th>
+                            <th class="uk-text-center">作曲者</th>
+                            <th class="uk-text-center">作詞者</th>
+                            <th class="uk-text-center">編曲者</th>
+                            <th class="uk-text-center">レビュー件数</th>
+                        </tr>
+                        <% @artist.lyricist_musics.each do |m| %>
+                        <tr>
+                            <td><a href="/music/<%= m.id %>"><%= h(m.name) %></a></td>
+                            <td><%= m.singers.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= m.composers.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= m.lyricists.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= m.arrangers.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= Review.where(music_id: m.id).count %></td>
+                        </tr>
+                        <% end %>
+                    </table>
+                </li>
+                <li>
+                    <h2 class="uk-heading-line uk-text-center"><span>編曲</span></h2><br>
+                    <table class="uk-table uk-table-striped uk-table-middle">
+                        <tr>
+                            <th class="uk-text-center">曲名</th>
+                            <th class="uk-text-center">歌手</th>
+                            <th class="uk-text-center">作曲者</th>
+                            <th class="uk-text-center">作詞者</th>
+                            <th class="uk-text-center">編曲者</th>
+                            <th class="uk-text-center">レビュー件数</th>
+                        </tr>
+                        <% @artist.arranger_musics.each do |m| %>
+                        <tr>
+                            <td><a href="/music/<%= m.id %>"><%= h(m.name) %></a></td>
+                            <td><%= m.singers.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= m.composers.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= m.lyricists.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= m.arrangers.map{|a|h(a.name)}.join('<br>') %></td>
+                            <td><%= Review.where(music_id: m.id).count %></td>
+                        </tr>
+                        <% end %>
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <%= render :erb ,:'template/footer' %>
+</body>
+
+</html>
