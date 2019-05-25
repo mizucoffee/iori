@@ -5,7 +5,7 @@
     <% @title = @review.title %>
     <%= render :erb ,:'template/head' %>
     <% tw = Tw.app.user(@review.user.twitter_id.to_i) %>
-    <meta name="og:title" content="<%= @review.title %>">
+    <meta name="og:title" content="<%= h(@review.title) %>">
     <meta name="og:type" content="article">
     <meta name="og:site_name" content="iori">
     <meta name="og:url" content="http://<%= ENV['DOMAIN'] %>/@<%= tw.screen_name %>/<%= @review.id %>">
@@ -23,8 +23,8 @@
     <div id="review-header" class="uk-section <%= light ? 'light' : 'dark' %>"
         style="background: linear-gradient(hsl(<%= color %>, 100%, <%= light ? '97%' : '35%' %>,1), hsl(<%= color %>, 100%, <%= light ? '85%' : '25%' %>,1));">
         <div class="uk-container uk-text-center">
-            <h1 class="uk-heading-line"><span><%= @review.title %></span></h1>
-            <a class="song-link" href="/music/<%= @review.music.id %>"><span class="song"><%= @review.music.name %></span></a>
+            <h1 class="uk-heading-line"><span><%= h(@review.title) %></span></h1>
+            <a class="song-link" href="/music/<%= @review.music.id %>"><span class="song"><%= h(@review.music.name) %></span></a>
         </div>
     </div>
     <div id="review-info" class="uk-section <%= light ? 'light' : 'dark' %>"
@@ -35,7 +35,7 @@
                 <ul class="uk-navbar-nav">
 
                     <li><a href="/@<%= tw.screen_name %>"><img src="<%= tw.profile_image_url_https %>"
-                                alt="@<%= tw.screen_name %>">&nbsp;<%= tw.name %></a></li>
+                                alt="@<%= tw.screen_name %>">&nbsp;<%= h(tw.name) %></a></li>
                 </ul>
             </div>
             <div class="uk-navbar-right">
@@ -89,8 +89,8 @@
     </div>
     <div id="review-body" class="uk-section">
         <div class="uk-container uk-text-center">
-            <p><%= @review.body %></p>
-            <span><%= @review.created_at %></span>
+            <p><%= h(@review.body).gsub(/\R/, "<br>") %></p>
+            <span><%= @review.created_at.in_time_zone('Tokyo') %></span>
         </div>
     </div>
     <%= render :erb ,:'template/footer' %>

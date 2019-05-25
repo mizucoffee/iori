@@ -26,9 +26,9 @@
                 <% @music.reviews.each do |r| %>
                 <% tw = Tw.app.user(r.user.twitter_id.to_i) %>
                 <tr>
-                    <td><a href="/@<%= tw.screen_name %>/<%= r.id %>"><%= r.title %></a></td>
-                    <td><a href="/@<%= tw.screen_name %>"><img class="user-icon" src="<%= tw.profile_image_url_https %>" alt=""><%= tw.name %>(@<%= tw.screen_name %>)</a></td>
-                    <td><%= r.created_at %></td>
+                    <td><a href="/@<%= tw.screen_name %>/<%= r.id %>"><%= h(r.title) %></a></td>
+                    <td><a href="/@<%= tw.screen_name %>"><img class="user-icon" src="<%= tw.profile_image_url_https %>" alt=""><%= h(tw.name) %>(@<%= tw.screen_name %>)</a></td>
+                    <td><%= r.created_at.in_time_zone('Tokyo') %></td>
                     <td><span style="color: hsl(<%= r.hue %>, 100%, <%= r.light ? '85%' : '30%' %>,1); font-size: 22pt;">■</span></td>
                 </tr>
                 <% end %>

@@ -50,7 +50,7 @@
         </li>
         <li>
           <a href="#"><img src="<%= @twitter.profile_image_url_https %>"
-              alt="@<%= @twitter.screen_name %>">&nbsp;<%= @twitter.name %></a>
+              alt="@<%= @twitter.screen_name %>">&nbsp;<%= h(@twitter.name) %></a>
           <div class="uk-navbar-dropdown">
             <ul class="uk-nav uk-navbar-dropdown-nav">
               <li><a href="/@<%= @twitter.screen_name %>"><span uk-icon="icon: user"></span>&nbsp;My Page</a></li>

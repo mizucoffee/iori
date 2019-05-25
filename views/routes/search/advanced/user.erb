@@ -33,7 +33,7 @@
                     <% twuser.each do |u| %>
                     <tr>
                         <td><img class="user-icon" src="<%= u.profile_image_url_https %>" alt=""></td>
-                        <td><a href="/@<%= u.screen_name %>"><%= u.name %></a></td>
+                        <td><a href="/@<%= u.screen_name %>"><%= h(u.name) %></a></td>
                         <td><a href="//twitter.com/<%= u.screen_name %>">@<%= u.screen_name %></a></td>
                         <td><%= User.find_by(twitter_id: u.id).reviews.count %></td>
                     </tr>

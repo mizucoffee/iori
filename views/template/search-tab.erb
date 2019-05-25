@@ -40,35 +40,35 @@
                 <div class="uk-margin">
                     <label class="uk-form-label text" for="form-title">曲名</label>
                     <div class="uk-form-controls">
-                        <input id="form-title" class="uk-input" type="text" name="song" placeholder="曲名" value="<%= @song %>">
+                        <input id="form-title" class="uk-input" type="text" name="song" placeholder="曲名" value="<%= h(@song) %>">
                     </div>
                 </div>
 
                 <div class="uk-margin">
                     <label class="uk-form-label text" for="form-singer">歌手</label>
                     <div class="uk-form-controls">
-                        <input id="form-singer" class="uk-input" type="text" name="singer" placeholder="歌手" value="<%= @singer %>">
+                        <input id="form-singer" class="uk-input" type="text" name="singer" placeholder="歌手" value="<%= h(@singer) %>">
                     </div>
                 </div>
 
                 <div class="uk-margin">
                     <label class="uk-form-label text" for="form-composer">作曲者</label>
                     <div class="uk-form-controls">
-                        <input id="form-composer" class="uk-input" type="text" name="composer" placeholder="作曲者" value="<%= @composer %>">
+                        <input id="form-composer" class="uk-input" type="text" name="composer" placeholder="作曲者" value="<%= h(@composer) %>">
                     </div>
                 </div>
 
                 <div class="uk-margin">
                     <label class="uk-form-label text" for="form-lyricist">作詞者</label>
                     <div class="uk-form-controls">
-                        <input id="form-lyricist" class="uk-input" type="text" name="lyricist" placeholder="作詞者" value="<%= @lyricist %>">
+                        <input id="form-lyricist" class="uk-input" type="text" name="lyricist" placeholder="作詞者" value="<%= h(@lyricist) %>">
                     </div>
                 </div>
 
                 <div class="uk-margin">
                     <label class="uk-form-label text" for="form-arranger">編曲者</label>
                     <div class="uk-form-controls">
-                        <input id="form-arranger" class="uk-input" type="text" name="arranger" placeholder="編曲者" value="<%= @arranger %>">
+                        <input id="form-arranger" class="uk-input" type="text" name="arranger" placeholder="編曲者" value="<%= h(@arranger) %>">
                     </div>
                 </div>
 
@@ -78,7 +78,7 @@
                         <select class="uk-select" id="form-genre" name="genre">
                             <option value="0">-</option>
                             <% Genre.all.each do |g| %>
-                            <option value="<%= g.id %>" <%= @genre == g.id.to_s ? 'selected' : '' %>><%= g.name %></option>
+                            <option value="<%= g.id %>" <%= @genre == g.id.to_s ? 'selected' : '' %>><%= h(g.name) %></option>
                             <% end %>
                         </select>
                     </div>
@@ -97,7 +97,7 @@
                 <div class="uk-form-controls">
                     <div class="uk-inline uk-width-expand">
                         <span class="uk-form-icon" uk-icon="icon: fa-user-s"></span>
-                        <input class="uk-input" name="name" value="<%= @name %>">
+                        <input class="uk-input" name="name" value="<%= h(@name) %>">
                     </div>
                 </div>
                 <div class="uk-margin">
@@ -105,7 +105,7 @@
                     <div class="uk-form-controls">
                         <div class="uk-inline uk-width-expand">
                             <span class="uk-form-icon" uk-icon="icon: fa-at-s"></span>
-                            <input class="uk-input" name="id" value="<%= @id %>">
+                            <input class="uk-input" name="id" value="<%= h(@id) %>">
                         </div>
                     </div>
                 </div>

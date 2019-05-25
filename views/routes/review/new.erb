@@ -26,14 +26,14 @@
                         <label class="uk-form-label text" for="form-title">タイトル</label>
                         <div class="uk-form-controls">
                             <input class="uk-input" id="form-title" type="text" name="title" placeholder="Title"
-                                value="<%= @review ? @review.title : '' %>" required>
+                                value="<%= @review ? h(@review.title) : '' %>" required>
                         </div>
                     </div>
 
                     <div class="uk-margin">
                         <label class="uk-form-label text" for="form-body">本文</label>
                         <textarea class="uk-textarea" id="form-body" placeholder="Body" name="body"
-                            required><%= @review ? @review.body : '' %></textarea>
+                            required><%= @review ? h(@review.body) : '' %></textarea>
                     </div>
 
                     <div class="uk-margin">
@@ -41,7 +41,7 @@
                         <div class="uk-form-controls" uk-grid>
                             <div class="uk-width-3-4">
                                 <input id="form-music-name" class="uk-input" type="text"
-                                    value="<%= @review ? @review.respond_to?(:music) ? @review.music.name : '' : '' %>"
+                                    value="<%= @review ? @review.respond_to?(:music) ? h(@review.music.name) : '' : '' %>"
                                     disabled>
                                 <input id="form-music-id" class="uk-input" name="music"
                                     value="<%= @review ? @review.respond_to?(:music) ? @review.music.id : '' : '' %>"
@@ -137,7 +137,7 @@
                             <div class="uk-form-controls">
                                 <select class="uk-select" id="music-genre">
                                     <% Genre.all.each do |g| %>
-                                    <option value="<%= g.id %>"><%= g.name %></option>
+                                    <option value="<%= g.id %>"><%= h(g.name) %></option>
                                     <% end %>
                                 </select>
                             </div>

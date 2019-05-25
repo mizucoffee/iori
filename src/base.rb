@@ -3,6 +3,12 @@ class Base < Sinatra::Base
   set :root, File.expand_path('../', File.dirname(__FILE__))
   enable :sessions
 
+  helpers do
+    def h(text)
+      Rack::Utils.escape_html(text)
+    end
+  end
+
   configure :development do
     register Sinatra::Reloader
   end

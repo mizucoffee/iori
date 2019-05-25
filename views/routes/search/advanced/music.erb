@@ -33,11 +33,11 @@
                     </tr>
                     <% @musics.each do |m| %>
                     <tr>
-                        <td><a href="/music/<%= m.id %>"><%= m.name %></a></td>
-                        <td><%= m.singers.map(&:name).join('<br>') %></td>
-                        <td><%= m.composers.map(&:name).join('<br>') %></td>
-                        <td><%= m.lyricists.map(&:name).join('<br>') %></td>
-                        <td><%= m.arrangers.map(&:name).join('<br>') %></td>
+                        <td><a href="/music/<%= m.id %>"><%= h(m.name) %></a></td>
+                        <td><%= m.singers.map{|a|h(a.name)}.join('<br>') %></td>
+                        <td><%= m.composers.map{|a|h(a.name)}.join('<br>') %></td>
+                        <td><%= m.lyricists.map{|a|h(a.name)}.join('<br>') %></td>
+                        <td><%= m.arrangers.map{|a|h(a.name)}.join('<br>') %></td>
                         <td><%= Review.where(music_id: m.id).count %></td>
                     </tr>
                     <% end %>
